@@ -37,7 +37,7 @@ public class UsersController extends HttpServlet {
     		try {
     			System.out.println("/Login.usr");
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/log-in.jsp");
+    			forward.setPath("/WEB-INF/login/log_in.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
@@ -59,7 +59,7 @@ public class UsersController extends HttpServlet {
     	}  else if(urlCommand.equals("/SignUp.usr")) { // 회원등록
     		try {
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/sign-up.jsp");
+    			forward.setPath("/WEB-INF/login/sign_up.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
@@ -92,7 +92,7 @@ public class UsersController extends HttpServlet {
     		try {
     			System.out.println("/ChangePwd.usr");
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/changepwd.jsp");
+    			forward.setPath("/WEB-INF/login/change_pwd.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}

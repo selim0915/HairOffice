@@ -9,6 +9,25 @@
 			
 	<!-- Header Include End -->
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	
+	<script type="text/javascript">
+	 //jquery 로 간단하게 유효성 check 하기
+	 $(function() {
+	  	$('#login').click(function() {
+			if ($('#userid').val() == "") { 
+		    	alert('ID를 입력해 주세요.');
+		    	$('#userid').focus();
+		    return false;
+		   } else if ($('#pwd').val() == "") { 
+		    alert('password를 입력해 주세요.');
+		    $('#pwd').focus();
+		    return false;
+	  });
+	 });
+	</script>
+	
 <body>
 	  
 <!-- Sign In form -->
@@ -42,10 +61,10 @@
 								</div>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="login" id="login" class="form-submit" value="Log in"/>
                             </div>
                         </form>
-                        <a href="sign-up.jsp" class="signup-image-link">새로운 계정 생성</a>
+                        <a href="SignUp.usr" class="signup-image-link">새로운 계정 생성</a>
                     </div>
                 </div>
                 </div>

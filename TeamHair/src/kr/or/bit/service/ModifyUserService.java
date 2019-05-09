@@ -43,7 +43,7 @@ public class ModifyUserService implements Action {
 			
 			
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/login/modifyuserinfo.jsp");
+			forward.setPath("/WEB-INF/login/modify_user_info.jsp");
 			
 		} catch (Exception e) {	
 			e.printStackTrace();

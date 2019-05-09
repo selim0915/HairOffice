@@ -9,6 +9,27 @@
 			<link rel="stylesheet" href="css/member.css">
 	<!-- Header Include End -->
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	
+	<script type="text/javascript">
+	 //jquery 로 간단하게 유효성 check 하기
+	 $(function() {
+	  	$('#signup').submit(function() {
+			if ($('#id').val() == "") { 
+		    	alert('ID를 입력해 주세요.');
+		    	$('#id').focus();
+		    return false;
+		   } else if ($('#pass').val() == "") { 
+		    alert('password를 입력해 주세요.');
+		    $('#pass').focus();
+		    return false;
+	   }
+	   
+	  });
+	 });
+	</script>
+
 
 <body>
 	  
@@ -124,7 +145,7 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="img/signup.jpg" alt="sing up image"></figure>
-                        <a href="log-in.jsp" class="signup-image-link">이미 회원이신가요?</a>
+                        <a href="Login.usr" class="signup-image-link">이미 회원이신가요?</a>
                     </div>
                 </div>
                 </div>
