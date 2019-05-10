@@ -11,118 +11,39 @@
      ['<div id="content">'+
          '<div id="siteNotice">'+
          '</div>'+
-         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+         '<h1 id="firstHeading" class="firstHeading">청담 1호점</h1>'+
          
-         '<img src="./images/1.png">'+
+         '<img src="img/branch/building3.jpg">'+
          
          '<div id="bodyContent">'+
-         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-         'sandstone rock formation in the southern part of the '+
-         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-         'south west of the nearest large town, Alice Springs; 450&#160;km '+
-         '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-         'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-         'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-         'Aboriginal people of the area. It has many springs, waterholes, '+
-         'rock caves and ancient paintings. Uluru is listed as a World '+
-         'Heritage Site.</p>'+
-         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-         '(last visited June 22, 2009).</p>'+
+         '<p>서울시 강남구 청담동 도산대로 87길</p>'+
+         '<p>02-552-0088</p>'+
          '</div>'+
-         '</div>', 37.563576, 126.983431, 3],
+         '</div>', 37.526087, 127.049962, 3],
      ['<div id="content">'+
          '<div id="siteNotice">'+
          '</div>'+
-         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+         '<h1 id="firstHeading" class="firstHeading">역삼1호점</h1>'+
          
-         '<img src="./images/2.png">'+
+         '<img src="img/branch/building2.jpg">'+
          
          '<div id="bodyContent">'+
-         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-         'sandstone rock formation in the southern part of the '+
-         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-         'south west of the nearest large town, Alice Springs; 450&#160;km '+
-         '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-         'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-         'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-         'Aboriginal people of the area. It has many springs, waterholes, '+
-         'rock caves and ancient paintings. Uluru is listed as a World '+
-         'Heritage Site.</p>'+
-         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-         '(last visited June 22, 2009).</p>'+
+         '<p>서울특별시 강남구 역삼동 680</p>'+
+         '<p>02-524-0088</p>'+
          '</div>'+
-         '</div>', 37.520300, 127.023008, 'address 2'],
+         '</div>', 37.508402, 127.039248, 2],
      ['<div id="content">'+
          '<div id="siteNotice">'+
          '</div>'+
-         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+         '<h1 id="firstHeading" class="firstHeading">강남 1호점</h1>'+
          
-         '<img src="./images/1.png">'+
-         
-         '<div id="bodyContent">'+
-         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-         'sandstone rock formation in the southern part of the '+
-         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-         'south west of the nearest large town, Alice Springs; 450&#160;km '+
-         '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-         'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-         'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-         'Aboriginal people of the area. It has many springs, waterholes, '+
-         'rock caves and ancient paintings. Uluru is listed as a World '+
-         'Heritage Site.</p>'+
-         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-         '(last visited June 22, 2009).</p>'+
-         '</div>'+
-         '</div>', 37.575268, 126.976896, 2],
-     ['<div id="content">'+
-         '<div id="siteNotice">'+
-         '</div>'+
-         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-         
-         '<img src="./images/2.png">'+
+         '<img src="img/branch/building1.jpg">'+
          
          '<div id="bodyContent">'+
-         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-         'sandstone rock formation in the southern part of the '+
-         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-         'south west of the nearest large town, Alice Springs; 450&#160;km '+
-         '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-         'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-         'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-         'Aboriginal people of the area. It has many springs, waterholes, '+
-         'rock caves and ancient paintings. Uluru is listed as a World '+
-         'Heritage Site.</p>'+
-         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-         '(last visited June 22, 2009).</p>'+
+         '<p>서울특별시 서초구 서초동 1306-3</p>'+
+         '<p>02-553-2244</p>'+
          '</div>'+
-         '</div>', 37.550925, 126.990945, 1],
-     ['<div id="content">'+
-         '<div id="siteNotice">'+
-         '</div>'+
-         '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-         
-         '<img src="./images/1.png">'+
-         
-         '<div id="bodyContent">'+
-         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-         'sandstone rock formation in the southern part of the '+
-         'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-         'south west of the nearest large town, Alice Springs; 450&#160;km '+
-         '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-         'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-         'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-         'Aboriginal people of the area. It has many springs, waterholes, '+
-         'rock caves and ancient paintings. Uluru is listed as a World '+
-         'Heritage Site.</p>'+
-         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-         '(last visited June 22, 2009).</p>'+
-         '</div>'+
-         '</div>', 37.540223, 126.994005, 'address 5']
+         '</div>',37.500242, 127.026049, 1],
    ];
 
    var map = new google.maps.Map(document.getElementById('google-map'), {
@@ -190,7 +111,7 @@
 	<div class="container">
 		<div class="row">
 		<div class="sub-title">
-		<h1>서울 HairWork 지점</h1>
+		<h1>서울 HairOffice 지점</h1>
 		</div>
 		</div>
 	</div>
@@ -205,7 +126,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building1.jpg" alt="Card image cap">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -259,7 +180,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building2.jpg" alt="Card image cap">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -312,7 +233,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building3.jpg" alt="Card image cap">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -362,89 +283,11 @@
   
   <div class="card-deck">
 
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  
-  <!-- Card -->
-
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  </div>
-  <!-- Card -->
 </div>
 </div>
-</section>
+</div>
 
-<!-- Card deck -->   
-  
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
+
+</html>
+	

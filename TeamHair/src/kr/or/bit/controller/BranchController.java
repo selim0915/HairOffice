@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 
-@WebServlet("/*.brh")
+@WebServlet("*.brh")
 public class BranchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,15 +28,32 @@ public class BranchController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = new ActionForward();
     	
-      	if(urlCommand.equals("/Branch.brh")) { // 로그인
+      	if(urlCommand.equals("/Branch.brh")) { // 지점 메인
     		try {
     			System.out.println("/Branch.brh");
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/branch/seoul_office.jsp");
+    			forward.setPath("/WEB-INF/branch/branch_list.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	}  else if(urlCommand.equals("/Space.brh")) { // 공간 메인 정보
+    		try {
+    			System.out.println("/Space.brh");
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/space/seoul_office.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/GangnamOfficeInfo.brh")) { // 강남오피스의 공간 정보
+    		try {
+    			System.out.println("/GangnamOfficeInfo.brh");
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/space/seoulgangnam.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
     	}
+
       	
       	
       	

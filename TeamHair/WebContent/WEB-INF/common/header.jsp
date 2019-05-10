@@ -52,7 +52,25 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="index.jsp">Home</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.usersdto.userType=='M'}">
+								<li class="menu-has-children"><a href="">Admin</a>
+									<ul class="slide-menu">
+										<li class="menu-active"><a href="#"> Dashboard </a></li>
+										<li class="menu-active"><a href="#"> Add Branch </a></li>
+										<li class="menu-active"><a href="#"> Update Branch </a></li>
+										<li class="menu-active"><a href="#"> Add Space </a></li>
+										<li class="menu-active"><a href="#"> Update Space </a></li>
+										<li class="menu-active"><a href="#"> Delete Space </a></li>
+										<li class="menu-active"><a href="#"> Rental Contract </a></li>
+									</ul>
+								</li>
+							</c:when>
+						</c:choose>
+						
 						<li class="menu-active"><a href="Branch.brh">지점</a></li>
+						<li class="menu-active"><a href="Space.brh">공간</a></li>
+						
 						<li class="menu-has-children"><a href="">Blog</a>
 							<ul class="slide-menu">
 								<li><a href="hairgallery.jsp">Insta Gallery</a></li>

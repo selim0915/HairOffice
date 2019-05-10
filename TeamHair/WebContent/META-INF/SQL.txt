@@ -1,0 +1,19 @@
+
+
+
+
+
+--==================================================
+
+
+SELECT L.LIKEYN, P.PHOTOID, P.USERID as PHOTOPOSTID, L.USERID as LIKEID
+FROM PHOTO P JOIN LIKES L
+ON P.PHOTOID = L.PHOTOID
+AND P.USERID = 'admin'  -- 사진올린 사람
+AND L.USERID = 'ZO'     -- 좋아요 누른 사람
+AND P.PHOTOID = 22;     -- 관련사진
+
+SELECT COMMENTS, PHOTOID 
+FROM COMMENTS
+WHERE PHOTOID='22'          -- 사진 ID
+ORDER BY CREATEDATE DESC;   -- 최신순

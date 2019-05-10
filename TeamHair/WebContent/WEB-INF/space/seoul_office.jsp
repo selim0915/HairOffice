@@ -61,8 +61,8 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="seoulgangnam.jsp">
+      <img class="card-img-top" src="img/branch/hairshop1.jpg" alt="Card image cap">
+      <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>
     </div>
@@ -101,7 +101,7 @@
       </div>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div>
-      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='seoulgangnam.jsp'">지점 둘러보기</button>
+      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='GangnamOfficeInfo.brh'">지점 둘러보기</button>
       </div>
 
     </div>
@@ -115,8 +115,8 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="seoulgangnam.jsp">
+      <img class="card-img-top" src="img/branch/hairshop2.jpg" alt="Card image cap">
+      <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>
     </div>
@@ -155,7 +155,7 @@
       </div>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div>
-      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='seoulgangnam.jsp'">지점 둘러보기</button>
+      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='GangnamOfficeInfo.brh'">지점 둘러보기</button>
       </div>
 
     </div>
@@ -168,8 +168,8 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="seoulgangnam.jsp">
+      <img class="card-img-top" src="img/branch/hairshop3.jpg" alt="Card image cap">
+      <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>
     </div>
@@ -208,7 +208,7 @@
       </div>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div>
-      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='seoulgangnam.jsp'">지점 둘러보기</button>
+      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='GangnamOfficeInfo.brh'">지점 둘러보기</button>
       </div>
 
     </div>
@@ -218,85 +218,6 @@
   
   <div class="card-deck">
 
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  
-  <!-- Card -->
-
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-
-  <!-- Card -->
-  <div class="card mb-4">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="genric-btn primary_sub radius">예약하기</button>
-
-    </div>
-
-  </div>
-  </div>
-  <!-- Card -->
 </div>
 </div>
 </section>
