@@ -13,6 +13,10 @@
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <!-- Header Include End -->
 
+<script type="text/javascript">
+	function showPopup() { window.open("ChangeProfilePicture.usr", "a", "width=400, height=300, left=100, top=50"); }
+</script>
+
 <!-- 컨텐츠 팝업 시작 -->
 <body>
 	<div class="container">
@@ -29,7 +33,11 @@
 					<div class="modifycontentsession1">
 						<img src="img/main1.jpg" class="rounded-circle" alt="프로필사진">
 						<p>
-							<strong>${requestScope.usersdto.userId}</strong><br> <a href="#">프로필 사진 바꾸기</a>
+						<!--
+						<strong>${requestScope.usersdto.userId}</strong><br> <a href="ChangeProfilePicture.usr">프로필 사진 바꾸기</a> 
+						  -->
+							
+							<strong>${requestScope.usersdto.userId}</strong><br> <a href="<input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">">프로필 사진 바꾸기</a>
 						</p>
 					</div>
 

@@ -52,7 +52,7 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="index.jsp">Home</a></li>
-						<li class="menu-active"><a href="seouloffice.jsp">지점</a></li>
+						<li class="menu-active"><a href="Branch.brh">지점</a></li>
 						<li class="menu-has-children"><a href="">Blog</a>
 							<ul class="slide-menu">
 								<li><a href="hairgallery.jsp">Insta Gallery</a></li>
