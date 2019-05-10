@@ -50,3 +50,13 @@
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
+
+.galleryDivLine p{
+    margin-top: 10px;
+}
+
+.galleryDivLine2 {
+	margin-left: 50px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
