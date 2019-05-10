@@ -59,7 +59,7 @@
 								<li><a href="instragram.jsp">인스타헤어그램 테스트</a></li>
 							</ul>
 						</li>
-						<li class="menu-active"><a href="#">질문게시판</a></li>
+						<li class="menu-active"><a href="QnA.do">질문게시판</a></li>
 						
 						<c:choose>
 							<c:when test="${sessionScope.usersdto.userId!=null}">

@@ -55,7 +55,7 @@
 								<li><a href="instragram.jsp">Blog Single</a></li>
 							</ul>
 						</li>
-						<li class="menu-active"><a href="#">질문게시판</a></li>
+						<li class="menu-active"><a href="QnA.do">질문게시판</a></li>
 						<li class="menu-active"><a href="log-in.jsp">Log-in</a></li>
 						<li class="menu-active"><a href="Modify.usr">sign-up</a></li>
 					</ul>
