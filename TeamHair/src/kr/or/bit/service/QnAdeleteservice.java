@@ -23,7 +23,7 @@ public class QnAdeleteservice implements Action{
 			
 			QnADao dao = new QnADao();
 			result = dao.deleteQnA(boardid);
-			result2 = dao.deleteQnAComments(boardid);
+			result2 = dao.deleteQnA(boardid);
 			
 			if (result > 0) {
 				System.out.println("글 삭제 성공");

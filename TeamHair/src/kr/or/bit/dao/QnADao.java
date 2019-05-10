@@ -159,7 +159,6 @@ public class QnADao {
 			 if(pstmt != null)try{pstmt.close();}catch (Exception e){e.printStackTrace();}
 			 if(conn != null) try{conn.close();}catch (Exception e){e.printStackTrace();}  //반환
 		}
-
 		return row;
 	}
 	
@@ -210,7 +209,7 @@ public class QnADao {
 		
 		try {
 				conn = ds.getConnection();
-				String sql = "select CommentID, Comments, CreateDate, updateDate, BoardID, userID from QnAComments where BoardID=? order by BoardID";
+				String sql = "select CommentID, Comments, CreateDate, updateDate, BoardID, userID from QnAComments where BoardID=? order by commentid";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, boardid);
 				rs = pstmt.executeQuery();
@@ -235,32 +234,7 @@ public class QnADao {
 		return qnacommentslist;
 	}
 	
-	//댓글 삭제하기
-	public int deleteQnAComments(int boardid) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int row = 0;
-		
-		try {
-			conn = ds.getConnection();
-			String sql = "DELETE FROM QnAComments WHERE boardid=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, boardid);
-			row = pstmt.executeUpdate();
-
-			System.out.println("delete comments 종료");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		} finally {
-			 if(pstmt != null)try{pstmt.close();}catch (Exception e){e.printStackTrace();}
-			 if(conn != null) try{conn.close();}catch (Exception e){e.printStackTrace();}  //반환
-		}
-
-		return row;
-	}
-
+	
 	//댓글 추가
 	public int insertQnAComments(QnACommentsDto com) {
 		Connection conn = null;
@@ -281,6 +255,30 @@ public class QnADao {
 			System.out.println("boardid : " + com.getBoardID());
 			System.out.println("userid : " + com.getUserID());
 			System.out.println("DAO try문 종료");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			 if(pstmt != null)try{pstmt.close();}catch (Exception e){e.printStackTrace();}
+			 if(conn != null) try{conn.close();}catch (Exception e){e.printStackTrace();}  //반환
+		}
+
+		return row;
+	}
+	
+	//댓글 삭제
+	public int deleteQnAComments(int commentid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int row = 0;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "delete from qnacomments where commentid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentid);
+			row = pstmt.executeUpdate();
+			System.out.println("comments delete문 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.QnAcommentsListAsyncService;
+import kr.or.bit.service.QnAcommentsdeleteservice;
 import kr.or.bit.service.QnAcommentsinsertservice;
 import kr.or.bit.service.QnAdeleteservice;
 import kr.or.bit.service.QnAdetailservice;
@@ -106,7 +107,7 @@ public class QnAcontroller extends HttpServlet {
 			try {
 				action = new QnAcommentsinsertservice();
 				forward = action.execute(request, response);
-				System.out.println("QnAinsert.do ... try문 완료");
+				System.out.println("QnAcommentsinsert.do ... try문 완료");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -114,7 +115,16 @@ public class QnAcontroller extends HttpServlet {
 			System.out.println("QnAcommentslistAsync.do 들어옴");
 			action = new QnAcommentsListAsyncService();
 			forward = action.execute(request, response);
-    	}
+    	} else if (url_Command.equals("/QnAcommentsdelete.do")) { // QnA 댓글 삭제하기
+			System.out.println("QnAcommentsdelete.do 들어옴");
+			try {
+				action = new QnAcommentsdeleteservice();
+				forward = action.execute(request, response);
+				System.out.println("QnAcommentsdelete.do ... try문 완료");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 

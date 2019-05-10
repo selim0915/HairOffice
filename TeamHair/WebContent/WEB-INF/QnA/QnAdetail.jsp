@@ -15,75 +15,72 @@
 	<script>
 		$(function(){
 			$('#enroll').click(function(){
-				var output;
-		    	var top;
-				
-		    	console.log($('#comment').val());
-		    	console.log($('#boardid').val());
-		    	
-		    	
-		    	$.getJSON("QnAcommentslistAsync.do?",{boardid:$('#boardid').val()}, function (data) {
-		    		console.log(data.commentslist);
-		    		
-		    		$('#reply > table > tr').remove();
-		    		
-		    		var comment = data.commentslist;
-		    		console.log(comment);
-		    		
-		    		$.each(comment, function(key,val){
-		    			output += "<tr>";
-		    			output += "<td>작성자 : "+val.userID+" </td>";
-		    			output += "<td>"+val.createDate+" </td>";
-		    			output += "</tr>";
-		    			output += "<tr>";
-		    			output += "<td>내용 : "+val.comments+"</td>";
-		    			output += "</tr>";
-		 				$('#reply').html(output);
-		    		});
-		    		
-
-		    		
-		    		
-		    		
-		    		
-				 	/* var boardid = data.emplist;
-				 	
-		 			$.each(deptno, function(key, val){
-		 			output += "<tr>";
-	 				output += "<td>"+val.empno+"</td>";
-	 				output += "<td>"+val.ename+"</td>";
-	 				output += "<td>"+val.job+"</td>";
-	 				output += "<td>"+val.mgr+"</td>";
-	 				output += "<td>"+val.hiredate+"</td>";
-	 				output += "<td>" + parseInt(val.sal).toLocaleString(); +"</td>";
-	 				output += "<td>" + parseInt(val.comm).toLocaleString(); +"</td>";
-	 				output += "<td>"+val.deptno+"</td>";
-		 			output += "</tr>";
-	 				$('#result').html(output);
-		 			}); */
-
-
-				 });
+				addreply();
+		    	list();
 			});
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			$('#delete').click(function(){
+				console.log(dd)
+				deletereply();
+		    	list();
+			});
 		});
+		
+		function list(){
+			var output;
+			
+	    	$.getJSON("QnAcommentslistAsync.do?",{boardid:$('#boardid').val()}, function (data) {
+	    		$('#reply > table > tr').remove();
+	    		
+	    		var comment = data.commentslist;
+	    		console.log(comment);
+	    		
+	    		$.each(comment, function(key,val){
+	    			output += "<tr>";
+	    			output += "<td>작성자 : "+val.userID+" </td>";
+	    			output += "<td> "+val.createDate+" </td>";
+	    			output += "<td><button id='delete' value='${}'>삭제</td>";
+	    			output += "</tr>";
+	    			output += "<tr>";
+	    			output += "<td>내용 : "+val.comments+"</td>";
+	    			output += "</tr>";
+	 				$('#reply').html(output);
+	    		});
+			});
+		}
+		
+		function addreply(){	
+			var param = {
+					       "boardid":$('#boardid').val(),
+						   "comments":$('#comment').val(),
+						   "userid" : "detail.jsp...session.getid해오기"
+					    };
+			//alert("**param : " + $('#reply_writer').val());
+			$.ajax({
+				url:"QnAcommentsinsert.do",
+				datatype:"json",
+				data:param,
+			});
+			return false;
+		}
+		
+		function deletereply(){	
+			var param = {
+					       "boardid":$('#boardid').val(),
+						   "comments":$('#comment').val(),
+						   "userid" : "detail.jsp...session.getid해오기"
+					    };
+			//alert("**param : " + $('#reply_writer').val());
+			$.ajax({
+				url:"QnAcommentsinsert.do",
+				datatype:"json",
+				data:param,
+			});
+			return false;
+		}
+		
+		
+		
 	</script>
 	
 	<script type="text/javascript">
@@ -159,6 +156,7 @@
 			<tr>
 				<td>작성자 : ${i.userID }</td>
 				<td>${i.createDate }</td>
+				<td><input type='button' id='delete' value='삭제'></td>
 			</tr>
 			<tr>
 				<td>내용 : ${i.comments }</td>
@@ -169,9 +167,12 @@
 	<hr>
 	
 	<!-- <form action="QnAcommentsinsert.do" method="post"> -->
-	<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
 	
-	<input type="text" name="comment" id="comment">
+	
+	<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
+	<input type="text" name="comment" id="comment">	
+	
+
 	<input type="button" id="enroll" value="등록">
 	
 	
