@@ -1,50 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Header Include Start -->
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <!-- Header Include End -->
 <link rel="stylesheet" href="css/contentpopup.css">
+
+<c:set var="blogList" value="${requestScope.bloglist}"></c:set>
+<c:set var="usersDto" value="${sessionScope.usersdto}"></c:set>
+<c:set var="profileDto" value="${requestScope.profiledto}"></c:set>
+
 <body>
-	
-	
 	<header>
 		<div class="container">
 			<div class="profile">
 				<div class="profile-image">
-					 <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt=""> 
-					<!-- <img src="<%= path %>/upload/${bloglist.filename}" alt="">-->
+					<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
 				</div>
 
 				<div class="profile-user-settings">
-					<h1 class="profile-user-name">janedoe_</h1>
-					<button class="btn profile-edit-btn">Edit Profile</button>
-					<button class="btn profile-settings-btn"
-						aria-label="profile settings">
-						<i class="fas fa-cog" aria-hidden="true"></i>
-					</button>
+					<h1 class="profile-user-name">${usersDto.userId}</h1>
+					<a href="Modify.usr"><button class="btn profile-edit-btn">Edit Profile</button></a>
+					<a href="instraWrite.insta"><button class="btn profile-edit-btn">글쓰기</button></a>
 				</div>
 
 				<div class="profile-stats">
 					<ul>
-						<li><span class="profile-stat-count">164</span> posts</li>
-						<li><span class="profile-stat-count">188</span> followers</li>
-						<li><span class="profile-stat-count">206</span> following</li>
+						<li><span class="profile-stat-count">${blogList.size()}</span> posts</li>
+						<li><span class="profile-stat-count">0</span> followers</li>
+						<li><span class="profile-stat-count">0</span> following</li>
 					</ul>
 				</div>
 
 				<div class="profile-bio">
 					<p>
-						<span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor
-						sit, amet consectetur adipisicing elit 📷✈️🏕️
+						<span class="profile-real-name">${usersDto.userName}</span>
+						${profileDto.introduction}
 					</p>
 				</div>
 			</div>
 			<!-- End of profile section -->
 		</div>
 		<!-- End of container -->
+
 	</header>
 	<!-- RESERVE POPUP START -->
 
@@ -60,7 +60,7 @@
 			<div class="obscure">
 				<div class="popup animationClose">
 					<div class="col-lg-8 col-md-7 col-xs-7 col-sm-7 imgsession">
-						<img src="img/main1.jpg" alt="프로필 업로드 사진">
+						<img src="./upload/${blogList[i].fileName}" alt="블로그 상세 이미지">
 					</div>
 
 					<div class="col-lg-4 col-md-5 col-xs-5 col-sm-5 contentsession">
@@ -135,12 +135,45 @@
 	</div>
 	<!-- POPUP END -->
 
+	
+	<!-- 세림 수정 (아래 복사본) -->
 	<div class="container">
+		<div class="gallery">
+			<c:choose>
+				<c:when test="${blogList.size()==0}">
+					<div class="blogListNullDiv">작성 한 게시글이 없습니다.</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="i" begin="0" end="${blogList.size()-1}">
+						<div class="gallery-item" tabindex="0">
+							<a class="openBtn" href="#"> 
+							<img src="./upload/${blogList[i].fileName}" alt="이미지"
+								class="blogListImg gallery-image">
+								<div class="gallery-item-info">
+									<ul>
+										<li class="gallery-item-likes"><span
+											class="visually-hidden">Likes:</span><i class="fas fa-heart"
+											aria-hidden="true"></i> 56</li>
+										<li class="gallery-item-comments"><span
+											class="visually-hidden">Comments:</span><i
+											class="fas fa-comment" aria-hidden="true"></i> 2</li>
+									</ul>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+
+
+	<!-- <div class="container">
 		<div class="gallery">
 			<div class="gallery-item" tabindex="0">
 				<div>
-					<a class="openBtn" href="#"> 
-					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop"
+					<a class="openBtn" href="#"> <img
+						src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop"
 						class="gallery-image">
 						<div class="gallery-item-info">
 							<ul>
@@ -155,9 +188,10 @@
 					</a>
 				</div>
 			</div>
-			
+
 			<div class="gallery-item" tabindex="0">
-				<img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop"
+				<img
+					src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop"
 					class="gallery-image" alt="">
 
 				<div class="gallery-item-info">
@@ -172,7 +206,8 @@
 			</div>
 
 			<div class="gallery-item" tabindex="0">
-				<img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop"
+				<img
+					src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop"
 					class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
@@ -192,7 +227,8 @@
 			</div>
 
 			<div class="gallery-item" tabindex="0">
-				<img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop"
+				<img
+					src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop"
 					class="gallery-image" alt="">
 
 				<div class="gallery-item-type">
@@ -285,18 +321,11 @@
 			</div>
 
 		</div>
-		<!-- End of gallery -->
-
 		<div class="loader"></div>
+	</div> -->
 
-	</div>
-	<!-- End of container -->
-
-
-
-
-	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-	<script src="js/instapopup.js"></script>
-
-	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
-	
+</body>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src="js/instapopup.js"></script>
+<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
+</html>

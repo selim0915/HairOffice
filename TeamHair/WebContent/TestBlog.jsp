@@ -26,25 +26,14 @@
 %>
 DELETE : <%=delrow %><br>
 
-
 <% 
-	dto.setFileName("main.jpg");
-	dto.setDescription("좋은 하루");
+	dto.setFileName("apple.jpg");
+	dto.setDescription("사과 insert");
 	dto.setUserId("woo");
 %>
 BEFORE INSERT : <%=dto.toString() %><br>
 <% 	
 	int row=dao.insertPhoto(dto);
-%>
-INSERT : <%=row %><br>
-<% 
-	dto.setFileName("main2.jpg");
-	dto.setDescription("좋은 하루2");
-	dto.setUserId("woo");
-%>
-BEFORE INSERT : <%=dto.toString() %><br>
-<% 	
-	row=dao.insertPhoto(dto);
 %>
 INSERT : <%=row %><br>
 
@@ -68,7 +57,7 @@ INSERT : <%=row %><br>
 
 
 <%
-	dto.setFileName("hello.jpg");
+	dto.setFileName("apple.jpg");
 	dto.setDescription("날씨 좋다.");
 	dto.setUserId("woo");
 	dto.setPhotoId(10);

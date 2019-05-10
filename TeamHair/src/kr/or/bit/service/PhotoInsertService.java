@@ -39,7 +39,7 @@ public class PhotoInsertService implements Action {
 
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/instahairgram/instragram.jsp"); // 리스트
+			forward.setPath("InstaBlog.insta"); // 리스트
 
 		} catch (Exception e) {
 			e.printStackTrace();

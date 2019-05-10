@@ -29,7 +29,7 @@ public class PhotoDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM PHOTO WHERE USERID=?"; 
+		String sql = "SELECT * FROM PHOTO WHERE USERID=? ORDER BY PHOTOID DESC"; 
 
 		try {
 			conn = ds.getConnection();

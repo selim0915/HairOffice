@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.PhotoDao;
+import kr.or.bit.dao.ProfileDao;
 import kr.or.bit.dto.PhotoDto;
+import kr.or.bit.dto.ProfileDto;
 import kr.or.bit.dto.UsersDto;
 
 public class PhotoAllSelectService implements Action{
@@ -29,6 +31,10 @@ public class PhotoAllSelectService implements Action{
 			List<PhotoDto> bloglist = photoDao.selectPhotoAllList(userDto.getUserId());
 			request.setAttribute("bloglist", bloglist);
 			System.out.println("bloglist: "+bloglist);
+			
+			ProfileDao profileDao = new ProfileDao();
+			ProfileDto profileDto = profileDao.getProfilebyId(userDto.getUserId());
+			request.setAttribute("profiledto", profileDto);
 			
 			forward = new ActionForward();
 			forward.setRedirect(false);

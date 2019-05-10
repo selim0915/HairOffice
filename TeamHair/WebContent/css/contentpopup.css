@@ -160,3 +160,33 @@ hr{
     display: inline;
     float: right;
 }
+
+.blogListNullDiv {
+	height:70px; 
+	background-color:white; 
+	text-align: center; 
+	margin-top: 15px;
+}
+
+.profile {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.gallery {
+	margin-bottom: 100px;
+} 
+
+.instaWriteFormDiv {
+	margin-top: 100px;
+	margin-bottom: 180px;
+}
+
+.instaWriteFormDivBtn {
+	margin-top: 50px;
+	float: right;
+	height: 40px;
+	width: 100px;
+}
+
+

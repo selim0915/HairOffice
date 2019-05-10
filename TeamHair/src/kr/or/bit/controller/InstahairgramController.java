@@ -13,8 +13,9 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.LoginOkService;
 import kr.or.bit.service.PhotoAllSelectService;
+import kr.or.bit.service.PhotoInsertService;
 
-@WebServlet("*.Insta")
+@WebServlet("*.insta")
 public class InstahairgramController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,24 +30,30 @@ public class InstahairgramController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = new ActionForward(); 
     	
-    	if(urlCommand.equals("/InstaGallery.Insta")) { // 인스타 전체 보기
+    	if(urlCommand.equals("/InstaGallery.insta")) { // 인스타 전체 보기
     		try {
     			forward.setRedirect(false);
     			forward.setPath("/WEB-INF/branch/hairgallery.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/InstaBlog.Insta")) { // 인스타 개인 블로그 전체 보기
+    	} else if(urlCommand.equals("/InstaBlog.insta")) { // 인스타 개인 블로그 전체 보기
     		try {
-    			System.out.println("/InstaBlog.Insta 진입");
     			action = new PhotoAllSelectService();
     			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/")) { // 로그인 OK
+    	} else if(urlCommand.equals("/instraWrite.insta")) { // 인스타 글쓰기 폼 이동
     		try {
-    			action = new LoginOkService();
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/instahairgram/instragramWrite.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/instaWriteOk.insta")) { // 인스타 글쓰기 폼 작성
+    		try {
+    			action = new PhotoInsertService();
     			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
