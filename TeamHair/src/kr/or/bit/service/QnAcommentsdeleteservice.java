@@ -15,7 +15,6 @@ public class QnAcommentsdeleteservice implements Action{
 		ActionForward forward = null;
 		
 		System.out.println("넘어온 commentid 확인하기 : " + request.getParameter("commentid"));
-
 		int commentid = Integer.parseInt(request.getParameter("commentid"));
 		
 		int result = 0;

@@ -18,17 +18,13 @@
 				addreply();
 		    	list();
 			});
-			
 			$('#delete').click(function(){
-				console.log(dd)
-				deletereply();
-		    	list();
+				deletereply($(this).attr('value'));
 			});
 		});
 		
 		function list(){
 			var output;
-			
 	    	$.getJSON("QnAcommentslistAsync.do?",{boardid:$('#boardid').val()}, function (data) {
 	    		$('#reply > table > tr').remove();
 	    		
@@ -39,7 +35,7 @@
 	    			output += "<tr>";
 	    			output += "<td>작성자 : "+val.userID+" </td>";
 	    			output += "<td> "+val.createDate+" </td>";
-	    			output += "<td><button id='delete' value='${}'>삭제</td>";
+	    			output += "<td><button id='delete' value='" + val.commentsID + "' onclick='deletereply(this.value)'>삭제</button></td>";
 	    			output += "</tr>";
 	    			output += "<tr>";
 	    			output += "<td>내용 : "+val.comments+"</td>";
@@ -64,17 +60,16 @@
 			return false;
 		}
 		
-		function deletereply(){	
-			var param = {
-					       "boardid":$('#boardid').val(),
-						   "comments":$('#comment').val(),
-						   "userid" : "detail.jsp...session.getid해오기"
-					    };
-			//alert("**param : " + $('#reply_writer').val());
+		function deletereply(commentid){
+			var param = commentid;
+			var url="QnAcommentsdelete.do?commentid=" + param;
+			console.log(url);
 			$.ajax({
-				url:"QnAcommentsinsert.do",
-				datatype:"json",
-				data:param,
+				url:url,
+				type:"get",
+				success: function(){
+					list();
+				},
 			});
 			return false;
 		}
@@ -156,7 +151,7 @@
 			<tr>
 				<td>작성자 : ${i.userID }</td>
 				<td>${i.createDate }</td>
-				<td><input type='button' id='delete' value='삭제'></td>
+				<td><button id='delete' value='${i.commentID }'>삭제</button></td>
 			</tr>
 			<tr>
 				<td>내용 : ${i.comments }</td>
