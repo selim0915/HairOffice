@@ -7,6 +7,38 @@
 	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 	<!-- Header Include End -->
 	<link rel="stylesheet" href="css/contentpopup.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	
+
+		function like() {
+			var sessionid = "${sessionScope.usersdto.userId}"; //var sessionid = ''
+				$.ajax({
+					url : "Instalike.insta",
+					data : {
+						photoid : "1",
+						userid : sessionid,
+						likeyn : "y",
+						wasuser : "y"
+					},
+					type : "GET",
+					dataType : "json",
+					success : function(data) {
+						if(data.likeyn == "y"){
+							$('#test').removeClass('far fa-heart');
+							$('#test').addClass('fas fa-heart');
+						}else{
+							$('#test').removeClass('fas fa-heart');
+							$('#test').addClass('far fa-heart');
+						}
+						
+					}
+				});
+		}
+	</script>
+		
 <body>
 
   <header>
@@ -102,7 +134,7 @@
         <p class="comments">24시간전</p>
         <p><a class="user-comments" href="https://www.instagram.com/ritacq/">신지혁</a> 오픈을 축하드립니다.</p>
         <p class="comments">1일 전</p>
-        <a class="instagram-card-icon" href="#"><i class="far fa-heart"></i></a>
+        <a class="instagram-card-icon" href="#" onclick="like()"><i id="test" class="far fa-heart"></i></a>
         <a class="instagram-card-icon" href="#"><i class="far fa-comment"></i></a>
         <p><a class="user-comments" href="#">23,233 좋아요</a></p>
         <p class="date">7일 전</p>
