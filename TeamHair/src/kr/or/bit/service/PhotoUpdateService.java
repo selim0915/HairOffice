@@ -12,7 +12,7 @@ public class PhotoUpdateService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward = null;
+		ActionForward forward = new ActionForward();
 		
 		try {
 			System.out.println("PhotoUpdateService.java 진입");
@@ -29,7 +29,6 @@ public class PhotoUpdateService implements Action{
 			PhotoDao photoDao = new PhotoDao();
 			photoDao.updatePhoto(photoDto);
 
-			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("/WEB-INF/instahairgram/instragram.jsp");
 

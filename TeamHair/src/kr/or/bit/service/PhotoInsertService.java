@@ -37,7 +37,6 @@ public class PhotoInsertService implements Action {
 			photoDao.insertPhoto(photoDto);
 			request.setAttribute("photoDto", photoDto);
 
-			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("InstaBlog.insta"); // 리스트
 
