@@ -137,7 +137,7 @@
 	
 	<input type="button" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
 	<input type="button" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
-	<input type="button" value="답글" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
+	<input type="button" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
 	<input type="button" value="목록보기" onClick="location.href='QnA.do'">
 	<hr>
 

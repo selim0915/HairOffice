@@ -31,7 +31,7 @@ public class QnADao {
 		try {
 			conn = ds.getConnection();
 			String sql = "insert into qna(boardid, boardsubject, boardcontent, filename, replyref, replydepth, replyseq, createdate, updatedate, readcount, notice, userid)"
-								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,0,0,0,SYSDATE,SYSDATE,0,null,?)";
+								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,BOARD_ID_SEQ.NEXTVAL,0,1,SYSDATE,SYSDATE,0,null,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qna.getBoardSubject());
 			pstmt.setString(2, qna.getBoardContent());
@@ -67,7 +67,8 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "select boardID, readcount, boardSubject, createDate, readCount, userID from qna order by boardID DESC";
+			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0 connect by prior boardid = replyref";
+
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -76,6 +77,7 @@ public class QnADao {
 			while (rs.next()) {
 				System.out.println("while문 들어옴");
 				QnADto q = new QnADto();
+				q.setReplyDepth(rs.getInt("replyDepth"));
 				q.setReadCount(rs.getInt("readcount"));
 				q.setBoardID(rs.getInt("BoardID"));
 				q.setBoardSubject(rs.getString("BoardSubject"));
@@ -105,7 +107,7 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "select BoardID, ReadCount, BoardSubject, BoardContent, CreateDate, UpdateDate, UserID, FileName from qna where BoardID = ?";
+			String sql = "select BoardID, ReadCount, BoardSubject, BoardContent, CreateDate, UpdateDate, UserID, FileName, replyref, replydepth, replyseq from qna where BoardID = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,BoardID);
 			rs = pstmt.executeQuery();
@@ -121,6 +123,9 @@ public class QnADao {
 	            	qna.setCreateDate(rs.getDate("createDate"));
 	            	qna.setUpdateDate(rs.getDate("updateDate"));
 	            	qna.setFileName(rs.getString("fileName"));
+	            	qna.setReplyRef(rs.getInt("replyref"));
+	            	qna.setReplyDepth(rs.getInt("replyDepth"));
+	            	qna.setReplySeq(rs.getInt("replyseq"));
 	            } while (rs.next());
 	        } else {
 	            System.out.println("데이터가 없습니다.");
@@ -279,6 +284,46 @@ public class QnADao {
 			pstmt.setInt(1, commentid);
 			row = pstmt.executeUpdate();
 			System.out.println("comments delete문 완료");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			 if(pstmt != null)try{pstmt.close();}catch (Exception e){e.printStackTrace();}
+			 if(conn != null) try{conn.close();}catch (Exception e){e.printStackTrace();}  //반환
+		}
+
+		return row;
+	}
+	
+	
+	
+	//답글추가
+	public int insertQnAreply(QnADto qna, int ref, int seq, int depth) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int row = 0;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "insert into qna(boardid, boardsubject, boardcontent, filename, replyref, replydepth, replyseq, createdate, updatedate, readcount, notice, userid)"
+								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,SYSDATE,0,null,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qna.getBoardSubject());
+			pstmt.setString(2, qna.getBoardContent());
+			pstmt.setString(3, qna.getFileName());
+			pstmt.setInt(4, ref);
+			pstmt.setInt(5, depth+1);
+			pstmt.setInt(6, seq+1);
+			pstmt.setString(7, qna.getUserID());
+			row = pstmt.executeUpdate();
+
+			System.out.println("DAO 안에서의 값 확인");
+			System.out.println("subject : "+qna.getBoardSubject());
+			System.out.println("content : "+qna.getBoardContent());
+			System.out.println("userid : "+qna.getUserID());
+			System.out.println("filename : " + qna.getFileName());
+			System.out.println("DAO try문 종료");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

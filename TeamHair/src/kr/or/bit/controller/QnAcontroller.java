@@ -18,6 +18,8 @@ import kr.or.bit.service.QnAdeleteservice;
 import kr.or.bit.service.QnAdetailservice;
 import kr.or.bit.service.QnAinsertservice;
 import kr.or.bit.service.QnAlistservice;
+import kr.or.bit.service.QnAreinsertservice;
+import kr.or.bit.service.QnAreplyFormservice;
 import kr.or.bit.service.QnAupdateFormservice;
 import kr.or.bit.service.QnAupdateservice;
 
@@ -124,7 +126,23 @@ public class QnAcontroller extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (url_Command.equals("/QnArewrite.do")) { // QnA 답글쓰기 페이지 이동
+			System.out.println("QnArewrite.do 들어옴");
+			System.out.println("rewirte.do 파라미터 확인"+request.getParameter("boardid"));
+			action = new QnAreplyFormservice();
+			forward = action.execute(request, response);
+		} else if (url_Command.equals("/QnAreinsert.do")) { // QnA 답글 추가하기
+			System.out.println("QnAreinsert.do 들어옴");
+			try {
+				action = new QnAreinsertservice();
+				forward = action.execute(request, response);
+				System.out.println("QnAreinsert.do ... try문 완료");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 		
 		
 
