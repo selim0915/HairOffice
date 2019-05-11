@@ -21,7 +21,7 @@ public class PhotoAllSelectService implements Action{
 		ActionForward forward = new ActionForward();
 		
 		try {
-			System.out.println("PhotoAllSelectService 진입");
+			System.out.println("PhotoBlogSelectService 진입");
 			
 			HttpSession session = request.getSession();
 			UsersDto userDto = (UsersDto) session.getAttribute("usersdto");
@@ -36,6 +36,7 @@ public class PhotoAllSelectService implements Action{
 			ProfileDto profileDto = profileDao.getProfilebyId(userDto.getUserId());
 			request.setAttribute("profiledto", profileDto);
 			
+			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/instahairgram/instragram.jsp");
 			

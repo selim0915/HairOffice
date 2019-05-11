@@ -13,7 +13,6 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.LoginOkService;
 import kr.or.bit.service.PhotoAllSelectService;
-import kr.or.bit.service.PhotoDetailSelectService;
 import kr.or.bit.service.PhotoInsertService;
 
 @WebServlet("*.insta")
@@ -60,16 +59,6 @@ public class InstahairgramController extends HttpServlet {
 					e.printStackTrace();
 			}
     	} 
-    	else if(urlCommand.equals("/instaDetail.insta")) { // 인스타 상세 글 보기
-    		try {
-    			System.out.println("detail 연결");
-    			action = new PhotoDetailSelectService();
-    			forward = action.execute(request, response);
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	}
-    	
     	
     	if(forward != null) {
     		if(forward.isRedirect()) { //true
