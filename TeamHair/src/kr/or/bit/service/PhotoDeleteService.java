@@ -13,7 +13,7 @@ public class PhotoDeleteService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward = null;
+		ActionForward forward = new ActionForward();
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -27,7 +27,6 @@ public class PhotoDeleteService implements Action{
 			PhotoDao photoDao = new PhotoDao();
 			photoDao.deletePhoto(userDto.getUserId(), photoId);
 
-			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("/WEB-INF/instahairgram/instragram.jsp");
 

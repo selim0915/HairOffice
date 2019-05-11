@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.PhotoDao;
+import kr.or.bit.dto.PhotoDto;
 import kr.or.bit.dto.UsersDto;
 
 public class PhotoDetailSelectService implements Action{
@@ -14,6 +15,9 @@ public class PhotoDetailSelectService implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
+		
+		//String photoId = request.getParameter("photoId");
+		//System.out.println("photoId: "+photoId);
 		
 		try {
 			System.out.println("PhotoDetailSelectService.java 진입");
@@ -23,13 +27,15 @@ public class PhotoDetailSelectService implements Action{
 			System.out.println("userDto: "+userDto);
 			
 			int photoId = Integer.parseInt(request.getParameter("photoId"));
+			System.out.println("photoId: "+photoId);
 			
 			PhotoDao photoDao = new PhotoDao();
-			photoDao.selectPhotoById(userDto.getUserId(), photoId);
+			PhotoDto photoDto = photoDao.selectPhotoById(userDto.getUserId(), photoId);
+			session.setAttribute("photoDto", photoDto);
+			System.out.println("photoDto: "+photoDto);
 			
-			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("/WEB-INF/instahairgram/instragram.jsp");
+			forward.setPath("InstaBlog.insta");
 			
 		} catch (Exception e) {	
 			e.printStackTrace();
