@@ -1,4 +1,3 @@
-
 DROP TABLE Likes CASCADE CONSTRAINTS PURGE;
 
 
@@ -92,7 +91,8 @@ CREATE TABLE Code
 	ClassCode             VARCHAR2(10)  NULL ,
 	ClassName             VARCHAR2(50)  NULL ,
 	Code                  VARCHAR2(10)  NULL ,
-	CodeName              VARCHAR2(50)  NULL 
+	CodeName              VARCHAR2(50)  NULL ,
+  Orders                NUMBER NULL
 );
 
 
@@ -387,6 +387,7 @@ CREATE TABLE Users
 (
 	UserID                VARCHAR2(50)  NOT NULL ,
 	Passwords             VARCHAR2(50)  NOT NULL ,
+  UserName              VARCHAR2(50)  NULL ,   
 	Email                 VARCHAR2(50)  NULL ,
 	Phone                 VARCHAR2(50)  NULL ,
 	Gender                VARCHAR2(1)  NOT NULL ,
@@ -496,3 +497,15 @@ ALTER TABLE Space
 	ADD ( FOREIGN KEY (BranchID) REFERENCES Branch(BranchID));
 
 */
+
+
+CREATE SEQUENCE ID_SEQ
+  START WITH 1
+  INCREMENT BY 1
+;
+
+CREATE SEQUENCE BOARD_ID_SEQ
+  START WITH 1
+  INCREMENT BY 1
+;
+
