@@ -4,13 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
-	
+<head>
+	<meta charset="UTF-8">
+	<title>QnA 게시판</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 
 <h3>QnA메인페이지</h3>
-
 <hr>
 		<div id="list">
 			<table>
@@ -41,9 +44,21 @@
 				</c:forEach>
 			</table>
 		</div>
+		<center>
+		<c:forEach var="i" begin="1" end="5" step="1">
+			<c:choose>
+				<c:when test="${cpage==i}">
+					<font color='red'>[${i}]</font>
+				</c:when>
+				<c:otherwise>
+					<a href="boardlist.bbs?cp=${i}&ps=${pagesize}">[${i}]</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		</center>
 <hr>
-<div class="qna-sub">
 <input type="button" class="dropdown" value="글쓰기" onclick="location='QnAwrite.do'">
-</div>
-	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
+</body>
+
+</html>
 

@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kr.or.bit.dto.CodeDto;
+import kr.or.bit.dto.LikeListDto;
 import kr.or.bit.dto.LikesDto;
 import kr.or.bit.dto.ProfileDto;
 
@@ -170,6 +171,91 @@ public class LikesDao {
 					dtoList.add(dto);
 					System.out.println("select 들어옴");
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {rs.close();} catch (Exception e){};
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return dtoList;
+		}
+		
+		public int getLikeNumberByPhotoId(int photoId) {
+			int likeNumber = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = " SELECT COUNT(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT \r\n" + 
+ 						 " FROM PHOTO P JOIN LIKES L   \r\n" + 
+						 " ON P.PHOTOID = L.PHOTOID    \r\n" + 
+						 " AND P.PHOTOID = ?           \r\n";
+					
+					
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, photoId);
+				
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+		            do {
+		            	likeNumber = rs.getInt("likecount");
+		            } while (rs.next());
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {rs.close();} catch (Exception e){};
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return likeNumber;
+		}
+		
+		public List<LikeListDto> getLikeNumberListByUserId(String userId) {
+			List<LikeListDto> dtoList = new ArrayList<LikeListDto>();
+
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = " SELECT COUNT(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID  \r\n" + 
+					     " FROM PHOTO P JOIN LIKES L    \r\n" + 
+					     " ON P.PHOTOID = L.PHOTOID     \r\n" + 
+					     " AND P.USERID = ?             \r\n" + 
+					     " GROUP BY P.PHOTOID \r\n";
+					
+					
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, userId);
+				
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+		            do {
+		            	LikeListDto dto = new LikeListDto();
+		            	
+		            	dto.setLikeCount(rs.getInt("likecount"));
+		            	dto.setPhotoId(rs.getInt("photoid"));
+		            	
+		            	dtoList.add(dto);
+		            } while (rs.next());
+				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

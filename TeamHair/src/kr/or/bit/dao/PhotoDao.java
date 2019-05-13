@@ -67,8 +67,8 @@ public class PhotoDao {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO PHOTO(PHOTOID, FILENAME, DESCRIPTION, USERID) " + 
-				"VALUES(ID_SEQ.NEXTVAL, ?, ?, ?)";
+		String sql = "INSERT INTO PHOTO(PHOTOID, FILENAME, DESCRIPTION, CREATEDATE, UPDATEDATE, USERID) " + 
+				"VALUES(ID_SEQ.NEXTVAL, ?, ?, SYSDATE, SYSDATE, ?)";
 		
 		try {
 			conn = ds.getConnection();

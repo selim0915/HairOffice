@@ -116,7 +116,6 @@ public class QnADao {
 	            do {
 	            	qna.setBoardID(rs.getInt("BoardID"));
 	            	qna.setReadCount(rs.getInt("ReadCount"));
-	            	System.out.println("DAO READCOUNT값 확인 : " + qna.getReadCount());
 	            	qna.setBoardSubject(rs.getString("boardSubject"));
 	            	qna.setBoardContent(rs.getString("boardContent"));
 	            	qna.setUserID(rs.getString("userID"));

@@ -38,7 +38,7 @@ public class QnAinsertservice implements Action{
 			
 			
 			String userID = multi.getParameter("userid");
-			String boardSubject = multi.getParameter("boardsubject"); 
+			String boardSubject = multi.getParameter("boardsubject");
 			String boardContent = multi.getParameter("boardcontent");
 			
 			QnADto qna = new QnADto();

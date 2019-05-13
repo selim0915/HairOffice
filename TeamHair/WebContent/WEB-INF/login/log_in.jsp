@@ -24,6 +24,7 @@
 		    alert('password를 입력해 주세요.');
 		    $('#pwd').focus();
 		    return false;
+		   }
 	  });
 	 });
 	</script>

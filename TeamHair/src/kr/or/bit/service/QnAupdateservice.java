@@ -1,7 +1,12 @@
 package kr.or.bit.service;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
@@ -12,39 +17,42 @@ public class QnAupdateservice implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward = null;
+ActionForward forward = null;
 		
-		System.out.println("업데이트 서비스 시작");
+		String uploadpath = request.getSession().getServletContext().getRealPath("upload");
+		System.out.println("uploadpath  " + uploadpath);
 		
-		int boardID = Integer.parseInt(request.getParameter("boardid"));
-		String boardName = request.getParameter("boardname");
-		String boardSubject = request.getParameter("boardsubject"); 
-		String boardContent = request.getParameter("boardcontent");
-		String fileName = request.getParameter("filename");
+		int size = 1024*1024*10;	//10M 네이버 계산기
+		int result;
 		
-		int result = 0;
-		System.out.println("업데이트service 받아온 값을 봅시다.");
-		System.out.println("boardid : " + boardID);
-		System.out.println("name : " + boardName);
-		System.out.println("subject : " + boardSubject);
-		System.out.println("content : " + boardContent);
-		System.out.println("filename : " + fileName);
-		
-		
+		MultipartRequest multi;
 		try {
-			request.setCharacterEncoding("UTF-8");
+			QnADao dao = new QnADao();
+			multi = new MultipartRequest(request,uploadpath, size, "UTF-8", new DefaultFileRenamePolicy());
+			Enumeration filenames = multi.getFileNames();
+		
+			int boardID = Integer.parseInt(multi.getParameter("boardid"));
+			String boardSubject = multi.getParameter("boardsubject"); 
+			String boardContent = multi.getParameter("boardcontent");
+			String fileName = multi.getParameter("filename");		
+			String userID = multi.getParameter("userid");
+	
 			QnADto qna = new QnADto();
 			
-			qna.setBoardID(boardID);
-			qna.setBoardName(boardName);
+			qna.setUserID(userID);
 			qna.setBoardSubject(boardSubject);
 			qna.setBoardContent(boardContent);
 			qna.setFileName(fileName);
 			
+			
 			System.out.println(qna.toString());
 			
-			QnADao dao = new QnADao();
-			result = dao.updateQnA(qna);
+			String file = (String)filenames.nextElement();
+			String filename = multi.getFilesystemName(file);
+			System.out.println("iiiiiiiiiiiiiiiiiiiiiiii 파일이름 : " + filename);
+			qna.setFileName(filename);
+						
+			result = dao.insertQnA(qna);
 
 			if (result > 0) {
 				System.out.println("등록성공");
@@ -56,10 +64,10 @@ public class QnAupdateservice implements Action{
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/QnA.do"); //리스트
-
-		} catch (Exception e) {
+			
+			} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
 
 		return forward;
 	}

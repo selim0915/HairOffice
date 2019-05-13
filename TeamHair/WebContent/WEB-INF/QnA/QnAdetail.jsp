@@ -77,30 +77,35 @@
 		
 		
 	</script>
-	
-	<script type="text/javascript">
-		function check(){
-			var form = document.file;
-			var ext = form.filename.value;
-			console.log(form);
-			
-			var result = ext.substring(ext.lastIndexOf(".")+1);
-			console.log(result);
-			
- 			if(result == "jpg" || result=="png" || result=="jpeg" ||result=="bmp" || result=="gif"){
-				console.log("이미지파일 맞음");
-				form.action="FileUpload.do";
-				document.getElementById('file').submit();
-			}else{
-				console.log("이미지파일 아님");
-				alert('이미지 파일이 아닙니다.');
-			}
-		}
-	</script>
+
+	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 
 </head>
 <body>
+
 	<c:set var="detail" value="${requestScope.detail}"></c:set>
+ 	<br>
+ 	<bold>${detail.boardSubject }</bold>
+ 	<br>
+ 	<hr>
+ 	<br>
+ 	<table border="1">
+		<tr>
+			<td>${detail.userID }</td>
+			<td>${detail.createDate }</td>
+			<td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
+		</tr>
+	</table>
+ 	
+ 	<div>${detail.userID}</div><br><br>
+ 	<div class="container">
+ 		<div class="row">
+ 			<div>${detail.boardContent } </div>
+ 		</div>
+ 	</div>
+ 
+ 	 
+ 	
 	<table border="1">
 		<tr>
 			<td>글번호</td>
@@ -170,6 +175,7 @@
 
 	<input type="button" id="enroll" value="등록">
 	
+	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 	
 </body>
 </html>
