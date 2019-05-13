@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import kr.or.bit.dto.BranchDto;
 import kr.or.bit.dto.RentContractDto;
+import kr.or.bit.utils.TeamConvert;
 
 public class RentcontractDao {
 	
@@ -39,14 +40,14 @@ public class RentcontractDao {
 				
 				pstmt.setString(1, dto.getUserId());
 				pstmt.setInt(2, dto.getSpaceId());
-				pstmt.setDate(3, dto.getStartDate());
-				pstmt.setDate(4, dto.getEndDate());
+				pstmt.setTimestamp(3, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDate()));
+				pstmt.setTimestamp(4, TeamConvert.dateFromUtitlToTimestamp(dto.getEndDate()));
 				pstmt.setInt(5, dto.getRentId());
-				pstmt.setInt(6, dto.getMonthlyrental());
-				pstmt.setInt(7, dto.getDiscountAmount());
-				pstmt.setDate(8, dto.getCreateDate());
-				pstmt.setDate(9, dto.getUpdateDate());
-				pstmt.setInt(10, dto.getDeposit());
+				pstmt.setDouble(6, dto.getMonthlyrental());
+				pstmt.setDouble(7, dto.getDiscountAmount());
+				pstmt.setDate(8, TeamConvert.dateFromUtilToSql(dto.getCreateDate()));
+				pstmt.setDate(9, TeamConvert.dateFromUtilToSql(dto.getUpdateDate()));
+				pstmt.setDouble(10, dto.getDeposit());
 				pstmt.setString(11, dto.getPayMethod());
 				
 				row=pstmt.executeUpdate();
