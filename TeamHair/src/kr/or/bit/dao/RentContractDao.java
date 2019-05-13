@@ -104,4 +104,32 @@ public class RentcontractDao {
 			
 			return dtoList;
 		}
+		
+		public int deleteRentContract(int rentid) {
+			int row = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			String sql = "DELETE FROM RENTCONTRACT WHERE RENTID = ? ";	
+			
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, rentid);
+				
+				row=pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return row;
+		}
+
 }

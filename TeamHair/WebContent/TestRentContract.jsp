@@ -1,3 +1,5 @@
+<%@page import="kr.or.bit.dao.RentcontractDao"%>
+<%@page import="kr.or.bit.dao.RentalHistoryDao"%>
 <%@page import="kr.or.bit.utils.TeamDate"%>
 <%@page import="kr.or.bit.utils.TeamFormat"%>
 <%@page import="kr.or.bit.dao.RentContractDao"%>
@@ -25,7 +27,7 @@
 <%
 
 	RentContractDto dto = new RentContractDto();
-	RentContractDao dao = new RentContractDao();
+	RentcontractDao dao = new RentcontractDao();
 	
  	
 	int delrow = dao.deleteRentContract(42);
