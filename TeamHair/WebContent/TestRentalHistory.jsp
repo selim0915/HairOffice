@@ -1,7 +1,5 @@
 <%@page import="kr.or.bit.dao.RentalHistoryDao"%>
 <%@page import="kr.or.bit.dto.RentalHistoryDto"%>
-<%@page import="kr.or.bit.utils.TeamDate"%>
-<%@page import="kr.or.bit.utils.TeamFormat"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -23,7 +21,6 @@
 </head>
 <body>
 <%
-	
 	RentalHistoryDto dto = new RentalHistoryDto();
 	RentalHistoryDao dao = new RentalHistoryDao();
 	

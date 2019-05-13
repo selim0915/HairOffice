@@ -24,7 +24,6 @@
 <body>
 <%
 
-
 	ReservationDto dto = new ReservationDto();
 	ReservationDao dao = new ReservationDao();
 	

@@ -1,17 +1,4 @@
 
-DROP TABLE Code CASCADE CONSTRAINTS PURGE;
-
-
-CREATE TABLE Code
-(
-	ClassCode             VARCHAR2(10)  NULL ,
-	ClassName             VARCHAR2(50)  NULL ,
-	Code                  VARCHAR2(10)  NULL ,
-	CodeName              VARCHAR2(50)  NULL ,
-  Orders                NUMBER NULL
-);
-
-
 
 insert into code
 values('S100', '공간임대유형', '01', '1인공간', 1);
@@ -55,6 +42,10 @@ values('U100', '사용자그룹', 'M', '관리자', 3);
 
 --==================================================
 
+INSERT INTO USERS(USERID, PASSWORDS, USERNAME, EMAIL, PHONE, GENDER, USERTYPE, TERMSOFUSEYN, LOGINYN, RESERVEYN, USESNSYN, CREATEDATE, UPDATEDATE)
+VALUES('admin', '1234', '관리자', 'admin@naver.com', '0102223333', 'M', 'M', 'Y', 'N', 'N', 'N', SYSDATE, SYSDATE);
+ 
+--==================================================
 
 INSERT INTO BRANCH(BRANCHID, BRANCHNAME, ADDRESS1, ADDRESS2, POSTALCODE, PHONE, MAP_X, MAP_Y)
 VALUES(100, '강남1호점', '서울특별시 서초구 서초동', '1306-3', '06614','025532244', 37.500242, 127.026049);
@@ -113,7 +104,7 @@ COMMIT;
 
 alter session set nls_date_format='YYYY-MM-DD HH24:MI:SS';
 
-INSERT INTO RENTCONTRACT(RENTID, USERID, SPACEID, STARTDATE, ENDDATE, DEPOSIT, MONTHLYRENTAL, DISCOUNTAMOUNT, PAYMETHOD)
-VALUES(ID_SEQ.NEXTVAL, 'mong',21, '2019-03-03', '2019-12-31', 800000, 400000, 0 ,  'CRDT');
+-- INSERT INTO RENTCONTRACT(RENTID, USERID, SPACEID, STARTDATE, ENDDATE, DEPOSIT, MONTHLYRENTAL, DISCOUNTAMOUNT, PAYMETHOD)
+-- VALUES(ID_SEQ.NEXTVAL, 'mong',21, '2019-03-03', '2019-12-31', 800000, 400000, 0 ,  'CRDT');
 
-commit;
+-- commit;

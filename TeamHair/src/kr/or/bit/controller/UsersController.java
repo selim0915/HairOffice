@@ -60,7 +60,7 @@ public class UsersController extends HttpServlet {
     	}  else if(urlCommand.equals("/SignUp.usr")) { // 회원등록
     		try {
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/sign_up.jsp");
+    			forward.setPath("/WEB-INF/login/sign-up.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
