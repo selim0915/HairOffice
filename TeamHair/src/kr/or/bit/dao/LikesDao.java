@@ -138,4 +138,76 @@ public class LikesDao {
 		
 		return dtoList;
 		}
+		
+		public List<LikesDto> getLikesListByUserid(String userid) {
+			
+			
+			List<LikesDto> dtoList = new ArrayList<LikesDto>();
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = "SELECT PHOTOID, USERID, LIKEYN, WASUSER FROM LIKES WHERE USERID = ?"; 
+					
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, userid);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					LikesDto dto = new LikesDto();
+					
+					dto.setPhotoId(rs.getInt("photoid"));
+					dto.setUserId(rs.getString("userid"));
+					dto.setLikeYn(rs.getString("likeyn"));
+					dto.setWasUser(rs.getString("wasuser"));
+					
+					dtoList.add(dto);
+					System.out.println("select 들어옴");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {rs.close();} catch (Exception e){};
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return dtoList;
+		}
+		
+		public int updateLikes(LikesDto dto) {
+			int row = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			String sql = "update likes set likeyn = ? where userid = ? and photoid = ?"; 		
+			
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getLikeYn());
+				pstmt.setString(2, dto.getUserId());
+				pstmt.setInt(3, dto.getPhotoId());
+				
+				row=pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return row;
+		}
+		
 	}

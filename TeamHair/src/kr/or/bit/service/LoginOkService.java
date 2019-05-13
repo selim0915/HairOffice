@@ -1,12 +1,16 @@
 package kr.or.bit.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.dao.LikesDao;
 import kr.or.bit.dao.UsersDao;
+import kr.or.bit.dto.LikesDto;
 import kr.or.bit.dto.UsersDto;
 
 public class LoginOkService implements Action {
@@ -22,6 +26,11 @@ public class LoginOkService implements Action {
 
 			UsersDto dto = null;
 			UsersDao dao = new UsersDao();
+			
+			List<LikesDto> likesdto = null;
+			LikesDao likesdao = new LikesDao();
+			
+			likesdto = likesdao.getLikesListByUserid(id);
 			
 			dto = dao.getUserbyId(id);
 			

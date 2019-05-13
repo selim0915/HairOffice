@@ -17,6 +17,10 @@
   background-color: #61c524;
   color: #fff; }
 
+::-webkit-scrollbar {
+	display:none;
+}
+
 ::selection {
   background-color: #61c524;
   color: #fff; }
@@ -4838,3 +4842,9 @@ line-height: 10px;
    .default-select-sub .nice-select:active, .nice-select.open, .nice-select:focus {
    border-color: #e8e8e8;
    }
+   
+.instagram-card-content{
+	max-height: 375px;
+    overflow: auto;
+} 
+

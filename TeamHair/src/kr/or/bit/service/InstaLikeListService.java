@@ -1,21 +1,18 @@
 package kr.or.bit.service;
 
-import java.util.List;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.LikesDao;
 import kr.or.bit.dto.LikesDto;
 
-public class InstaLikeService implements Action{
-
+public class InstaLikeListService implements Action{
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
@@ -24,26 +21,14 @@ public class InstaLikeService implements Action{
 		try {
 			int photoid = Integer.parseInt(request.getParameter("photoid"));
 			String userid = request.getParameter("userid");
-			String likeyn = request.getParameter("likeyn");
-			String wasuser = request.getParameter("wasuser");
 
-			LikesDto LikesDto = new LikesDto();
-			
-			LikesDto.setPhotoId(photoid);
-			LikesDto.setUserId(userid);
-			LikesDto.setLikeYn(likeyn);
-			LikesDto.setWasUser(wasuser);
-			
-			LikesDao LikesDao = new LikesDao();
-			LikesDao.insertlikes(LikesDto);
-			
-
-			
 			System.out.println("들어옴");
 			
-			LikesDto likeslist = LikesDao.getLikesListByPhotoidUserid(photoid, userid);
-			HttpSession session = request.getSession(); // servlet마다
-			session.setAttribute("likesdto", likeslist);
+			LikesDao likesdao = new LikesDao();
+			
+			LikesDto likeslist = likesdao.getLikesListByPhotoidUserid(photoid, userid);
+			
+			System.out.println("널값??" + likeslist);
 				
   		        //deptno의 한명 정보가 들어갈 JSONObject 선언
 			jsonObject = new JSONObject();
@@ -65,5 +50,4 @@ public class InstaLikeService implements Action{
 		}
 		return forward;
 	}
-
 }
