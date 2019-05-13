@@ -170,7 +170,7 @@
 
 				<h1 class="profile-user-name">${usersDto.userId }</h1>
 
-				<button class="btn profile-edit-btn">Edit Profile</button>
+				<button class="btn profile-edit-btn" onclick="location.href='Modify.usr'">Edit Profile</button>
 
 				<button class="btn profile-edit-btn">Photo</button>
 
@@ -242,8 +242,6 @@
 
 		</div>
 		<!-- End of gallery -->
-
-		<div class="loader"></div>
 
 	</div>
 	<!-- End of container -->

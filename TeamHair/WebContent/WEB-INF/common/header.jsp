@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="css/main.css?ver=1">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="css/instagram.css">
-	
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/contentpopup.css">
     <link rel="stylesheet" href="css/modify.css">
 </head>
@@ -52,14 +52,32 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="index.jsp">Home</a></li>
-						<li class="menu-active"><a href="seouloffice.jsp">지점</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.usersdto.userType=='M'}">
+								<li class="menu-has-children"><a href="">Admin</a>
+									<ul class="slide-menu">
+										<li class="menu-active"><a href="#"> Dashboard </a></li>
+										<li class="menu-active"><a href="#"> Add Branch </a></li>
+										<li class="menu-active"><a href="#"> Update Branch </a></li>
+										<li class="menu-active"><a href="#"> Add Space </a></li>
+										<li class="menu-active"><a href="#"> Update Space </a></li>
+										<li class="menu-active"><a href="#"> Delete Space </a></li>
+										<li class="menu-active"><a href="#"> Rental Contract </a></li>
+									</ul>
+								</li>
+							</c:when>
+						</c:choose>
+						
+						<li class="menu-active"><a href="Branch.brh">지점</a></li>
+						<li class="menu-active"><a href="Space.brh">공간</a></li>
+						
 						<li class="menu-has-children"><a href="">Blog</a>
 							<ul class="slide-menu">
-								<li><a href="hairgallery.jsp">Insta Gallery</a></li>
+								<li><a href="InstaGrallery.insta">Insta Gallery</a></li>
 								<li><a href="Insta.insta">인스타헤어그램 테스트</a></li>
 							</ul>
 						</li>
-						<li class="menu-active"><a href="#">질문게시판</a></li>
+						<li class="menu-active"><a href="QnA.do">질문게시판</a></li>
 						
 						<c:choose>
 							<c:when test="${sessionScope.usersdto.userId!=null}">

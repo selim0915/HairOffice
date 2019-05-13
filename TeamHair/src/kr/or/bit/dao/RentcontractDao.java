@@ -42,7 +42,7 @@ public class RentcontractDao {
 				pstmt.setDate(3, dto.getStartDate());
 				pstmt.setDate(4, dto.getEndDate());
 				pstmt.setInt(5, dto.getRentId());
-				pstmt.setInt(6, dto.getMonthlyRental());
+				pstmt.setInt(6, dto.getMonthlyrental());
 				pstmt.setInt(7, dto.getDiscountAmount());
 				pstmt.setDate(8, dto.getCreateDate());
 				pstmt.setDate(9, dto.getUpdateDate());
@@ -84,7 +84,7 @@ public class RentcontractDao {
 					dto.setStartDate(rs.getDate("startdate"));
 					dto.setEndDate(rs.getDate("enddate"));
 					dto.setRentId(rs.getInt("rentid"));
-					dto.setMonthlyRental(rs.getInt("monthlyrental"));
+					dto.setMonthlyrental(rs.getInt("monthlyrental"));
 					dto.setDiscountAmount(rs.getInt("discountamout"));
 					dto.setCreateDate(rs.getDate("createdate"));
 					dto.setUpdateDate(rs.getDate("updatedate"));

@@ -78,6 +78,13 @@ public class InstaController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
+    	} else if(urlCommand.equals("/InstaGrallery.insta")) { // 로그인 OK
+    		try {
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/branch/hairgallery.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
     	}
     	
     	if(forward != null) {

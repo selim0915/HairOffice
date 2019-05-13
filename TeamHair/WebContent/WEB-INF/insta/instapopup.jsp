@@ -37,14 +37,14 @@
 						href="https://www.instagram.com/explore/tags/theshapeofwater/">#류준렬&nbsp;</a><a
 						class="hashtag"
 						href="https://www.instagram.com/explore/tags/theshapeofwater/">#이하늬&nbsp;</a>
-					<p class="comments">10시간전</p>
+					<p class="comments">1일전</p>
 					<div class="comment-append" id="comment-append">
 						<c:forEach var="i" begin="0" end="${commentslist.size()}">
 							<p>
 								<a class="user-comments" href="#">${commentslist[i].userId}</a>
 								${commentslist[i].comments}
 							</p>
-							<p class="comments">15시간전</p>
+							<p class="comments">오늘</p>
 						</c:forEach>
 					</div>
 				</div>

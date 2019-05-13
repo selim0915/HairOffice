@@ -5,57 +5,71 @@ public class RentalHistoryDto {
 	private int spaceId;
 	private int rentId;
 	private String baseDate;
-	private int rentalRevenue;
-	private int discount;
-	private String patMethod;
-	
+	private double rentalRevenue;
+	private double discount;
+	private String payMethod;
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public int getSpaceId() {
 		return spaceId;
 	}
+
 	public void setSpaceId(int spaceId) {
 		this.spaceId = spaceId;
 	}
+
 	public int getRentId() {
 		return rentId;
 	}
+
 	public void setRentId(int rentId) {
 		this.rentId = rentId;
 	}
+
 	public String getBaseDate() {
 		return baseDate;
 	}
+
 	public void setBaseDate(String baseDate) {
 		this.baseDate = baseDate;
 	}
-	public int getRentalRevenue() {
+
+	public double getRentalRevenue() {
 		return rentalRevenue;
 	}
-	public void setRentalRevenue(int rentalRevenue) {
+
+	public void setRentalRevenue(double rentalRevenue) {
 		this.rentalRevenue = rentalRevenue;
 	}
-	public int getDiscount() {
+
+	public double getDiscount() {
 		return discount;
 	}
-	public void setDiscount(int discount) {
+
+	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	public String getPatMethod() {
-		return patMethod;
+
+	public String getPayMethod() {
+		return payMethod;
 	}
-	public void setPatMethod(String patMethod) {
-		this.patMethod = patMethod;
+
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "RentalHistoryDto [userId=" + userId + ", spaceId=" + spaceId + ", rentId=" + rentId + ", baseDate="
-				+ baseDate + ", rentalRevenue=" + rentalRevenue + ", discount=" + discount + ", patMethod=" + patMethod
+		return "RentalHistory [userId=" + userId + ", spaceId=" + spaceId + ", rentId=" + rentId + ", baseDate="
+				+ baseDate + ", rentalRevenue=" + rentalRevenue + ", discount=" + discount + ", payMethod=" + payMethod
 				+ "]";
 	}
+
 }
