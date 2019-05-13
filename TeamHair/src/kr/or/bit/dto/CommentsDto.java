@@ -9,6 +9,7 @@ public class CommentsDto {
 	private Date createDate;
 	private Date updateDate;
 	private String wasUser;
+	private String userId;
 	
 	public int getCommentId() {
 		return commentId;
@@ -46,10 +47,17 @@ public class CommentsDto {
 	public void setWasUser(String wasUser) {
 		this.wasUser = wasUser;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	
 	@Override
 	public String toString() {
 		return "CommentsDto [commentId=" + commentId + ", comments=" + comments + ", photoId=" + photoId
-				+ ", createDate=" + createDate + ", updateDate=" + updateDate + ", wasUser=" + wasUser + "]";
+				+ ", createDate=" + createDate + ", updateDate=" + updateDate + ", wasUser=" + wasUser + ", userId="
+				+ userId + "]";
 	}
 }

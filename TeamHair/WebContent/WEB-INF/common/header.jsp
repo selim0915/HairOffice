@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="css/main.css?ver=1">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="css/instagram.css">
-	
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/contentpopup.css">
     <link rel="stylesheet" href="css/modify.css">
 </head>
@@ -73,11 +73,11 @@
 						
 						<li class="menu-has-children"><a href="">Blog</a>
 							<ul class="slide-menu">
-								<li><a href="hairgallery.jsp">Insta Gallery</a></li>
-								<li><a href="instragram.jsp">인스타헤어그램 테스트</a></li>
+								<li><a href="InstaGrallery.insta">Insta Gallery</a></li>
+								<li><a href="Insta.insta">인스타헤어그램 테스트</a></li>
 							</ul>
 						</li>
-						<li class="menu-active"><a href="#">질문게시판</a></li>
+						<li class="menu-active"><a href="QnA.do">질문게시판</a></li>
 						
 						<c:choose>
 							<c:when test="${sessionScope.usersdto.userId!=null}">

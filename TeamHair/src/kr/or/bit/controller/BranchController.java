@@ -44,6 +44,14 @@ public class BranchController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
+    	} else if(urlCommand.equals("/GangnamBranchInfo.brh")) { // 강남오피스 지점 정보
+    		try {
+    			System.out.println("/Space.brh");
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/branch/salone_reserve_infor.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
     	} else if(urlCommand.equals("/GangnamOfficeInfo.brh")) { // 강남오피스의 공간 정보
     		try {
     			System.out.println("/GangnamOfficeInfo.brh");

@@ -61,25 +61,47 @@
 
 	<!-- Start Condition Area -->
 	<section class="condition-area event-details-area section-gap">
-		<div class="container">
+		<div class="container maincontainer">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-6 col-md-8 col-sm-10">
 					<div class="condition-left">
 						<img class="img-mid" src="img/main1.jpg" alt="">
 					</div>
 				</div>
-				<div class="offset-lg-1 col-lg-5">
-					<div class="condition-right">
+				<div class="col-lg-5 mainContent1">
+					<div class="condition-right mainContentTitle1">
 						<h2>
-							Hair SHOP <br>
-							운영해보세요.
+							헤어 매니지먼트 공간을 공유하세요.<br>
 						</h2>
 						<p>
-							메인..........
+							<ul>
+								<li>디자이너의 공간을 자유롭게</li>
+								<li>투자비용과 리스크 감소</li>
+							</ul>
 						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container maincontainer">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-5 mainContent1">
+					<div class="condition-right mainContentTitle2">
+						<h2>
+							블로그를 이용하여 자신을 홍보하세요.<br>
+						</h2>
 						<p>
-							메인..........
+							<ul>
+								<li>디자이너 블로그 주소 무료 지원</li>
+								<li>회원들과 다양한 소통 가능</li>
+							</ul>
 						</p>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-8 col-sm-10">
+					<div class="condition-left">
+						<img class="img-mid2" src="img/main2.jpg" alt="">
 					</div>
 				</div>
 			</div>
@@ -89,9 +111,9 @@
 
 	<!-- Start Causes Area -->
 	 <section class="causes-area section-gap">
-		<div class="container">
+		<div class="container maincontainer">
 			<div class="row justify-content-center">
-				<div class="col-md-7 section-title">
+				<div class="col-md-7 section-title session3title">
 					<h2>모든 규모의 팀에 적합한 공간</h2>
 				</div>
 			</div>
@@ -103,10 +125,11 @@
 								<img class="c-img img-fluid" src="img/causes/c1.jpg" alt="">
 							</div>
 							<a href="#">
-								<h3>내용</h3>
+								<h3>강남점</h3>
 							</a>
 							<p class="text">
-								상세
+								- 공용 회의실 및 공용 라운지 제공<br> 
+								- 원하는 좌석을 예약 가능
 							</p>
 						</div>
 						<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
@@ -122,10 +145,11 @@
 								<img class="c-img img-fluid" src="img/causes/c2.jpg" alt="">
 							</div>
 							<a href="#">
-								<h3>내용</h3>
+								<h3>역삼점</h3>
 							</a>
 							<p class="text">
-								상세
+								- 공용 회의실 및 공용 라운지 제공<br> 
+								- 장기 대여 가능
 							</p>
 						</div>
 						<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
@@ -141,10 +165,11 @@
 								<img class="c-img img-fluid" src="img/causes/c3.jpg" alt="">
 							</div>
 							<a href="#">
-								<h3>내용</h3>
+								<h3>청담점</h3>
 							</a>
 							<p class="text">
-								상세
+								- 공용 데스크 이용 가능<br> 
+								- 원하는 좌석을 예약 가능
 							</p>
 						</div>
 						<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
@@ -155,58 +180,5 @@
 			</div>
 		</div>
 	</section>
-	<!-- end Causes Area -->
-	<!--
-	Start Collection Area
-	<section class="collection-area section-gap">
-		<div class="container">
-			<div class="row justify-content-center align-items-center">
-				<div class="col-lg-4 col-md-8">
-					<div class="text">
-						<h2>Experience
-							How your Donation
-							Reach Over Years</h2>
-						<p>
-							The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence,
-							and upturning of the natural.
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-					<div class="collection-box">
-						<p><small>USD</small></p>
-						<h3 class="color1"><span class="counter">21</span> M</h3>
-						<i class="lnr lnr-arrow-up"></i>
-						<p>2015</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-					<div class="collection-box">
-						<p><small>USD</small></p>
-						<h3><span class="counter">15</span> M</h3>
-						<i class="lnr lnr-arrow-up"></i>
-						<p>2016</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-					<div class="collection-box">
-						<p><small>USD</small></p>
-						<h3 class="color3"><span class="counter">23</span> M</h3>
-						<i class="lnr lnr-arrow-up"></i>
-						<p>2017</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-					<div class="collection-box">
-						<p><small>USD</small></p>
-						<h3 class="color4"><span class="counter">25</span> M</h3>
-						<i class="lnr lnr-arrow-up"></i>
-						<p>2018</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	End Collection Area -->
 	
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
