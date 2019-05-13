@@ -129,7 +129,7 @@
 		
 		<tr>
 			<td>업로드 파일</td>
-			<td>${detail.fileName }</td>
+			<td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
 		</tr>
 		
 	</table>

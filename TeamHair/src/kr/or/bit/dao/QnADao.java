@@ -31,7 +31,7 @@ public class QnADao {
 		try {
 			conn = ds.getConnection();
 			String sql = "insert into qna(boardid, boardsubject, boardcontent, filename, replyref, replydepth, replyseq, createdate, updatedate, readcount, notice, userid)"
-								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,BOARD_ID_SEQ.NEXTVAL,0,1,SYSDATE,SYSDATE,0,null,?)";
+								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,0,0,1,SYSDATE,SYSDATE,0,null,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qna.getBoardSubject());
 			pstmt.setString(2, qna.getBoardContent());
@@ -67,7 +67,7 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0 connect by prior boardid = replyref";
+			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0 connect by prior boardid = replyref order siblings by boardid DESC";
 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

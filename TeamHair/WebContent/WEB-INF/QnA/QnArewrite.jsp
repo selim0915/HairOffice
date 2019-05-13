@@ -10,7 +10,7 @@
 <h3>답글작성 페이지</h3>
 <hr>
 ${requestScope.parent}
-<form action="QnAreinsert.do">
+<form action="QnAreinsert.do" method="post" enctype="Multipart/form-data">
 	<input type="hidden" name="parentref" value="${requestScope.parent.boardID}">
 	<input type="hidden" name="parentdepth" value="${requestScope.parent.replyDepth}">
 	<input type="hidden" name="parentseq" value="${requestScope.parent.replySeq}">

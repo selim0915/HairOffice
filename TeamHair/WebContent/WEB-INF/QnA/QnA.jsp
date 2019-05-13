@@ -46,17 +46,6 @@ ${requestScope.qnalist}
 				</c:forEach>
 			</table>
 		</div>
-<%-- <table>
-	<tr><td>작성자 : <%=request.getParameter("board_name") %></td>
-	</tr>
-	
-	<tr><td>제목 : <%=request.getParameter("board_title") %></td>
-	</tr>
-	
-	<tr><td>내용 : <%=request.getParameter("board_content") %></td>
-	</tr>
-</table>
- --%>
 <hr>
 <input type="button" class="dropdown" value="글쓰기" onclick="location='QnAwrite.do'">
 </body>

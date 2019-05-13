@@ -10,7 +10,7 @@
 <h3>글작성 페이지</h3>
 <hr>
 
-<form action="QnAinsert.do">
+<form action="QnAinsert.do" method="post" enctype="Multipart/form-data">
 	<table>
 		<tr>
 			<td>작성자</td>
