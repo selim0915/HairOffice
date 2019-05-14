@@ -8,9 +8,6 @@
 	
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
-
-<h3>QnA메인페이지</h3>
-
 <hr>
 		<div id="list">
 			<table>

@@ -17,10 +17,6 @@
   background-color: #61c524;
   color: #fff; }
 
-::-webkit-scrollbar {
-	display:none;
-}
-
 ::selection {
   background-color: #61c524;
   color: #fff; }
@@ -4842,35 +4838,3 @@ line-height: 10px;
    .default-select-sub .nice-select:active, .nice-select.open, .nice-select:focus {
    border-color: #e8e8e8;
    }
-   
-.instagram-card-content{
-	max-height: 375px;
-    overflow: auto;
-} 
-
-margin-right: 0px;
-}
-
-.mainContentTitle2 h2{
-    width: 400px;
-    text-align: right;
-    margin-left: 30px;
-}
-
-.mainContentTitle2 ul{
-    margin-left: 140px;
-}
-
-.maincontainer{
-    margin-bottom: 50px;
-}
-
-.img-mid2{
-    margin-left: 40px;
-   width: 400px;
-   height: 500px;
-}
-
-.session3title{
- padding-bottom: 40px;
-}

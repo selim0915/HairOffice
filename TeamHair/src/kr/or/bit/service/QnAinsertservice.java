@@ -24,7 +24,7 @@ public class QnAinsertservice implements Action{
 		String uploadpath = request.getSession().getServletContext().getRealPath("upload");
 		System.out.println("uploadpath  " + uploadpath);
 		
-		int size = 1024*1024*10;	//10M 네이버 계산기
+		int size = 1024*1024*50;	//10M 네이버 계산기
 		int result;
 		
 		MultipartRequest multi;
@@ -52,7 +52,6 @@ public class QnAinsertservice implements Action{
 			
 			String file = (String)filenames.nextElement();
 			String filename = multi.getFilesystemName(file);
-			System.out.println("iiiiiiiiiiiiiiiiiiiiiiii 파일이름 : " + filename);
 			qna.setFileName(filename);
 						
 			result = dao.insertQnA(qna);

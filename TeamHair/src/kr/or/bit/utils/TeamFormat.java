@@ -21,7 +21,7 @@ public class TeamFormat {
 	}
 	
 	public static String dateFormat(Date date) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
 		String dateFormat=df.format(date);
 		return dateFormat;
 		
