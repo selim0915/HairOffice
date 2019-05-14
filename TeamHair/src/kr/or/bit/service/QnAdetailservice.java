@@ -20,20 +20,22 @@ public class QnAdetailservice implements Action{
 		
 		try {
 			int boardID = Integer.parseInt(request.getParameter("boardID"));
+			int cpage =Integer.parseInt(request.getParameter("cpage"));
 			
-  		  	QnADao qnaDao = new QnADao();
-  		  	QnADto qnaDto = qnaDao.searchQnA(boardID);
-  		  	List<QnACommentsDto> commentDtoList = qnaDao.QnACommentslist(boardID);
+  		  	QnADao qnadao = new QnADao();
+  		  	QnADto q = qnadao.searchQnA(boardID);
+  		  	List<QnACommentsDto> c = qnadao.QnACommentslist(boardID);
   		  	
-  		  	request.setAttribute("detail",qnaDto);
-  		  	request.setAttribute("comment", commentDtoList);
+  		  	request.setAttribute("detail",q);
+  		  	request.setAttribute("cpage", cpage);
+  		  	request.setAttribute("comment", c);
 		  		  
-  		  	int readCount = qnaDto.getReadCount()+1;
-  		  	qnaDto.setReadCount(readCount);
-  		  	qnaDao.updateQnA(qnaDto);
+  		  	int readCount = q.getReadCount()+1;
+  		  	q.setReadCount(readCount);
+  		  	qnadao.updateQnA(q);
   		  	
-  		  	System.out.println("servicce 디테일 q의 값 : " + qnaDto);
-  		  	System.out.println("디테일service c값 : " + commentDtoList);
+  		  	System.out.println("servicce 디테일 q의 값 : " + q);
+  		  	System.out.println("디테일service c값 : " + c);
   		  	
   		  	forward = new ActionForward();
   			forward.setRedirect(false); //forward 방식
