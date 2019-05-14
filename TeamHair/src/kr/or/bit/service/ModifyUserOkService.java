@@ -1,8 +1,13 @@
 package kr.or.bit.service;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
@@ -19,7 +24,21 @@ public class ModifyUserOkService implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
+		String uploadpath = request.getSession().getServletContext().getRealPath("upload");
+		System.out.println("uploadpath  " + uploadpath);
+		
+		int size = 1024*1024*10;	//10M 네이버 계산기
+		int result;
+		
+		MultipartRequest multi;
+		
 		try {
+			
+			multi = new MultipartRequest(request,uploadpath, size, "UTF-8", new DefaultFileRenamePolicy());
+			Enumeration filenames = multi.getFileNames();
+			
+			System.out.println("multi 확인 : ");
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
 			
 			HttpSession session = request.getSession();
 			
@@ -28,18 +47,22 @@ public class ModifyUserOkService implements Action {
 			String id = usersDto.getUserId();
 
 
-			String pwd = request.getParameter("pass");
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String phone = request.getParameter("phone");
-			String introduction = request.getParameter("introduction");
-			String website = request.getParameter("website");
-			String gender = request.getParameter("gender");
+			String pwd = multi.getParameter("pass");
+			String name = multi.getParameter("name");
+			String email = multi.getParameter("email");
+			String phone = multi.getParameter("phone");
+			String introduction = multi.getParameter("introduction");
+			String website = multi.getParameter("website");
+			String gender = multi.getParameter("gender");
 			
-			String usertype = request.getParameter("usertype");
-			String loginYn = request.getParameter("loginYn");
-			String reserveYn = request.getParameter("reserveYn");
-			String useSnsYn = request.getParameter("useSnsYn");
+			String usertype = multi.getParameter("usertype");
+			String loginYn = multi.getParameter("loginYn");
+			String reserveYn = multi.getParameter("reserveYn");
+			String useSnsYn = multi.getParameter("useSnsYn");
+			
+			
+			System.out.println(pwd);
+			System.out.println("-------------------------------");
 			
 //			System.out.println("id : " + id);
 //			System.out.println("pwd : " + pwd);
@@ -81,8 +104,18 @@ public class ModifyUserOkService implements Action {
 			profileDto.setIntroduction(introduction);
 			profileDto.setWebsite(website);
 			
+			String file = (String)filenames.nextElement();
+			String filename1 = multi.getFilesystemName(file);
+			
+			System.out.println(filename1);
+			
+			profileDto.setPhotoName(filename1);
+			
 			ProfileDao profileDao = new ProfileDao();
-			profileDao.updateProfile(profileDto);
+			
+			profileDao.deleteProfile(profileDto.getUserId());
+			profileDao.insertProfile(profileDto);
+			//profileDao.updateProfile(profileDto);
 			
 			forward.setRedirect(false);
 			forward.setPath("index.jsp");

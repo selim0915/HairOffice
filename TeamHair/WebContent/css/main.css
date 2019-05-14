@@ -4449,16 +4449,6 @@ group + group {
   justify-content: center;
 }
 
-select {
-  position: absolute;
-  z-index: -1;
-  visibility: hidden;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
 .selectWrapper {
   position: relative;
   -webkit-user-select: none;
@@ -4918,4 +4908,35 @@ margin-right: 0px;
 
 .session3title{
  padding-bottom: 40px;
+}
+
+.filebox label {
+    font-weight: bold;
+    display: inline-block;
+    /* padding: .5em .75em; */
+    color: #007bff;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    /* background-color: #5cb85c; */
+    cursor: pointer;
+    /* border: 1px solid #4cae4c; */
+    /* border-radius: .25em; */
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+
+.filebox label:active {
+  background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

@@ -192,7 +192,7 @@
 			$('.instagram-card-input').focus();
 		}
 		
-		function photoinsrt() {
+		function photoinsert() {
 			setTimeout(function() {
 				$('.popup-sub').removeClass('animationClose-sub').addClass(
 						'animationOpen-sub');
@@ -226,7 +226,7 @@
 
 				<button class="btn profile-edit-btn" onclick="location.href='Modify.usr'">Edit Profile</button>
 
-				<button class="btn profile-edit-btn" onclick="photoinsrt()">Photo</button>
+				<button class="btn profile-edit-btn" onclick="photoinsert()">Photo</button>
 
 			</div>
 
@@ -279,7 +279,7 @@
 					
 					<form action="Instawrite.insta" enctype="Multipart/form-data" method="post">
 					<div class="mt-10">
-						<input type="file" name="filename" class="single-input-secondary-sub-infor">
+						<input type="file" name="file" class="single-input-secondary-sub-infor">
 					</div>
 					<div class="mt-10">
 						<input type="text" name="comments" placeholder="내용" onfocus="this.placeholder = ''" onblur="this.placeholder = '내용'" required="" class="single-input-secondary-sub-infor">
