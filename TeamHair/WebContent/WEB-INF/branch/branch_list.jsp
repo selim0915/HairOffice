@@ -126,7 +126,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/building1.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building1.jpg" alt="Card image cap" height="600" width="100">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -180,7 +180,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/building2.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building2.jpg" alt="Card image cap" height="600" width="100">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -233,7 +233,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/building3.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/building3.jpg" alt="Card image cap" height="600" width="100">
       <a href="seoulgangnam.jsp">
         <div class="mask rgba-white-slight"></div>
       </a>
