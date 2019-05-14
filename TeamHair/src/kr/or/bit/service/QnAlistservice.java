@@ -19,18 +19,47 @@ public class QnAlistservice implements Action{
 		
 		try {
   		  	QnADao qnadao = new QnADao();
-  		  	List<QnADto> qnalist = qnadao.QnAlist();
-  		 
-  		  	request.setAttribute("qnalist",qnalist);
-  		  	System.out.println("list서비스 리스트 목록 : " + qnalist);
+  		  	int totalboardCount = qnadao.totalboardCount();
+  		  	String scpage = request.getParameter("cpage");
+  		  	String spagesize = request.getParameter("pagesize");
   		  	
-  		  	 forward = new ActionForward();
-  			 forward.setRedirect(false); //forward 방식
-  			 forward.setPath("/WEB-INF/QnA/QnA.jsp");
+  		  	if(scpage==null || scpage.trim().equals("")) {
+  		  		scpage="1";
+  		  	}
+  		  	if(spagesize==null || spagesize.trim().equals("")) {
+  		  		spagesize="5";
+  		  	}
+  		  	
+  	        int pagesize = Integer.parseInt(spagesize);  //5
+  	        int cpage = Integer.parseInt(scpage);     //1
+  	        int pagecount = 0;
+  	        
+  	        
+  	        if(totalboardCount % pagesize==0){        //전체 건수 , pagesize > 
+  	        	pagecount = totalboardCount/pagesize;
+  	        }else{
+  	        	pagecount = (totalboardCount/pagesize) + 1;
+  	        }
+          //페이지 갯수 : 102 건 , pagesize :5   pagecount: 21
+          
 
-		  	}catch(Exception e){
-		  		System.out.println(e.getMessage());
-		  	}
+          
+          List<QnADto> qnalist= qnadao.QnAlist(cpage, pagesize);
+  		
+          request.setAttribute("cpage", cpage);
+          request.setAttribute("pagesize", pagesize);
+          request.setAttribute("pagecount", pagecount);
+          request.setAttribute("qnalist", qnalist);
+          request.setAttribute("totalboardCount", totalboardCount);
+         
+  		  	
+  		  forward = new ActionForward();
+  		  forward.setRedirect(false); //forward 방식
+  		  forward.setPath("/WEB-INF/QnA/QnA.jsp");
+
+		  }catch(Exception e){
+			  System.out.println(e.getMessage());
+		  }
 
 		return forward;
 	}

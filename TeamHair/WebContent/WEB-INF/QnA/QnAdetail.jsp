@@ -8,14 +8,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 	<meta charset="UTF-8">
 	<title>상세정보</title>
+	
+	<style type="text/css">
+		#qnadetail {
+			margin: 2%;
+			padding: 20px;
+			background-color: white;
+		}
+		#btngroup {
+			margin-left: 2%;
+			margin-right: 2%;
+			padding : 10px;
+		}
+		
+		#reply, #btn_reply {
+			margin-left: 2%;
+			margin-right: 2%;
+			background-color: white;
+			font-size: small;
+		}
+		
+	</style>
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
 	<script>
 		$(function(){
 			$('#enroll').click(function(){
 				addreply();
+				alert('등록완료');
 		    	list();
 			});
 			$('#delete').click(function(){
@@ -49,7 +72,7 @@
 			var param = {
 					       "boardid":$('#boardid').val(),
 						   "comments":$('#comment').val(),
-						   "userid" : "detail.jsp...session.getid해오기"
+						   "userid" : $('#userid').val()
 					    };
 			//alert("**param : " + $('#reply_writer').val());
 			$.ajax({
@@ -77,99 +100,67 @@
 		
 		
 	</script>
-	
-	<script type="text/javascript">
-		function check(){
-			var form = document.file;
-			var ext = form.filename.value;
-			console.log(form);
-			
-			var result = ext.substring(ext.lastIndexOf(".")+1);
-			console.log(result);
-			
- 			if(result == "jpg" || result=="png" || result=="jpeg" ||result=="bmp" || result=="gif"){
-				console.log("이미지파일 맞음");
-				form.action="FileUpload.do";
-				document.getElementById('file').submit();
-			}else{
-				console.log("이미지파일 아님");
-				alert('이미지 파일이 아닙니다.');
-			}
-		}
-	</script>
 
 </head>
 <body>
-	<c:set var="detail" value="${requestScope.detail}"></c:set>
-	<table border="1">
-		<tr>
-			<td>글번호</td>
-			<td>${detail.boardID }</td>
-		</tr>
-		
-		<tr>
-			<td>제목</td>
-			<td>${detail.boardSubject }</td>
-		</tr>
-		
-		<tr>
-			<td>작성자</td>
-			<td>${detail.userID }</td>
-		</tr>
-		
-		<tr>
-			<td>작성일</td>
-			<td>${detail.createDate }</td>
-		</tr>
-		
-		<tr>
-			<td>내용</td>
-			<td>${detail.boardContent }</td>
-		</tr>
-		
-		<tr>
-			<td>업로드 파일</td>
-			<td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
-		</tr>
-		
-	</table>
-	
-	
-	<input type="button" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
-	<input type="button" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
-	<input type="button" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
-	<input type="button" value="목록보기" onClick="location.href='QnA.do'">
-	<hr>
 
-	댓글<br>
+		<%  
+      	   int cpage = (Integer)request.getAttribute("cpage");
+   		 %>
+		<c:set var="cpage" value="<%=cpage%>" />
+	
+	<c:set var="detail" value="${requestScope.detail}"></c:set>
+			<div id="qnadetail">
+				<br>
+			    <bold>${detail.boardSubject }</bold>
+			    <br>
+			    <hr>
+			    <br>
+			    <table>
+			        <tr>
+			            <td width="80%"><b>${detail.userID }</b></td>
+			            <td><i>${detail.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
+			        </tr>
+			    </table>
+			    
+			            <div>${detail.boardContent } </div>
+			</div>
+			
+			<hr>
+			<div id="btngroup">	
+				<input type="button"  class="btn btn-primary btn-lg" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="목록보기" onClick="location.href='QnA.do?cpage=${cpage}'">
+							
+			</div>
+	
+
+	
 	<hr>
 	<div id="reply">
 		<c:set var="comments" value="${requestScope.comment}"></c:set>
-		<table>
 		<c:forEach var="i" items="${comments }">
-		
-			<tr>
-				<td>작성자 : ${i.userID }</td>
-				<td>${i.createDate }</td>
-				<td><button id='delete' value='${i.commentID }'>삭제</button></td>
-			</tr>
-			<tr>
-				<td>내용 : ${i.comments }</td>
-			</tr>
+				<p><b>${i.userID }</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>${i.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='delete' value='${i.commentID }'>삭제</button></p>
+				<p>내용 : ${i.comments }</p>
+				
+				
+				<hr>
 		</c:forEach>
-		</table>
+		
 	</div>
-	<hr>
+	<div id="btn_reply">
+			<!-- <form action="QnAcommentsinsert.do" method="post"> -->
+		
+		<hr>		
+		<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
+		<input type="hidden" name="userid" id="userid" value="${sessionScope.usersdto.userId}">
+		<input type="text" name="comment" id="comment">	
+		
 	
-	<!-- <form action="QnAcommentsinsert.do" method="post"> -->
+		<input type="button" id="enroll" value="등록">
+	</div>	
 	
-	
-	<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
-	<input type="text" name="comment" id="comment">	
-	
-
-	<input type="button" id="enroll" value="등록">
-	
-	
+	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -3,6 +3,7 @@ package kr.or.bit.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class QnADao {
 	}
 	
 	//전체리스트보기
-	public List<QnADto> QnAlist() {
+	public List<QnADto> QnAlist(int cpage, int pagesize) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -67,23 +68,38 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0 connect by prior boardid = replyref order siblings by boardid DESC";
+			String sql = "SELECT *\r\n" + 
+					"FROM (SELECT ROWNUM AS RN, BOARDID, USERID, BOARDSUBJECT, READCOUNT, CREATEDATE, REPLYREF, REPLYDEPTH, REPLYSEQ " + 
+					"FROM (select * from qna start with replyref = 0 connect by prior boardid = replyref order siblings by boardid DESC)) " + 
+					" WHERE RN BETWEEN ? AND ? ";
 
+			int start = cpage * pagesize -(pagesize-1);
+			int end = cpage*pagesize;
+
+//			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0"
+//					+"connect by prior boardid = replyref order siblings by boardid DESC";
+			
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
 			rs = pstmt.executeQuery();
+			
 
 			System.out.println("sql rs 끝");
 			
 			while (rs.next()) {
 				System.out.println("while문 들어옴");
-				QnADto q = new QnADto();
-				q.setReplyDepth(rs.getInt("replyDepth"));
-				q.setReadCount(rs.getInt("readcount"));
-				q.setBoardID(rs.getInt("BoardID"));
-				q.setBoardSubject(rs.getString("BoardSubject"));
-				q.setCreateDate(rs.getDate("CreateDate"));
-				q.setUserID(rs.getString("UserID"));
-				qnalist.add(q);
+				QnADto dto = new QnADto();
+				dto.setBoardID(rs.getInt("BoardID"));
+				dto.setUserID(rs.getString("UserID"));
+				dto.setBoardSubject(rs.getString("BoardSubject"));
+				dto.setReadCount(rs.getInt("readcount"));
+				dto.setCreateDate(rs.getDate("CreateDate"));
+				dto.setReplyDepth(rs.getInt("replyDepth"));
+				
+				qnalist.add(dto);
 			}
 			
 		} catch (Exception e) {
@@ -96,6 +112,34 @@ public class QnADao {
 
 		return qnalist;
 	}
+	
+	//게시물 총 건수 구하기
+		public int totalboardCount(){
+			int totalNum=0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				conn = ds.getConnection();
+				String sql = "SELECT COUNT(*) AS CNT FROM QNA";
+
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					totalNum = rs.getInt("cnt");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			} finally {
+				 if(pstmt != null)try{pstmt.close();}catch (Exception e){e.printStackTrace();}
+				 if(conn != null) try{conn.close();}catch (Exception e){e.printStackTrace();}  //반환
+			}
+
+			return totalNum;
+		}
 
 	//글 상세보기
 	public QnADto searchQnA(int BoardID) {
@@ -248,11 +292,11 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "insert into qnacomments(CommentID, Comments, CreateDate, UpdateDate, BoardID, UserID) values(COMMENT_SEQ.NEXTVAL,?,SYSDATE,SYSDATE,?,'session.userid값받아오기')";
+			String sql = "insert into qnacomments(CommentID, Comments, CreateDate, UpdateDate, BoardID, UserID) values(COMMENT_SEQ.NEXTVAL,?,SYSDATE,SYSDATE,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, com.getComments());
 			pstmt.setInt(2, com.getBoardID());
-			//pstmt.setString(3, com.getUserID());
+			pstmt.setString(3, com.getUserID());
 			row = pstmt.executeUpdate();
 
 			System.out.println("DAO 안에서의 값 확인");
