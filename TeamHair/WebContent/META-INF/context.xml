@@ -21,9 +21,6 @@
             type="javax.sql.DataSource"
             auth="Container" 
             name="jdbc/oracle" />
-            
-            
-            192.168.0.13
 -->
 
   <Resource maxWait="-1" 

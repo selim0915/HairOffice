@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>답글 작성 페이지</title>
 </head>
@@ -17,7 +18,7 @@ ${requestScope.parent}
 	<table>
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" name="userid" value="$받아오기getParam" readonly></td>
+			<td><input type="text" name="userid" value="${sessionScope.usersdto.userId}" readonly></td>
 		</tr>
 		
 		<tr>
@@ -42,5 +43,6 @@ ${requestScope.parent}
 	
 	</table>
 </form>
+<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 </body>
 </html>

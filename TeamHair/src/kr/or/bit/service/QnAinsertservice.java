@@ -52,7 +52,6 @@ public class QnAinsertservice implements Action{
 			
 			String file = (String)filenames.nextElement();
 			String filename = multi.getFilesystemName(file);
-			System.out.println("iiiiiiiiiiiiiiiiiiiiiiii 파일이름 : " + filename);
 			qna.setFileName(filename);
 						
 			result = dao.insertQnA(qna);
