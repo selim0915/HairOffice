@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 	<meta charset="UTF-8">
 	<title>상세정보</title>
 	
@@ -16,6 +17,7 @@
 		$(function(){
 			$('#enroll').click(function(){
 				addreply();
+				alert('등록완료');
 		    	list();
 			});
 			$('#delete').click(function(){
@@ -49,7 +51,7 @@
 			var param = {
 					       "boardid":$('#boardid').val(),
 						   "comments":$('#comment').val(),
-						   "userid" : "detail.jsp...session.getid해오기"
+						   "userid" : $('#userid').val()
 					    };
 			//alert("**param : " + $('#reply_writer').val());
 			$.ajax({
@@ -78,66 +80,29 @@
 		
 	</script>
 
-	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
-
 </head>
 <body>
-
 	<c:set var="detail" value="${requestScope.detail}"></c:set>
- 	<br>
- 	<bold>${detail.boardSubject }</bold>
- 	<br>
- 	<hr>
- 	<br>
- 	<table border="1">
-		<tr>
-			<td>${detail.userID }</td>
-			<td>${detail.createDate }</td>
-			<td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
-		</tr>
-	</table>
- 	
- 	<div>${detail.userID}</div><br><br>
- 	<div class="container">
- 		<div class="row">
- 			<div>${detail.boardContent } </div>
- 		</div>
- 	</div>
- 
- 	 
- 	
-	<table border="1">
-		<tr>
-			<td>글번호</td>
-			<td>${detail.boardID }</td>
-		</tr>
-		
-		<tr>
-			<td>제목</td>
-			<td>${detail.boardSubject }</td>
-		</tr>
-		
-		<tr>
-			<td>작성자</td>
-			<td>${detail.userID }</td>
-		</tr>
-		
-		<tr>
-			<td>작성일</td>
-			<td>${detail.createDate }</td>
-		</tr>
-		
-		<tr>
-			<td>내용</td>
-			<td>${detail.boardContent }</td>
-		</tr>
-		
-		<tr>
-			<td>업로드 파일</td>
-			<td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
-		</tr>
-		
-	</table>
+	<br>
+    <bold>${detail.boardSubject }</bold>
+    <br>
+    <hr>
+    <br>
+    <table border="1">
+        <tr>
+            <td>${detail.userID }</td>
+            <td>${detail.createDate }</td>
+            <td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
+        </tr>
+    </table>
+    
+    <div>${detail.userID}</div><br><br>
+    <div class="container">
+        <div class="row">
+            <div>${detail.boardContent } </div>
+        </div>
+    </div>
+	
 	
 	
 	<input type="button" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
@@ -170,12 +135,12 @@
 	
 	
 	<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
+	<input type="hidden" name="userid" id="userid" value="${sessionScope.usersdto.userId}">
 	<input type="text" name="comment" id="comment">	
 	
 
 	<input type="button" id="enroll" value="등록">
 	
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
-	
 </body>
 </html>

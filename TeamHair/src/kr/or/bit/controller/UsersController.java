@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.service.ChangeProfilePictureService;
 import kr.or.bit.service.ChangePwdOkService;
 import kr.or.bit.service.LogOutService;
 import kr.or.bit.service.LoginOkService;
@@ -38,7 +37,7 @@ public class UsersController extends HttpServlet {
     		try {
     			System.out.println("/Login.usr");
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/log_in.jsp");
+    			forward.setPath("/WEB-INF/login/log-in.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
@@ -93,7 +92,7 @@ public class UsersController extends HttpServlet {
     		try {
     			System.out.println("/ChangePwd.usr");
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/change_pwd.jsp");
+    			forward.setPath("/WEB-INF/login/changepwd.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
@@ -102,14 +101,6 @@ public class UsersController extends HttpServlet {
     			System.out.println("ChangePwdOkService 호출");
     			action = new ChangePwdOkService();
     			forward = action.execute(request, response);
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	}  else if(urlCommand.equals("/ChangeProfilePicture.usr")) { // 프로필사진 변경
-    		try {
-    		
-    			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/login/popup_profile.jsp");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}

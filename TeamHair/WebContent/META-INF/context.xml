@@ -20,19 +20,9 @@
             type="javax.sql.DataSource"
             auth="Container" 
             name="jdbc/oracle" />
-
-<!-- 
-  <Resource maxWait="-1" 
-            maxIdle="20" 
-            maxActive="100" 
-            password="1004" 
-            username="hairtest" 
-            url="jdbc:oracle:thin:@localhost:1521:xe"
-            driverClassName="oracle.jdbc.OracleDriver" 
-            type="javax.sql.DataSource"
-            auth="Container" 
-            name="jdbc/oracle" />
- -->
+            
+            
+            
 
 <!-- 
   <Resource maxWait="-1" 
@@ -40,14 +30,17 @@
             maxActive="100" 
             password="1004" 
             username="hair" 
-            url="jdbc:oracle:thin:@localhost:59161:xe"
+            url="jdbc:oracle:thin:@localhost:1521:xe"
             driverClassName="oracle.jdbc.OracleDriver" 
             type="javax.sql.DataSource"
             auth="Container" 
             name="jdbc/oracle" />
- -->
+
+-->
  
- <!-- 
+<!--
+
+192.168.0.13
 
   <Resource maxWait="-1" 
             maxIdle="20" 
@@ -59,8 +52,7 @@
             type="javax.sql.DataSource"
             auth="Container" 
             name="jdbc/oracle" />
-  -->
-  
+ --> 
 <!-- 
  <Resource maxWait="-1" 
             maxIdle="20" 

@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <head>
 	<meta charset="UTF-8">
 	<title>글 수정 페이지</title>
-	<script type="text/javascript" src="/t/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
@@ -15,12 +16,11 @@
 <h3>글 수정 페이지</h3>
 <hr>
 <c:set var="qna" value="${requestScope.qna}"></c:set>
-${qna }
 <form action="QnAupdate.do" method="post" id="frm" enctype="Multipart/form-data">
 	<table>
 		<tr>
 			<td>작성자</td>
-			<td>session.userid</td>
+			<td><input type="text" name="userid" value="${sessionScope.usersdto.userId}" readonly></td>
 		</tr>
 		
 		<tr>
@@ -47,7 +47,7 @@ ${qna }
 			<td>파일 업로드</td>
 			<td><input type="file" name="filename"></td>
 		</tr>
-		<input type="hidden" name="boardid" value="${qna.boardID }">
+			<input type="hidden" name="boardid" value="${qna.boardID }">
 		<tr>
 			<td><button type="submit">수정완료</td>
 		</tr>

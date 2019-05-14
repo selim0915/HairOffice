@@ -1,4 +1,3 @@
-<%@page import="kr.or.bit.utils.TeamDate"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -33,12 +32,10 @@
 DELETE : <%=delrow %><br>
 
 <% 
-	dto.setSpaceName("프리미엄고리땡");
+	dto.setSpaceId(12345);
 	dto.setSpaceType("01");
-	dto.setMinNumber(1);
-	dto.setMaxNumber(1);
-	dto.setBranchId(100);
-	
+	dto.setBranchId(123);
+	dto.setSpaceName("프리미엄");
 %>
 
 BEFORE INSERT : <%=dto.toString() %><br>
@@ -50,7 +47,7 @@ BEFORE INSERT : <%=dto.toString() %><br>
 INSERT : <%=row %><br>
 
 <%
-	dto = dao.getSpaceById(48);
+	dto = dao.getSpaceById(12345);
 %>
 SELECT : <%=dto.toString() %><br>
 
@@ -66,7 +63,7 @@ SELECT : <%=dto.toString() %><br>
 <table border="1">
 	<tr><td>소개</td><td>웹사이트</td></tr>
 	<c:forEach var="space" items="${list }">
-		<tr><td>${space.spaceName}</td><td>${space.spaceType}</td></tr>
+		<tr><td>${space}</td><td>${space.spaceType}</td></tr>
 	</c:forEach>
 </table>
 
@@ -79,32 +76,9 @@ SELECT : <%=dto.toString() %><br>
 BEFORE UPDATE : <%= dto.toString() %><br>
 <% 
 	dao.updateSpace(dto);
-	dto = dao.getSpaceById(48);
+	dto = dao.getSpaceById(12345);
 %>
-UPDATE : <%=dto.toString() %><br>
-<hr>
-
-희망임대기간동안 사용가능한 space<br>
-임대시작 희망일 : 20190601<br>
-임대종료 희망일 : 20201231<br>
-1인실<br>
-<br>
- 
-<%
-	List<SpaceDto> availableDtoList = new ArrayList<SpaceDto>();
-	
-	availableDtoList = dao.getSpaceAvailableList(1, 100, TeamDate.date("20190601"), TeamDate.date("20201231"));
-%>
-
-<c:set var="availablelist" value="<%=availableDtoList %>"/>
-<table border="1">
-	<tr><td>소개</td><td>웹사이트</td></tr>
-	<c:forEach var="space" items="${availablelist }">
-		<tr><td>${space.spaceName}</td><td>${space.spaceType}</td></tr>
-	</c:forEach>
-</table>
-
-
+UPDATE : <%=dto.toString() %>
 
 </body>
 

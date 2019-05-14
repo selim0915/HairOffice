@@ -247,11 +247,11 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "insert into qnacomments(CommentID, Comments, CreateDate, UpdateDate, BoardID, UserID) values(COMMENT_SEQ.NEXTVAL,?,SYSDATE,SYSDATE,?,'session.userid값받아오기')";
+			String sql = "insert into qnacomments(CommentID, Comments, CreateDate, UpdateDate, BoardID, UserID) values(COMMENT_SEQ.NEXTVAL,?,SYSDATE,SYSDATE,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, com.getComments());
 			pstmt.setInt(2, com.getBoardID());
-			//pstmt.setString(3, com.getUserID());
+			pstmt.setString(3, com.getUserID());
 			row = pstmt.executeUpdate();
 
 			System.out.println("DAO 안에서의 값 확인");

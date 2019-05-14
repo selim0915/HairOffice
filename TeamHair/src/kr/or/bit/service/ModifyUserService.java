@@ -39,14 +39,11 @@ public class ModifyUserService implements Action {
 			CodeDao codeDao = new CodeDao();
 			List<CodeDto> codeDtoList = new ArrayList<CodeDto>(); 
 			codeDtoList = codeDao.getCodeListById("U100");
-			
-			System.out.println(codeDtoList);
-			
 			request.setAttribute("codedtolist", codeDtoList);
 			
 			
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/login/modify_user_info.jsp");
+			forward.setPath("/WEB-INF/login/modifyuserinfo.jsp");
 			
 		} catch (Exception e) {	
 			e.printStackTrace();
