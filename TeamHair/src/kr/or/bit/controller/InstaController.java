@@ -13,8 +13,11 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.CommentsAllSeslectService;
 import kr.or.bit.service.CommentsInsertService;
+import kr.or.bit.service.InstaLikeCountService;
 import kr.or.bit.service.InstaLikeListService;
 import kr.or.bit.service.InstaLikeService;
+import kr.or.bit.service.InstaPhotoDeleteService;
+import kr.or.bit.service.InstaPhotoWriteService;
 import kr.or.bit.service.LoginOkService;
 import kr.or.bit.service.ModifyLikeService;
 import kr.or.bit.service.PhotoAllSelectService;
@@ -57,28 +60,56 @@ public class InstaController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/Insta.insta")) { // 로그인 OK
+    	} else if(urlCommand.equals("/Insta.insta")) { // 인스타 포토 불러오기
     		try {
     			action = new PhotoAllSelectService();
     			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/Instacomment.insta")) { // 로그인 OK
+    	} else if(urlCommand.equals("/Instaphoto.insta")) { // 인스타 포토 불러오기
+    		try {
+    			action = new InstaPhotoWriteService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instacomment.insta")) { // 댓글 추가
     		try {
     			action = new CommentsInsertService();
     			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/Instapopup.insta")) { // 로그인 OK
+    	} else if(urlCommand.equals("/Instapopup.insta")) { // 댓글 모두 불러오기
     		try {
     			action = new CommentsAllSeslectService();
     			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/InstaGrallery.insta")) { // 로그인 OK
+    	} else if(urlCommand.equals("/Instawrite.insta")) { // 이미지 올리기 팝업
+    		try {
+    			action = new InstaPhotoWriteService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instadelete.insta")) { // 이미지 삭제
+    		try {
+    			action = new InstaPhotoDeleteService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instaphotolike.insta")) { // 인스타 팝업 좋아요 비동기
+    		try {
+    			action = new InstaLikeCountService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/InstaGrallery.insta")) { // 갤러리 페이지 이동
     		try {
     			forward.setRedirect(false);
     			forward.setPath("/WEB-INF/branch/hairgallery.jsp");

@@ -82,7 +82,7 @@ public class LikesDao {
 			
 			pstmt.setInt(1, dto.getPhotoId());
 			pstmt.setString(2, dto.getUserId());
-			pstmt.setString(3, dto.getLikeYn());
+			pstmt.setString(3, dto.getLikeYn().toUpperCase());
 			pstmt.setString(4, dto.getWasUser());
 
 			row = pstmt.executeUpdate();
@@ -189,7 +189,7 @@ public class LikesDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql = " SELECT COUNT(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT \r\n" + 
+			String sql = " SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT \r\n" + 
  						 " FROM PHOTO P JOIN LIKES L   \r\n" + 
 						 " ON P.PHOTOID = L.PHOTOID    \r\n" + 
 						 " AND P.PHOTOID = ?           \r\n";
@@ -233,7 +233,8 @@ public class LikesDao {
 					     " FROM PHOTO P JOIN LIKES L    \r\n" + 
 					     " ON P.PHOTOID = L.PHOTOID     \r\n" + 
 					     " AND P.USERID = ?             \r\n" + 
-					     " GROUP BY P.PHOTOID \r\n";
+					     " GROUP BY P.PHOTOID 			\r\n" +	
+						 " ORDER BY PHOTOID DESC	    \r\n";
 					
 					
 			try {
@@ -285,6 +286,30 @@ public class LikesDao {
 				pstmt.setInt(3, dto.getPhotoId());
 				
 				row=pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return row;
+		}
+		
+		public int deleteLikes(int photoid) {
+			int row = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "DELETE FROM LIKES WHERE PHOTOID=?";	
+			System.out.println("sql: "+sql);
+			
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, photoid);
+				row = pstmt.executeUpdate();
 				
 			} catch (Exception e) {
 				e.printStackTrace();

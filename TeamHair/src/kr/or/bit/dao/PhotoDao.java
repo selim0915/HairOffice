@@ -142,6 +142,29 @@ public class PhotoDao {
 		return row;
 	}
 	
+	public int deletePhoto(int photoid) {
+		int row = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM PHOTO WHERE PHOTOID=?";	
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, photoid);
+			row = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return row;
+	}
+	
 	//게시글상세보기(likes, comments 조인)
 	public PhotoDto selectPhotoById (String userid, int photoid) {
 		PhotoDto dto = new PhotoDto();
@@ -150,7 +173,7 @@ public class PhotoDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " SELECT * FROM PHOTO WHERE USERID=? AND PHOTOID=?"; 
+		String sql = " SELECT * FROM PHOTO WHERE USERID=? AND PHOTOID=? ORDER BY PHOTOID DESC"; 
 				
 		try {
 			conn = ds.getConnection();
@@ -184,7 +207,7 @@ public class PhotoDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " SELECT * FROM PHOTO WHERE PHOTOID=?"; 
+		String sql = " SELECT * FROM PHOTO WHERE PHOTOID=? ORDER BY PHOTOID DESC"; 
 				
 		try {
 			conn = ds.getConnection();
