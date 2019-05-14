@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 	<meta charset="UTF-8">
 	<title>글 작성 페이지</title>
-	<script type="text/javascript" src="/t/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -44,5 +45,6 @@
 	
 	</table>
 </form>
+	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 </body>
 </html>

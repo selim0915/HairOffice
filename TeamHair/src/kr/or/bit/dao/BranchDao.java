@@ -20,7 +20,7 @@ public class BranchDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
 	}
 
-	//Branch 데이터 삽입
+	//Users 데이터 삽입
 	public int insertBranch(BranchDto dto) {
 		int row = 0;
 		
@@ -41,8 +41,8 @@ public class BranchDao {
 			pstmt.setString(4, dto.getAddress2());
 			pstmt.setString(5, dto.getPostalCode());
 			pstmt.setString(6, dto.getPhone());
-			pstmt.setDouble(7, dto.getMap_X());
-			pstmt.setDouble(8, dto.getMap_Y());
+			pstmt.setInt(7, dto.getMap_X());
+			pstmt.setInt(8, dto.getMap_Y());
 			
 			row=pstmt.executeUpdate();
 			
@@ -163,8 +163,8 @@ public class BranchDao {
 			pstmt.setString(3, dto.getAddress2());
 			pstmt.setString(4, dto.getPostalCode());
 			pstmt.setString(5, dto.getPhone());
-			pstmt.setDouble(6, dto.getMap_X());
-			pstmt.setDouble(7, dto.getMap_Y());
+			pstmt.setInt(6, dto.getMap_X());
+			pstmt.setInt(7, dto.getMap_Y());
 			pstmt.setInt(8, dto.getBranchID());
 			
 			row=pstmt.executeUpdate();

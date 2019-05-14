@@ -82,6 +82,12 @@
 
 </head>
 <body>
+
+		<%  
+      		int cpage = (Integer)request.getAttribute("cpage");
+   		 %>
+		<c:set var="cpage" value="<%=cpage%>" />
+	
 	<c:set var="detail" value="${requestScope.detail}"></c:set>
 	<br>
     <bold>${detail.boardSubject }</bold>
@@ -108,7 +114,7 @@
 	<input type="button" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
 	<input type="button" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
 	<input type="button" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
-	<input type="button" value="목록보기" onClick="location.href='QnA.do'">
+	<input type="button" value="목록보기" onClick="location.href='QnA.do?cpage=${cpage}'">
 	<hr>
 
 	댓글<br>

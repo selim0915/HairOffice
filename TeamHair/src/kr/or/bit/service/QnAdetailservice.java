@@ -20,12 +20,14 @@ public class QnAdetailservice implements Action{
 		
 		try {
 			int boardID = Integer.parseInt(request.getParameter("boardID"));
+			int cpage =Integer.parseInt(request.getParameter("cpage"));
 			
   		  	QnADao qnadao = new QnADao();
   		  	QnADto q = qnadao.searchQnA(boardID);
   		  	List<QnACommentsDto> c = qnadao.QnACommentslist(boardID);
   		  	
   		  	request.setAttribute("detail",q);
+  		  	request.setAttribute("cpage", cpage);
   		  	request.setAttribute("comment", c);
 		  		  
   		  	int readCount = q.getReadCount()+1;

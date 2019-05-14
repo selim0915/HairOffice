@@ -4,13 +4,13 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <meta charset="UTF-8">
 <title>답글 작성 페이지</title>
 </head>
 <body>
 <h3>답글작성 페이지</h3>
 <hr>
-${requestScope.parent}
 <form action="QnAreinsert.do" method="post" enctype="Multipart/form-data">
 	<input type="hidden" name="parentref" value="${requestScope.parent.boardID}">
 	<input type="hidden" name="parentdepth" value="${requestScope.parent.replyDepth}">
@@ -28,7 +28,9 @@ ${requestScope.parent}
 		
 		<tr>
 			<td>내용</td>
-			<td><input type="text" name="boardcontent"></td>
+			<td>
+				<textarea rows="10" cols="60" name="boardcontent" class="ckeditor"></textarea>
+			</td>
 		</tr>
 		
 		<tr>
