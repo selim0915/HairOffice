@@ -16,9 +16,11 @@ public class QnAcommentsinsertservice implements Action{
 		
 		System.out.println("넘어온 boardid 확인하기 : " + request.getParameter("boardid"));
 		System.out.println("댓글값 : " + request.getParameter("comments"));
+		System.out.println("userid 확인 : ::::::::::::::::::::::::::::"+request.getParameter("userid"));
 
 		int boardid = Integer.parseInt(request.getParameter("boardid"));
 		String comments = request.getParameter("comments");
+		String userid = request.getParameter("userid");
 		
 		int result = 0;
 		
@@ -28,6 +30,7 @@ public class QnAcommentsinsertservice implements Action{
 			
 			com.setBoardID(boardid);
 			com.setComments(comments);
+			com.setUserID(userid);
 			
 			QnADao dao = new QnADao();
 			result = dao.insertQnAComments(com);

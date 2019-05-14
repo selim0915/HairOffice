@@ -4,18 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>QnA 게시판</title>
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
+	
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
-
-<h3>QnA메인페이지</h3>
-${requestScope.qnalist}
-
 <hr>
 		<div id="list">
 			<table>
@@ -47,8 +39,8 @@ ${requestScope.qnalist}
 			</table>
 		</div>
 <hr>
+<div class="qna-sub">
 <input type="button" class="dropdown" value="글쓰기" onclick="location='QnAwrite.do'">
-</body>
-
-</html>
+</div>
+	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 
