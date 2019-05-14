@@ -88,5 +88,29 @@ public class CommentsDao{
 		
 		return row;
 	}
+		
+		public int deleteComments(int photoid) {
+			int row = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "DELETE FROM COMMENTS WHERE PHOTOID=?";	
+			System.out.println("sql: "+sql);
+			
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, photoid);
+				row = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return row;
+		}
 
 }

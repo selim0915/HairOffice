@@ -13,21 +13,25 @@
 	<c:set var="blogList" value="${requestScope.bloglist}"></c:set>
 	<c:set var="usersDto" value="${sessionScope.usersdto}"></c:set>
 	<c:set var="profileDto" value="${requestScope.profiledto}"></c:set>
+	<c:set var="bloglikedto" value="${requestScope.bloglikedto}"></c:set>
 	<script type="text/javascript">
 	
 		function btnpopup(photoid) {
+			
+			var sessionid = "${sessionScope.usersdto.userId}"; //var sessionid = ''
 
 						$.ajax({
 							url : "Instapopup.insta?",
 							data : {
 								photoid: photoid,
 							},
-							type : "GET",
+							type : "POST",
 							dataType : "text",
 							success : function(data) {
 								$('#obscure').html(data);
 							}
-						});
+						})
+						
 						setTimeout(function() {
 							$('.popup').removeClass('animationClose').addClass(
 									'animationOpen');
@@ -35,27 +39,37 @@
 						
 						$('.obscure').fadeIn(50);
 						
-							var sessionid = "${sessionScope.usersdto.userId}"; //var sessionid = ''
-							$.ajax({
-								url : "Instalikes.insta?",
-								data : {
-									photoid : photoid,
-									userid : sessionid,
-								},
-								type : "GET",
-								dataType : "json",
-								success : function(data) {
-									if(data.likeyn == null){
-										insertlike(photoid);
-									}else if(data.likeyn == 'y'){
+						$.ajax({
+							url : "Instalikes.insta?",
+							data : {
+								photoid : photoid,
+								userid : sessionid,
+							},
+							type : "POST",
+							dataType : "json",
+							success : function(data) {
+								console.log(data);
+
+								if(data.likeyn == "Y"){
+									console.log("Y들어옴");
+									setTimeout(function() {
 										$('#test').removeClass('far fa-heart');
 										$('#test').addClass('fas fa-heart');
-									}else if($('#test').hasClass('fas fa-heart') == true){
+									}, 100);
+									
+								}else if(data.likeyn == "N"){
+									console.log("Y들어옴");
+									setTimeout(function() {
 										$('#test').removeClass('fas fa-heart');
 										$('#test').addClass('far fa-heart');
-									}
-									}
-							});
+									}, 100);
+								}else if(data.likeyn == null){
+									insertlike(photoid);
+								}
+							}
+						})
+						
+							
 		}
 		
 		function insertlike(photoid) {
@@ -65,16 +79,16 @@
 				data : {
 					photoid : photoid,
 					userid : sessionid,
-					likeyn : "n",
+					likeyn : "N",
 					wasuser : "n"
 				},
-				type : "GET",
+				type : "POST",
 				dataType : "json",
 				success : function(data) {
-					if(data.likeyn == 'y'){
+					if(data.likeyn == "Y"){
 						$('#test').removeClass('far fa-heart');
 						$('#test').addClass('fas fa-heart');
-					}else if($('#test').hasClass('fas fa-heart') == true){
+					}else if(data.likeyn == "N"){
 						$('#test').removeClass('fas fa-heart');
 						$('#test').addClass('far fa-heart');
 					}
@@ -89,22 +103,47 @@
 			$('.popup').removeClass('animationOpen').addClass(
 					'animationClose');
 		}
+		
+		function btnclosesub() {
+			setTimeout(function() {
+				$('.obscure-sub').fadeOut(350);
+			}, 50);
+			$('.popup-sub').removeClass('animationOpen-sub').addClass(
+					'animationClose-sub');
+		}
+		
+		function likecount(photoid) {
+			$.ajax({
+				url : "Instaphotolike.insta?",
+				data : {
+					photoid: photoid,
+				},
+				type : "POST",
+				dataType : "text",
+				success : function(data) {
+					console.log(data);
+					$('#likecount').html(data);
+				}
+			})
+		}
 	
 		function like(photoid) {
 			var sessionid = "${sessionScope.usersdto.userId}";
 			if($('#test').hasClass('far fa-heart') == true){
+				console.log("like 들어옴");
 				$.ajax({
 					url : "InstalikeYn.insta?",
 					data : {
 						photoid : photoid,
 						userid : sessionid,
-						likeyn : "y"
+						likeyn : "Y"
 					},
-					type : "GET",
+					type : "POST",
 					dataType : "text",
 					success : function(data) {
 						$('#test').removeClass('far fa-heart');
 						$('#test').addClass('fas fa-heart');
+						likecount(photoid);
 					}
 				});
 			}else if($('#test').hasClass('fas fa-heart') == true){
@@ -113,13 +152,14 @@
 					data : {
 						photoid : photoid,
 						userid : sessionid,
-						likeyn : "n"
+						likeyn : "N"
 					},
-					type : "GET",
+					type : "POST",
 					dataType : "text",
 					success : function(data) {
 						$('#test').removeClass('fas fa-heart');
 						$('#test').addClass('far fa-heart');
+						likecount(photoid);
 					}
 				});
 			}
@@ -138,7 +178,7 @@
 						userid : sessionid,
 						photoid : photoid
 					},
-					type : "GET",
+					type : "POST",
 					dataType : "text",
 					success : function(data) {
 						$('.instagram-card-input').val("");
@@ -151,6 +191,20 @@
 		function commentfocus() {
 			$('.instagram-card-input').focus();
 		}
+		
+		function photoinsrt() {
+			setTimeout(function() {
+				$('.popup-sub').removeClass('animationClose-sub').addClass(
+						'animationOpen-sub');
+			}, 100);
+			
+			$('.obscure-sub').fadeIn(50);
+		}
+		
+		function deletephoto(photoid) {
+			 location.href = "Instadelete.insta?photoid="+photoid;
+		}
+		
 	</script>
 		
 <body>
@@ -172,14 +226,14 @@
 
 				<button class="btn profile-edit-btn" onclick="location.href='Modify.usr'">Edit Profile</button>
 
-				<button class="btn profile-edit-btn">Photo</button>
+				<button class="btn profile-edit-btn" onclick="photoinsrt()">Photo</button>
 
 			</div>
 
 			<div class="profile-stats">
 
 				<ul>
-					<li><span class="profile-stat-count">164</span> posts</li>
+					<li><span class="profile-stat-count">${blogList.size()}</span> posts</li>
 					<li><span class="profile-stat-count">188</span> followers</li>
 					<li><span class="profile-stat-count">206</span> following</li>
 				</ul>
@@ -208,6 +262,42 @@
 				
 				<!-- POPUP END -->
 				
+				
+				<!-- Photo Insert Popup -->
+				<div class="obscure-sub">			
+				<div class="popup-sub animationClose-sub">
+				<div class="container">
+	<div class="row">
+		<div class="right-sub">
+			<div class="right-content">
+			
+								<div class="">
+					<a class="btnclose" href="#" onclick="btnclosesub()"><i
+						class="fas fa-times"></i></a>
+				</div>
+					<h1>업로드</h1>
+					
+					<form action="Instawrite.insta" enctype="Multipart/form-data" method="post">
+					<div class="mt-10">
+						<input type="file" name="filename" class="single-input-secondary-sub-infor">
+					</div>
+					<div class="mt-10">
+						<input type="text" name="comments" placeholder="내용" onfocus="this.placeholder = ''" onblur="this.placeholder = '내용'" required="" class="single-input-secondary-sub-infor">
+					</div>
+					<div class="btn-file">
+							<button type="submit" class="genric-btn info circle arrow">올리기<span class="lnr lnr-arrow-right"></span></button>
+						</div>
+					</form>
+				</div>
+		</div>
+		</div>
+</div>
+</div>
+</div>
+				
+				<!-- Photo Insert End -->
+				
+				
 	<div class="container">
 
 		<div class="gallery">
@@ -221,15 +311,14 @@
 			<div class="gallery-item" tabindex="0">
 				<div>
 			    
-			<a class="openBtn" href="#" onclick="btnpopup(${blogList[i].photoId})">
+			<a class="openBtn" href="#" onclick="btnpopup(${blogList[i].photoId});return false;">
 
 				<img src="./upload/${blogList[i].fileName}" class="gallery-image">
 
 				<div class="gallery-item-info">
 
 					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> ${bloglikedto[i].likeCount }</li>
 					</ul>
 				</div>
 				</a>
