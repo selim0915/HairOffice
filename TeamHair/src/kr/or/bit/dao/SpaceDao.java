@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -11,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kr.or.bit.dto.SpaceDto;
+import kr.or.bit.utils.TeamConvert;
 
 public class SpaceDao {
 	DataSource ds = null;
@@ -124,6 +126,65 @@ public class SpaceDao {
 		
 		return dtoList;
 	}
+	
+	public List<SpaceDto> getSpaceAvailableList (int numberOfPersons, Date startPeriod, Date endPeriod ) {
+		List<SpaceDto> dtoList = new ArrayList<SpaceDto>();
+		
+		System.out.println("getSpaceAvailableList");
+		System.out.println(numberOfPersons);
+		System.out.println(startPeriod);
+		System.out.println(endPeriod);
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID \r\n" + 
+						" FROM SPACE \r\n" + 
+						" WHERE MINNUMBER <= ?   \r\n" + 
+						" AND SPACEID NOT IN (   \r\n" + 
+						"    SELECT SPACEID      \r\n" + 
+						"    FROM RENTCONTRACT   \r\n" + 
+						"    WHERE STARTDATE BETWEEN ? AND ? \r\n" + 
+						"    OR ENDDATE BETWEEN ? AND ? \r\n" + 
+						") ORDER BY MINNUMBER \r\n" ; 
+						
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, numberOfPersons);
+			pstmt.setDate(2, TeamConvert.dateFromUtilToSql(startPeriod));
+			pstmt.setDate(3, TeamConvert.dateFromUtilToSql(endPeriod));
+			pstmt.setDate(4, TeamConvert.dateFromUtilToSql(startPeriod));
+			pstmt.setDate(5, TeamConvert.dateFromUtilToSql(endPeriod));
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				SpaceDto dto = new SpaceDto();
+				System.out.println(rs.getInt("spaceId"));
+				
+				dto.setSpaceId(rs.getInt("SpaceID"));
+				dto.setSpaceType(rs.getString("SpaceType"));
+				dto.setBranchId(rs.getInt("BranchID"));
+				dto.setSpaceName(rs.getString("SpaceName"));
+				
+				dtoList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dtoList;
+	}
+
 
 	public int updateSpace(SpaceDto dto) {
 		int row = 0;

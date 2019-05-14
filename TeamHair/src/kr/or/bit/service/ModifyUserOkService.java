@@ -112,7 +112,10 @@ public class ModifyUserOkService implements Action {
 			profileDto.setPhotoName(filename1);
 			
 			ProfileDao profileDao = new ProfileDao();
-			profileDao.updateProfile(profileDto);
+			
+			profileDao.deleteProfile(profileDto.getUserId());
+			profileDao.insertProfile(profileDto);
+			//profileDao.updateProfile(profileDto);
 			
 			forward.setRedirect(false);
 			forward.setPath("index.jsp");

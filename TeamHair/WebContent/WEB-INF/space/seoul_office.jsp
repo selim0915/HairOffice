@@ -61,7 +61,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/hairshop1.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/hairshop1.jpg" alt="Card image cap" height="600" width="100">
       <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -115,7 +115,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/hairshop2.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/hairshop2.jpg" alt="Card image cap" height="600" width="100">
       <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -168,7 +168,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="img/branch/hairshop3.jpg" alt="Card image cap">
+      <img class="card-img-top" src="img/branch/hairshop3.jpg" alt="Card image cap" height="600" width="100">
       <a href="GangnamOfficeInfo.brh">
         <div class="mask rgba-white-slight"></div>
       </a>

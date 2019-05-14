@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.service.SearchSpaceService;
 
 @WebServlet("*.brh")
 public class BranchController extends HttpServlet {
@@ -52,11 +53,22 @@ public class BranchController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	} else if(urlCommand.equals("/GangnamOfficeInfo.brh")) { // 강남오피스의 공간 정보
+    	} else if(urlCommand.equals("/GangnamOfficeInfo.brh")) { // 강남오피스의 임대조건 검색
     		try {
     			System.out.println("/GangnamOfficeInfo.brh");
-    			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/space/seoulgangnam.jsp");
+    			
+				forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/space/seoul_gangnam_rent.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/SearchSpace.brh")) { // 강남오피스의 임대조건 검색
+    		try {
+    			System.out.println("/SearchSpace.brh");
+    			
+				action = new SearchSpaceService();
+				forward = action.execute(request, response);
+
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
