@@ -12,7 +12,7 @@
 	<!-- Author Meta -->
 	<meta name="author" content="codepixer">
 	<!-- Meta Description -->
-	<meta name="description" conte8nt="">
+	<meta name="description" content="">
 	<!-- Meta Keyword -->
 	<meta name="keywords" content="">
 	<!-- meta character set -->
@@ -38,6 +38,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/contentpopup.css">
     <link rel="stylesheet" href="css/modify.css">
+    <link rel="stylesheet" href="css/css_lee.css">
 </head>
 
 <body>

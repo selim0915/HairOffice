@@ -27,9 +27,10 @@
 			<div class="header-content">
 				<div class="form-wrap">
 
-					<h2>Hair의 격을 높이는 공간</h2>
+					<h2>Hair의 격을 높이는 공간, 공유미용실</h2>
 					<div class="single-element-widget mt-30">
 						<div class="default-select" id="default-select">
+						<span>어디에 업무공간이 필요하신가요?</span>
 							<select>
 								<option value="1">지점</option>
 								<option value="1">강남</option>
@@ -41,13 +42,18 @@
 
 					<div class="single-element-widget mt-30">
 						<div class="default-select" id="default-select">
-							<select>
+						<label for="no-person">직원수:</label>					
+							<select id="no-person">
 								<option value="1">Shop 규모</option>
 								<option value="1">1-3명</option>
 								<option value="1">3-5명</option>
 								<option value="1">5-10명</option>
+								<option value="1">10명 이상</option>
 							</select>
-							<button type="submit" class="genric-btn info">시작</button>
+							<form action="/salone_list.jsp">
+								<button type="submit" class="genric-btn info">시작</button>
+							</form>
+							
 						</div>
 
 					</div>
@@ -76,7 +82,12 @@
 						<p>
 							<ul>
 								<li>디자이너의 공간을 자유롭게</li>
+								비즈니스를 변화시키는 힘을 가진 공간—사람과 조직의 잠재력을 확인하세요. 
+								팀이 최고의 업무를 해낼 수 있게 해주는 디자인, 따뜻한 인간미 및 유연한 
+								솔루션을 모두 갖추고 있습니다.  
 								<li>투자비용과 리스크 감소</li>
+								초기투자비용 부담을 줄이고 좋은 입지 선정<br>
+								<a href="seoul_office.jsp">전체 지점 보기</a>
 							</ul>
 						</p>
 					</div>
@@ -94,7 +105,8 @@
 						<p>
 							<ul>
 								<li>디자이너 블로그 주소 무료 지원</li>
-								<li>회원들과 다양한 소통 가능</li>
+								<li>회원들과 다양한 소통 가능</li><br>
+								<a href="/insta/instragram.jsp">블로그 보기</a>
 							</ul>
 						</p>
 					</div>

@@ -4874,3 +4874,64 @@ margin-right: 0px;
 .session3title{
  padding-bottom: 40px;
 }
+
+
+
+
+
+	.branch-select-sub .nice-select{
+	    margin-bottom: 10px;
+    margin-right: 20px;
+    padding: 4px;
+    border-radius: 6px;
+    height: 50px;
+    background: white;
+    padding-left: 20px;
+    padding-right: 40px;
+    width: 100%;
+	}
+	
+	.branch-select-sub {
+  height: 40px; }
+  .branch-select-sub .nice-select {
+    margin-bottom: 10px;
+  	margin-right: 20px;
+    padding: 4px;
+    border-radius: 6px;
+    height: 50px;
+    background: white;
+    padding-left: 20px;
+    padding-right: 40px;
+    width: 100%; }
+    .branch-select-sub .nice-select .list {
+    margin-top: 0px;
+    border: solid 1px #e8e8e8;
+    border-radius: 6px;
+    box-shadow: none;
+    width: 100%;
+    padding: 10px 0 10px 0px; }
+      .branch-select-sub .nice-select .list .option {
+        font-weight: 300;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        line-height: 28px;
+        min-height: 28px;
+        font-size: 15px;
+        padding-left: 20px; }
+        .branch-select-sub .nice-select .list .option.selected {
+          color: #61c524;
+          background: transparent; }
+        .branch-select-sub .nice-select .list .option:hover {
+          color: #61c524;
+          background: transparent; }
+  .branch-select-sub .current {
+    font-size: 15px;
+    margin-right: 50px;
+    font-weight: 300; }
+  .branch-select-sub .nice-select::after {
+    right: 20px; }
+   .branch-select-sub .nice-select:active, .nice-select.open, .nice-select:focus {
+   border-color: #e8e8e8;
+   }

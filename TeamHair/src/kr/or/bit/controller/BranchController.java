@@ -36,6 +36,14 @@ public class BranchController extends HttpServlet {
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
+      	}  else if(urlCommand.equals("/BranchnoSearch.brh")) { // 공간 검색 정보
+    		try {
+    			System.out.println("/Space.brh");
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/branch/branch_search.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}	
     	}  else if(urlCommand.equals("/Space.brh")) { // 공간 메인 정보
     		try {
     			System.out.println("/Space.brh");
