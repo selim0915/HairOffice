@@ -229,7 +229,7 @@ public class LikesDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql = " SELECT COUNT(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID  \r\n" + 
+			String sql = " SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID  \r\n" + 
 					     " FROM PHOTO P JOIN LIKES L    \r\n" + 
 					     " ON P.PHOTOID = L.PHOTOID     \r\n" + 
 					     " AND P.USERID = ?             \r\n" + 
