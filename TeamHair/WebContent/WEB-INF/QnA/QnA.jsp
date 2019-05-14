@@ -8,7 +8,17 @@
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
-	
+
+	<style>
+		#qnalist {
+			margin: 5%;
+		}
+		
+		#pagination {
+			margin: 1%;
+		}
+	</style>
+		
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 <hr>
@@ -27,7 +37,7 @@
 		
 				
 		
-		<div id="list">
+		<div id="qnalist">
 			<table>
 				<tr>
 	    			<th><p>글번호</p></th>
@@ -57,20 +67,22 @@
 			</table>
 		</div>
 		
-		<nav aria-label="Page navigation example">
-  		<ul class="pagination justify-content-center">
-  		<c:if test="${cpage>1}">
-	    	<li class="page-item"><a class="page-link" href="QnA.do?cpage=${cpage-1}&pagesize=${pagesize}">Previous</a></li>
-	    </c:if> 
-	    <c:forEach var="i" begin="1" end="${pagecount}" step="1">
-			<li class="page-item"><a class="page-link" href="QnA.do?cpage=${i}&pagesize=${pagesize}">${i}</a></li>
-		</c:forEach> 
-		<c:if test="${cpage<pagecount}">
-	    	<li class="page-item"><a class="page-link" href="QnA.do?cpage=${cpage+1}&pagesize=${pagesize}">Next</a></li>
-		</c:if>
-		</ul>
-		</nav>
+		<div id="pagination">
 		
+			<nav aria-label="Page navigation example">
+		  		<ul class="pagination justify-content-center">
+			  		<c:if test="${cpage>1}">
+				    	<li class="page-item"><a class="page-link" href="QnA.do?cpage=${cpage-1}&pagesize=${pagesize}">Previous</a></li>
+				    </c:if> 
+				    <c:forEach var="i" begin="1" end="${pagecount}" step="1">
+						<li class="page-item"><a class="page-link" href="QnA.do?cpage=${i}&pagesize=${pagesize}">${i}</a></li>
+					</c:forEach> 
+					<c:if test="${cpage<pagecount}">
+				    	<li class="page-item"><a class="page-link" href="QnA.do?cpage=${cpage+1}&pagesize=${pagesize}">Next</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</div>
 <hr>
 <div class="qna-sub">
 <input type="button" class="dropdown" value="글쓰기" onclick="location='QnAwrite.do'">

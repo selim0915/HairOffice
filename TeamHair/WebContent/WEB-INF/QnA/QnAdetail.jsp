@@ -12,6 +12,27 @@
 	<meta charset="UTF-8">
 	<title>상세정보</title>
 	
+	<style type="text/css">
+		#qnadetail {
+			margin: 2%;
+			padding: 20px;
+			background-color: white;
+		}
+		#btngroup {
+			margin-left: 2%;
+			margin-right: 2%;
+			padding : 10px;
+		}
+		
+		#reply, #btn_reply {
+			margin-left: 2%;
+			margin-right: 2%;
+			background-color: white;
+			font-size: small;
+		}
+		
+	</style>
+	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
 	<script>
 		$(function(){
@@ -89,63 +110,56 @@
 		<c:set var="cpage" value="<%=cpage%>" />
 	
 	<c:set var="detail" value="${requestScope.detail}"></c:set>
-	<br>
-    <bold>${detail.boardSubject }</bold>
-    <br>
-    <hr>
-    <br>
-    <table border="1">
-        <tr>
-            <td>${detail.userID }</td>
-            <td>${detail.createDate }</td>
-            <td><a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
-        </tr>
-    </table>
-    
-    <div>${detail.userID}</div><br><br>
-    <div class="container">
-        <div class="row">
-            <div>${detail.boardContent } </div>
-        </div>
-    </div>
+			<div id="qnadetail">
+				<br>
+			    <bold>${detail.boardSubject }</bold>
+			    <br>
+			    <hr>
+			    <br>
+			    <table>
+			        <tr>
+			            <td width="80%"><b>${detail.userID }</b></td>
+			            <td><i>${detail.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="window.open('upload/${detail.fileName}')">${detail.fileName }</a></td>
+			        </tr>
+			    </table>
+			    
+			            <div>${detail.boardContent } </div>
+			</div>
+			
+			<hr>
+			<div id="btngroup">	
+				<input type="button"  class="btn btn-primary btn-lg" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
+				<input type="button"  class="btn btn-primary btn-lg" value="목록보기" onClick="location.href='QnA.do?cpage=${cpage}'">
+							
+			</div>
 	
-	
-	
-	<input type="button" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
-	<input type="button" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
-	<input type="button" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
-	<input type="button" value="목록보기" onClick="location.href='QnA.do?cpage=${cpage}'">
-	<hr>
 
-	댓글<br>
+	
 	<hr>
 	<div id="reply">
 		<c:set var="comments" value="${requestScope.comment}"></c:set>
-		<table>
 		<c:forEach var="i" items="${comments }">
-		
-			<tr>
-				<td>작성자 : ${i.userID }</td>
-				<td>${i.createDate }</td>
-				<td><button id='delete' value='${i.commentID }'>삭제</button></td>
-			</tr>
-			<tr>
-				<td>내용 : ${i.comments }</td>
-			</tr>
+				<p><b>${i.userID }</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>${i.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='delete' value='${i.commentID }'>삭제</button></p>
+				<p>내용 : ${i.comments }</p>
+				
+				
+				<hr>
 		</c:forEach>
-		</table>
+		
 	</div>
-	<hr>
+	<div id="btn_reply">
+			<!-- <form action="QnAcommentsinsert.do" method="post"> -->
+		
+		<hr>		
+		<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
+		<input type="hidden" name="userid" id="userid" value="${sessionScope.usersdto.userId}">
+		<input type="text" name="comment" id="comment">	
+		
 	
-	<!-- <form action="QnAcommentsinsert.do" method="post"> -->
-	
-	
-	<input type="hidden" name="boardid" id="boardid" value="${detail.boardID }">
-	<input type="hidden" name="userid" id="userid" value="${sessionScope.usersdto.userId}">
-	<input type="text" name="comment" id="comment">	
-	
-
-	<input type="button" id="enroll" value="등록">
+		<input type="button" id="enroll" value="등록">
+	</div>	
 	
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 </body>
