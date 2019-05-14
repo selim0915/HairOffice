@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="userlist" value="${requestScope.codedtolist}"/>
+<c:set var="profiledto" value="${requestScope.profiledto}"/>
 	
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,88 @@
 <!-- Header Include Start -->
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <!-- Header Include End -->
+
+<script type="text/javascript">
+
+function photoinsert() {
+	setTimeout(function() {
+		$('.popup-sub').removeClass('animationClose-sub').addClass(
+				'animationOpen-sub');
+	}, 100);
+	
+	$('.obscure-sub').fadeIn(50);
+}
+
+
+function previewImage(targetObj, View_area) {
+	var preview = document.getElementById(View_area); //div id
+	var ua = window.navigator.userAgent;
+
+  //ie일때(IE8 이하에서만 작동)
+	if (ua.indexOf("MSIE") > -1) {
+		targetObj.select();
+		try {
+			var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
+			var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+
+
+			if (ie_preview_error) {
+				preview.removeChild(ie_preview_error); //error가 있으면 delete
+			}
+
+			var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+
+			//이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+			img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
+		} catch (e) {
+			if (!document.getElementById("ie_preview_error_" + View_area)) {
+				var info = document.createElement("<p>");
+				info.id = "ie_preview_error_" + View_area;
+				info.innerHTML = e.name;
+				preview.insertBefore(info, null);
+			}
+		}
+  //ie가 아닐때(크롬, 사파리, FF)
+	} else {
+		var files = targetObj.files;
+		for ( var i = 0; i < files.length; i++) {
+			var file = files[i];
+			var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+			if (!file.type.match(imageType))
+				continue;
+			var prevImg = document.getElementById("prev"); //이전에 미리보기가 있다면 삭제
+			if (prevImg) {
+				preview.removeChild(prevImg);
+			}
+			
+			var img = document.createElement("img"); 
+			img.id = "prev";
+			img.classList.add("rounded-circle");
+			img.file = file;
+			preview.prepend(img);
+			if (window.FileReader) { // FireFox, Chrome, Opera 확인.
+				var reader = new FileReader();
+				reader.onloadend = (function(aImg) {
+					return function(e) {
+						aImg.src = e.target.result;
+					};
+				})(img);
+				reader.readAsDataURL(file);
+			} else { // safari is not supported FileReader
+				//alert('not supported FileReader');
+				if (!document.getElementById("sfr_preview_error_"
+						+ View_area)) {
+					var info = document.createElement("p");
+					info.id = "sfr_preview_error_" + View_area;
+					info.innerHTML = "not supported FileReader";
+					preview.insertBefore(info, null);
+				}
+			}
+		}
+	}
+}
+
+</script>
 
 <!-- 컨텐츠 팝업 시작 -->
 <body>
@@ -25,12 +108,16 @@
 			</div>
 
 			<div class="col-lg-9 col-md-9 col-xs-9 col-sm-9 modifycontent">
-				<form action="ModifyUserOk.usr" method="POST">
-					<div class="modifycontentsession1">
-						<img src="img/main1.jpg" class="rounded-circle" alt="프로필사진">
+				<form action="ModifyUserOk.usr" enctype="Multipart/form-data" method="POST">
+					<div class="modifycontentsession1" id="View_area">
+						<img src="./upload/${profiledto.photoName}" id="prev"class="rounded-circle" alt="프로필사진">
 						<p>
-							<strong>${requestScope.usersdto.userId}</strong><br> <a href="#">프로필 사진 바꾸기</a>
-						</p>
+							<strong>${requestScope.usersdto.userId}</strong><br></p>
+						<div class="filebox">
+						  <label for="ex_file">프로필 사진 바꾸기</label>
+						  <input type="file" id="ex_file" name="file" onchange="previewImage(this,'View_area')">
+						</div>
+
 					</div>
 
 					<div class="modifycontentsession2">
@@ -116,7 +203,7 @@
 					</div>
 
 					<div class="modifycontentsession3">
-						<button class="btn-lg btn btn-outline-primary modifybtn">수정</button>
+						<button type="submit" class="btn-lg btn btn-outline-primary modifybtn">수정</button>
 					</div>
 				</form>
 			</div>
@@ -124,6 +211,7 @@
 	</div>
 </body>
 <!-- 컨텐츠 팝업 끝 -->
+
 
 <script src="js/index.js"></script>
 <jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
