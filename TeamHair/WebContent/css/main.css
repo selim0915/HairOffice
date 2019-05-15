@@ -1929,11 +1929,12 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 500px;
   }
   .header-content {
+    width: 31%;
     background: white;
     padding: 40px;
     position: absolute;
     top: 9%;
-    left: 300px;
+    left: 60px;
     z-index: 2;
     border-radius: 6px; }
     @media (max-width: 1440px) {
@@ -4211,7 +4212,7 @@ group + group {
   text-transform: uppercase;
   letter-spacing: .05em;
   color: #ffffff;
-  background-color: inherit;
+  background-color: #17656e;
   border-radius: 0;
 }
 .datepicker.dropdown-menu table tr th.prev,
@@ -4939,4 +4940,11 @@ margin-right: 0px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+.display-none {
+	display: none;
+}
+
+#likecount {
+	margin-bottom: 20px;
 }

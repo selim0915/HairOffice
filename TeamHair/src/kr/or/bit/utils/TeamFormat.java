@@ -26,7 +26,14 @@ public class TeamFormat {
 		return dateFormat;
 		
 	}
-	
+
+	public static String dateFormatKorean(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+		String dateFormat=df.format(date);
+		return dateFormat;
+		
+	}
+
 	public static String amountFormat(int amount) {
 		DecimalFormat df = new DecimalFormat("###,###");
 		String amountFormat = df.format(amount);

@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import kr.or.bit.dto.SearchSpaceDto;
 import kr.or.bit.dto.SpaceDto;
 import kr.or.bit.utils.TeamConvert;
 
@@ -127,8 +128,8 @@ public class SpaceDao {
 		return dtoList;
 	}
 	
-	public List<SpaceDto> getSpaceAvailableList (int numberOfPersons, Date startPeriod, Date endPeriod ) {
-		List<SpaceDto> dtoList = new ArrayList<SpaceDto>();
+	public List<SearchSpaceDto> getSpaceAvailableList (int numberOfPersons, Date startPeriod, Date endPeriod ) {
+		List<SearchSpaceDto> dtoList = new ArrayList<SearchSpaceDto>();
 		
 		System.out.println("getSpaceAvailableList");
 		System.out.println(numberOfPersons);
@@ -139,15 +140,16 @@ public class SpaceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " SELECT SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID \r\n" + 
-						" FROM SPACE \r\n" + 
-						" WHERE MINNUMBER <= ?   \r\n" + 
-						" AND SPACEID NOT IN (   \r\n" + 
-						"    SELECT SPACEID      \r\n" + 
-						"    FROM RENTCONTRACT   \r\n" + 
-						"    WHERE STARTDATE BETWEEN ? AND ? \r\n" + 
-						"    OR ENDDATE BETWEEN ? AND ? \r\n" + 
-						") ORDER BY MINNUMBER \r\n" ; 
+		String sql = " SELECT B.BRANCHNAME, S.SPACEID, S.SPACENAME, C.CODE, C.CODENAME \r\n" + 
+					" FROM SPACE S JOIN CODE C ON S.SPACETYPE = C.CODE         \r\n" + 
+					"              JOIN BRANCH B ON S.BRANCHID = B.BRANCHID    \r\n" + 
+					" WHERE S.MINNUMBER >= ?   \r\n" + 
+					" AND S.SPACEID NOT IN (   \r\n" + 
+					"   SELECT SPACEID         \r\n" + 
+					"   FROM RENTCONTRACT      \r\n" + 
+					"   WHERE STARTDATE BETWEEN ? AND ? \r\n" + 
+					"   OR ENDDATE BETWEEN ? AND ?      \r\n" + 
+					") ORDER BY S.MINNUMBER  \r\n" ; 
 						
 		try {
 			conn = ds.getConnection();
@@ -164,13 +166,13 @@ public class SpaceDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				SpaceDto dto = new SpaceDto();
-				System.out.println(rs.getInt("spaceId"));
+				SearchSpaceDto dto = new SearchSpaceDto();
 				
-				dto.setSpaceId(rs.getInt("SpaceID"));
-				dto.setSpaceType(rs.getString("SpaceType"));
-				dto.setBranchId(rs.getInt("BranchID"));
-				dto.setSpaceName(rs.getString("SpaceName"));
+				dto.setBranchName(rs.getString("branchname"));
+				dto.setSpaceId(rs.getInt("spaceid"));
+				dto.setSpaceName(rs.getString("spacename"));
+				dto.setCode(rs.getString("code"));
+				dto.setCodeName(rs.getString("codename"));
 				
 				dtoList.add(dto);
 			}

@@ -26,6 +26,7 @@ public class SignUpOkService implements Action{
 			String phone = request.getParameter("phone");
 			String introduction = request.getParameter("introduction");
 			String website = request.getParameter("website");
+			String photoname = "defaultphoto.png";
 			String gender = request.getParameter("gender");
 			
 			String usertype = request.getParameter("usertype");
@@ -76,6 +77,7 @@ public class SignUpOkService implements Action{
 			profileDto.setUserId(id);
 			profileDto.setIntroduction(introduction);
 			profileDto.setWebsite(website);
+			profileDto.setPhotoName(photoname);
 			
 			ProfileDao profileDao = new ProfileDao();
 			profileDao.insertProfile(profileDto);

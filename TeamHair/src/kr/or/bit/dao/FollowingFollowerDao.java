@@ -4,14 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import kr.or.bit.dto.BranchDto;
 import kr.or.bit.dto.FollowerDto;
 import kr.or.bit.dto.FollowingDto;
+import kr.or.bit.dto.FollowingFollowerListDto;
 
 public class FollowingFollowerDao {
 	DataSource ds = null;
@@ -21,8 +23,8 @@ public class FollowingFollowerDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
 	}
 	
-	//Branch 데이터 삽입
-	public int addFollowingFollower(FollowingDto followingDto) {
+	//Branch 데이터 삽입 : Follower기준으로 삽입
+	public int addFollowingFollower(FollowerDto followerDto) {
 		int row = 0;
 		
 		Connection conn = null;
@@ -42,13 +44,13 @@ public class FollowingFollowerDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, followingDto.getFollowingId());
-			pstmt.setString(2, followingDto.getUserId());
+			pstmt.setString(1, followerDto.getUserId());
+			pstmt.setString(2, followerDto.getFollowerId());
 			
 			pstmt2 = conn.prepareStatement(sql2);
 			
-			pstmt2.setString(1, followingDto.getUserId());
-			pstmt2.setString(2, followingDto.getFollowingId());
+			pstmt2.setString(1, followerDto.getFollowerId());
+			pstmt2.setString(2, followerDto.getUserId());
 			
 			row =  pstmt.executeUpdate();
 			row += pstmt2.executeUpdate();
@@ -77,7 +79,6 @@ public class FollowingFollowerDao {
 	}
 	
 	public int getFollowingNumberByUserId (String userId) {
-		BranchDto dto = new BranchDto();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -107,9 +108,45 @@ public class FollowingFollowerDao {
 		
 		return followingNumber;
 	}
+	
+public List<FollowingDto> getFollowingByUserId (String userId) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<FollowingDto> followingdto = new ArrayList<FollowingDto>();
+		
+		String sql = " SELECT FOLLOWINGID, USERID FROM FOLLOWING WHERE FOLLOWINGID = ? ";
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				FollowingDto dto = new FollowingDto();
+				dto.setFollowingId(rs.getString("followingid"));
+				dto.setUserId(rs.getString("userid"));
+				followingdto.add(dto);
+			}
+			
+			System.out.println("완료 SELECT");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return followingdto;
+	}
 
 	public int getFollowerNumberByUserId (String userId) {
-		BranchDto dto = new BranchDto();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -141,35 +178,36 @@ public class FollowingFollowerDao {
 	}
 
 
-	public int deleteFollowingFollower(FollowingDto followingDto) {
+	public int deleteFollowingFollower(FollowerDto followerDto) {
 		int row = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		
-		String sql = " DELETE FROM FOLLOWING WHERE FOLLOWINGID = ? AND USERID = ? \r\n" ;  
 				    
-		String sql2 = " DELETE FROM FOLLOWER WHERE FOLLOWERID = ? AND USERID = ? \r\n" ; 
+		String sql = " DELETE FROM FOLLOWER WHERE FOLLOWERID = ? AND USERID = ? \r\n" ; 
 		
+		String sql2 = " DELETE FROM FOLLOWING WHERE FOLLOWINGID = ? AND USERID = ? \r\n" ;  
 		
 		try {
 			conn = ds.getConnection();
 			conn.setAutoCommit(false);
-			
+	
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, followingDto.getFollowingId());
-			pstmt.setString(2, followingDto.getUserId());
+			pstmt.setString(1, followerDto.getUserId());
+			pstmt.setString(2, followerDto.getFollowerId());
 			
 			pstmt2 = conn.prepareStatement(sql2);
 			
-			pstmt2.setString(1, followingDto.getUserId());
-			pstmt2.setString(2, followingDto.getFollowingId());
+			pstmt2.setString(1, followerDto.getFollowerId());
+			pstmt2.setString(2, followerDto.getUserId());
 			
+						
 			row =  pstmt.executeUpdate();
 			row += pstmt2.executeUpdate();
-			
+			System.out.println("row 값" + row);
 			if(row==2) { 
 				conn.commit();
 				System.out.println("Commit");
@@ -191,6 +229,95 @@ public class FollowingFollowerDao {
 		}
 		
 		return row;
+	}
+
+	public List<FollowingFollowerListDto> getFollowingUserList(String userId) {
+		
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<FollowingFollowerListDto> dtoList = new ArrayList<FollowingFollowerListDto>();
+		
+		String sql = " SELECT F.FOLLOWINGID, P.PHOTONAME, CASE WHEN (F.FOLLOWINGID=R.FOLLOWERID) THEN 'Y' ELSE 'N' END AS FOLLOWER_YN  \r\n" + 
+				     " FROM FOLLOWING F JOIN PROFILE P ON F.USERID=P.USERID         \r\n" + 
+				     "                  LEFT JOIN FOLLOWER R ON F.USERID=R.USERID   \r\n" + 
+				     " WHERE F.USERID = ? \r\n"; 
+				
+		
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				FollowingFollowerListDto dto = new FollowingFollowerListDto();
+				
+				dto.setFollowingId(rs.getString("followingid"));
+				dto.setPhotoName(rs.getString("photoname"));
+				dto.setFollower_Yn(rs.getString("follower_yn"));
+				dtoList.add(dto);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dtoList;
+	}
+
+
+	public List<FollowingFollowerListDto> getFollowerUserList(String userId) {
+		
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<FollowingFollowerListDto> dtoList = new ArrayList<FollowingFollowerListDto>();
+		
+		String sql = " SELECT F.FOLLOWERID, P.PHOTONAME, 'Y' AS FOLLOWER_YN   \r\n" + 
+				     " FROM FOLLOWER F JOIN PROFILE P ON F.USERID=P.USERID    \r\n" + 
+				     " WHERE F.USERID = ?   \r\n"; 
+		
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				FollowingFollowerListDto dto = new FollowingFollowerListDto();
+				
+				dto.setFollowerId(rs.getString("followerid"));
+				dto.setPhotoName(rs.getString("photoname"));
+				dto.setFollower_Yn(rs.getString("follower_yn"));
+				dtoList.add(dto);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dtoList;
 	}
 
 }

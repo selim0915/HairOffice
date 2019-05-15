@@ -13,11 +13,15 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.CommentsAllSeslectService;
 import kr.or.bit.service.CommentsInsertService;
+import kr.or.bit.service.InstaFollowerService;
+import kr.or.bit.service.InstaFollowingService;
 import kr.or.bit.service.InstaLikeCountService;
 import kr.or.bit.service.InstaLikeListService;
 import kr.or.bit.service.InstaLikeService;
 import kr.or.bit.service.InstaPhotoDeleteService;
 import kr.or.bit.service.InstaPhotoWriteService;
+import kr.or.bit.service.InstaPopupAllSeslectService;
+import kr.or.bit.service.InstaUseridService;
 import kr.or.bit.service.LoginOkService;
 import kr.or.bit.service.ModifyLikeService;
 import kr.or.bit.service.PhotoAllSelectService;
@@ -112,7 +116,35 @@ public class InstaController extends HttpServlet {
     	} else if(urlCommand.equals("/InstaGrallery.insta")) { // 갤러리 페이지 이동
     		try {
     			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/branch/hairgallery.jsp");
+    			forward.setPath("/WEB-INF/insta/like_hair_list.jsp");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instauserid.insta")) { // 인스터 서브 userid 
+    		try {
+    			action = new InstaUseridService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instapopupid.insta")) { // 인스터 팝업 서브 userid 
+    		try {
+    			action = new InstaPopupAllSeslectService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instafollower.insta")) { // 팔로워 insert
+    		try {
+    			action = new InstaFollowerService();
+    			forward = action.execute(request, response);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/Instafollowing.insta")) { // 팔로워 insert
+    		try {
+    			action = new InstaFollowingService();
+    			forward = action.execute(request, response);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}

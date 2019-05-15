@@ -14,6 +14,10 @@
 	<c:set var="usersDto" value="${sessionScope.usersdto}"></c:set>
 	<c:set var="profileDto" value="${requestScope.profiledto}"></c:set>
 	<c:set var="bloglikedto" value="${requestScope.bloglikedto}"></c:set>
+	
+	<c:set var="followerList" value="${requestScope.followerList}"></c:set>
+	<c:set var="followingList" value="${requestScope.followingList}"></c:set>
+	
 	<script type="text/javascript">
 	
 		function btnpopup(photoid) {
@@ -35,7 +39,7 @@
 						setTimeout(function() {
 							$('.popup').removeClass('animationClose').addClass(
 									'animationOpen');
-						}, 100);
+						}, 150);
 						
 						$('.obscure').fadeIn(50);
 						
@@ -216,7 +220,7 @@
 
 			<div class="profile-image">
 
-				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+				<img src="./upload/${profiledto.photoName}" alt="">
 
 			</div>
 
@@ -234,8 +238,8 @@
 
 				<ul>
 					<li><span class="profile-stat-count">${blogList.size()}</span> posts</li>
-					<li><span class="profile-stat-count">188</span> followers</li>
-					<li><span class="profile-stat-count">206</span> following</li>
+					<li><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</li>
+					<li><span class="profile-stat-count">${requestScope.followingNumber }</span> following</li>
 				</ul>
 
 			</div>

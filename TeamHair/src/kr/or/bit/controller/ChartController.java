@@ -11,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.service.ReservationService;
-import kr.or.bit.service.SearchSpaceService;
+import kr.or.bit.service.PhotoChartService;
+import kr.or.bit.service.UserChartService;
 
-@WebServlet("*.brh")
-public class BranchController extends HttpServlet {
+@WebServlet("*.cht")
+public class ChartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public BranchController() {
-    	
+    public ChartController() {
     }
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,61 +29,48 @@ public class BranchController extends HttpServlet {
     	Action action = null;
     	ActionForward forward = new ActionForward();
     	
-      	if(urlCommand.equals("/Branch.brh")) { // 지점 메인
+      	if(urlCommand.equals("/Top10UserChart.cht")) { // Top 10 user chart
     		try {
-    			System.out.println("/Branch.brh");
-    			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/branch/branch_list.jsp");
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	}  else if(urlCommand.equals("/Space.brh")) { // 공간 메인 정보
-    		try {
-    			System.out.println("/Space.brh");
-    			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/space/seoul_office.jsp");
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	} else if(urlCommand.equals("/GangnamBranchInfo.brh")) { // 강남오피스 : 예약 서비스
-    		try {
-    			System.out.println("/GangnamBranchInfo.brh");
-    			forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/branch/salone_reserve_infor.jsp");
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	} else if(urlCommand.equals("/Reservation.brh")) { // 강남오피스 : 예약결과
-    		try {
-    			System.out.println("/Reservation.brh");
-				action = new ReservationService();
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	} else if(urlCommand.equals("/GangnamOfficeInfo.brh")) { // 강남오피스의 임대조건 검색
-    		try {
-    			System.out.println("/GangnamOfficeInfo.brh");
+    			System.out.println("/Top10UserChart.cht");
     			
-				forward.setRedirect(false);
-    			forward.setPath("/WEB-INF/space/seoul_gangnam_rent.jsp");
-			}catch(Exception e) {
-					e.printStackTrace();
-			}
-    	} else if(urlCommand.equals("/SearchSpace.brh")) { // 강남오피스의 임대조건 검색
-    		try {
-    			System.out.println("/SearchSpace.brh");
-    			
-				action = new SearchSpaceService();
-				forward = action.execute(request, response);
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/chart/likeuser_chart.jsp");    			
 
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-    	}
+    	}  else if(urlCommand.equals("/Top10PhotoChart.cht")) { // Top 10 photo chart
+    		try {
+    			System.out.println("/Top10PhotoChart.cht");
 
-      	
-      	
+    			forward.setRedirect(false);
+    			forward.setPath("/WEB-INF/chart/likephoto_chart.jsp");
+
+    		}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/LikeUserAsyncChart.cht")) { 
+    		try {
+    			System.out.println("/LikeUserAsyncChart.cht");
+
+				action = new UserChartService();
+				forward = action.execute(request, response);
+
+    		}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	} else if(urlCommand.equals("/LikePhotoAsyncChart.cht")) { 
+    		try {
+    			System.out.println("/LikePhotoAsyncChart.cht");
+
+				action = new PhotoChartService();
+				forward = action.execute(request, response);
+
+    		}catch(Exception e) {
+					e.printStackTrace();
+			}
+    	}        	
+
       	
     	if(forward != null) {
     		if(forward.isRedirect()) { //true

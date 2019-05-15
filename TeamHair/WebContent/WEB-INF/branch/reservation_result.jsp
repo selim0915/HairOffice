@@ -42,10 +42,6 @@
 		</table>
 	</div>
 
-	<div style="margin: auto;" >
-		HairOffice는 직접 경험할 때 가장 잘 알 수 있습니다!
-		위에서 방문을 예약하거나 전화로 문의하세요: 02-553-2244
-	</div>
 	
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 </body>

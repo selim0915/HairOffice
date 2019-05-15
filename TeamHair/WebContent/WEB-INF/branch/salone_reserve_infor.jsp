@@ -197,89 +197,95 @@
 			<div class="right-content">
 				<div class="form-content">
 					<h1>강남</h1>
-					<div class="mt-10">
-						<input type="text" name="name" placeholder="이름"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'"
-							required class="single-input-secondary-sub-infor">
-					</div>
-					<div class="mt-10">
-						<input type="text" name="id" placeholder="아이디"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
-							required class="single-input-secondary-sub-infor">
-					</div>
-					<div class="mt-10">
-						<input type="text" name="phonenumber" placeholder="전화번호"
-							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '전화번호'" required
-							class="single-input-secondary-sub-infor">
-					</div>
+					<form action="Reservation.brh" method="POST" class="register-form" id="register-form">
 					
-					<div class="single-element-widget-sub-choice">
-						<span>디자이너 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">[VIP 전문]이교선 디자이너</option>
-								<option value="1">디자이너 선택</option>
-								<option value="1">우세림 디자이너</option>
-								<option value="1">신지혁 디자이너</option>
-								<option value="1">정일찬 디자이너</option>
-							</select>
+						<div class="mt-10">
+							<input type="text" name="username" value="${sessionScope.usersdto.userName}" readonly
+								onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'"
+								required class="single-input-secondary-sub-infor">
 						</div>
-					</div>
+						<div class="mt-10">
+							<input type="text" name="userid" value="${sessionScope.usersdto.userId}" readonly
+								onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
+								required class="single-input-secondary-sub-infor">
 						</div>
-					</div>
-					
-					<div class="single-element-widget-sub-choice">
-						<span>시술 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">시술 선택</option>
-								<option value="1">[페스티벌st]시.선.강.탈(펌+클리닉)</option>
-								<option value="1">매직셋팅</option>
-								<option value="1">발레아쥬+염색</option>
-								<option value="1">훈남펌</option>
-							</select>
-						</div>
-					</div>
-						</div>
-					</div>
-					
-					<div class="input-daterange input-group" id="flight-datepicker">
-						<div class="form-item">
-							<label>렌탈 시작</label><span class="fontawesome-calendar"></span>
-							<input class="input-sm form-control" type="text" id="start-date"
-								name="start" placeholder="날짜 선택"
-								data-date-format="DD, MM d" /><span
-								class="date-text date-depart"></span>
+						<div class="mt-10">
+							<input type="text" name="phone" value="${sessionScope.usersdto.phone}" readonly
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = '전화번호'" required
+								class="single-input-secondary-sub-infor">
 						</div>
 						
-					</div>
-					
-					<div class="single-element-widget-sub-choice">
-						<span>시간 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">AM 10:00</option>
-								<option value="1">PM 12:00</option>
-								<option value="1">PM 02:00</option>
-								<option value="1">PM 04:00</option>
-								<option value="1">PM 06:00</option>
-								<option value="1">PM 08:00</option>
-							</select>
+						<div class="single-element-widget-sub-choice">
+							<span>디자이너 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub">
+								<select  id="designer" name="designer">
+									<option value="1" selected>[VIP 전문]이교선 디자이너</option>
+									<option value="2">우세림 디자이너</option>
+									<option value="3">신지혁 디자이너</option>
+									<option value="4">정일찬 디자이너</option>
+								</select>
+							</div>
 						</div>
-					</div>
+							</div>
 						</div>
-					</div>
-					<div class="search-btn-infor">
-							<a href="#" class="genric-btn info circle arrow">예약하기<span
-								class="lnr lnr-arrow-right"></span></a>
+						
+						<div class="single-element-widget-sub-choice">
+							<span>시술 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub">
+								<select  id="servicetype" name="servicetype">
+									<option value="H01" selected>[페스티벌st]시.선.강.탈(펌+클리닉)</option>
+									<option value="H02">매직셋팅</option>
+									<option value="H03">발레아쥬+염색</option>
+									<option value="H04">훈남펌</option>
+								</select>
+							</div>
 						</div>
+							</div>
+						</div>
+						
+						<div class="input-daterange input-group" id="flight-datepicker">
+							<div class="form-item">
+								<label>예약일</label><span class="fontawesome-calendar"></span>
+								<input class="input-sm form-control" type="text" id="start_date"
+									name="start_date" placeholder="날짜 선택"
+									data-date-format="DD, MM d" /><span
+									class="date-text date-depart"></span>
+							</div>
+							
+						</div>
+						
+						<div class="single-element-widget-sub-choice">
+							<span>시간 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub" id="default-select-sub">
+								<select id="time" name="time">
+									<option value="10">AM 10:00</option>
+									<option value="12">PM 12:00</option>
+									<option value="14">PM 02:00</option>
+									<option value="16">PM 04:00</option>
+									<option value="18">PM 06:00</option>
+									<option value="20">PM 08:00</option>
+								</select>
+							</div>
+						</div>
+							</div>
+						</div>
+					<!-- 
+						<div class="search-btn-infor">
+								<a href="#" class="genric-btn info circle arrow">예약하기<span
+									class="lnr lnr-arrow-right"></span></a>
+						</div>
+					 -->	
+						<div class="form-group form-button">
+	                        <input type="submit" name="searchspace" id="searchspace" class="btn btn-primary btn-lg" value="예약하기"/>
+	                    </div>
+					</form>					
 				</div>
 			</div>
 		</div>

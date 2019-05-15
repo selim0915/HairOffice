@@ -6,6 +6,7 @@
 <c:set var="photolist" value="${requestScope.photolist}" />
 <c:set var="commentslist" value="${requestScope.commentslist}" />
 <c:set var="likecount" value="${requestScope.likecount }" />
+<c:set var="userlist" value="${requestScope.userid }" />
 <c:set var="profilelist" value="${requestScope.profilelist }" />
 
 <fmt:formatDate var="photodate" value="${photolist.updateDate}" pattern="yyyy년MM월dd일 HH:mm"/>
@@ -19,19 +20,25 @@
 		<div class="insta-right">
 			<div class="instagram-card">
 				<div class="">
-					<a class="btnclose" href="#" onclick="btnclose();return false;"><i
+					<a class="btnclose" href="#" onclick="btnclose();return false"><i
 						class="fas fa-times"></i></a>
 				</div>
 				<div class="instagram-card-header">
 					<img class="instagram-card-user-image rounded-circle"
 						src="./upload/${profilelist.photoName}"> <a class="instagram-card-user-name"
-						href="Insta.insta" target="_blank">${sessionScope.usersdto.userId }</a>
-					<div class="instagram-card-content">
-						<a class="reservepopup" href="GangnamBranchInfo.brh"><span>ㆍ예약하기</span></a>
+						href="http://localhost:8090/TeamHair/Instauserid.insta?userid=${userlist.userId }" target="_blank">${userlist.userId }</a>
+					<div class="btn-follow">
+						<a class="btnfollow" href="GangnamBranchInfo.brh"><span>ㆍ팔로우</span></a>
 					</div>
+					<div class="btn-follow">
+						<a class="reservepopup1" href="GangnamBranchInfo.brh"><span>ㆍ예약하기</span></a>
+					</div>
+					
+					<!-- 
 					<div class="btn-delete">
 						<a href="#" onclick="deletephoto(${photolist.photoId });return false;"><i class="fas fa-trash"></i></a>
 					</div>
+					 -->
 				</div>
 				
 
@@ -39,7 +46,7 @@
 
 					<p>
 						<a class="user-comments"
-							href="Insta.insta">${sessionScope.usersdto.userId }
+							href="http://localhost:8090/TeamHair/Instauserid.insta?userid=${userlist.userId }">${userlist.userId }
 						</a>${photolist.description}
 					</p>
 					<p class="comments">${photodate }</p>
@@ -47,7 +54,7 @@
 						<c:forEach var="i" begin="0" end="${commentslist.size()}">
 						<fmt:formatDate var="commentsdate" value="${commentslist[i].updateDate}" pattern="yyyy년MM월dd일 HH:mm"/>
 							<p>
-								<a class="user-comments" href="#">${commentslist[i].userId}</a>
+								<a class="user-comments" href="http://localhost:8090/TeamHair/Instauserid.insta?userid=${commentslist[i].userId}">${commentslist[i].userId}</a>
 								${commentslist[i].comments}
 							</p>
 							<p class="comments">${commentsdate }</p>
@@ -62,9 +69,8 @@
 
 
 				<p id="likecount">
-					<a class="user-comments" href="#">${likecount } 좋아요</a>
+					<a class="user-comments" href="#"> 좋아요 ${likecount }개</a>
 				</p>
-				<p class="date">7일 전</p>
 				<hr />
 
 				<div class="instagram-card-footer">

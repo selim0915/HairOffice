@@ -92,6 +92,7 @@
 }
 
 .instagram-card-user-name{
+  margin-right: 10px;
   font-size: 20px;
   text-decoration: none;
   color: #000000;
@@ -103,6 +104,11 @@
 
 .instagram-card-content{
   padding: 15px;
+}
+
+.btn-follow {
+	margin-right: 10px;
+	font-weight: bold;
 }
 
 .instagram-card-icon{

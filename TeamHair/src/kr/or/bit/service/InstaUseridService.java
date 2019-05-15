@@ -13,13 +13,14 @@ import kr.or.bit.dao.FollowingFollowerDao;
 import kr.or.bit.dao.LikesDao;
 import kr.or.bit.dao.PhotoDao;
 import kr.or.bit.dao.ProfileDao;
+import kr.or.bit.dto.FollowingDto;
 import kr.or.bit.dto.FollowingFollowerListDto;
 import kr.or.bit.dto.LikeListDto;
 import kr.or.bit.dto.PhotoDto;
 import kr.or.bit.dto.ProfileDto;
 import kr.or.bit.dto.UsersDto;
 
-public class PhotoAllSelectService implements Action{
+public class InstaUseridService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -28,13 +29,15 @@ public class PhotoAllSelectService implements Action{
 		try {
 			System.out.println("PhotoAllSelectService 진입");
 			
+			String userid = request.getParameter("userid");
 			HttpSession session = request.getSession();
 			UsersDto userDto = (UsersDto) session.getAttribute("usersdto");
-			String userid = userDto.getUserId();
-			System.out.println("userDto: "+userDto);
+			String sessionid = userDto.getUserId();
+			
+			System.out.println("session = " + sessionid);
 			
 			PhotoDao photoDao = new PhotoDao();
-			List<PhotoDto> bloglist = photoDao.selectPhotoAllList(userDto.getUserId());
+			List<PhotoDto> bloglist = photoDao.selectPhotoAllList(userid);
 			request.setAttribute("bloglist", bloglist);
 			System.out.println("bloglist: "+bloglist);
 			
@@ -43,9 +46,15 @@ public class PhotoAllSelectService implements Action{
 			request.setAttribute("bloglikedto", bloglikedto);
 			System.out.println("bloglikedto: "+bloglikedto);
 			
-			ProfileDao profileDao = new ProfileDao(); 
-			ProfileDto profileDto = profileDao.getProfilebyId(userDto.getUserId());
-			request.setAttribute("profiledto", profileDto);
+			FollowingFollowerDao ffdao = new FollowingFollowerDao();
+
+			List<FollowingDto> dto = ffdao.getFollowingByUserId(sessionid);
+			request.setAttribute("followinglist", dto);
+			System.out.println("followinglist: "+ dto);
+			
+			 ProfileDao profileDao = new ProfileDao(); 
+			 ProfileDto profileDto = profileDao.getProfilebyId(userid);
+			 request.setAttribute("profiledto", profileDto);
 			
 			int followerNumber = 0;
 			int followingNumber = 0;
@@ -53,19 +62,21 @@ public class PhotoAllSelectService implements Action{
 			List<FollowingFollowerListDto> followingList = new ArrayList<FollowingFollowerListDto>();
 			
 			FollowingFollowerDao followingfollowerDao = new FollowingFollowerDao();
-			followerNumber = followingfollowerDao.getFollowerNumberByUserId(userDto.getUserId());
-			followingNumber = followingfollowerDao.getFollowingNumberByUserId(userDto.getUserId());
+			followerNumber = followingfollowerDao.getFollowerNumberByUserId(userid);
+			followingNumber = followingfollowerDao.getFollowingNumberByUserId(userid);
 			
-			followerList = followingfollowerDao.getFollowerUserList(userDto.getUserId());
-			followingList = followingfollowerDao.getFollowingUserList(userDto.getUserId());
+			followerList = followingfollowerDao.getFollowerUserList(userid);
+			followingList = followingfollowerDao.getFollowingUserList(userid);
 			
 			request.setAttribute("followerNumber", followerNumber);
 			request.setAttribute("followingNumber", followingNumber);
 			request.setAttribute("followerList", followerList);
 			request.setAttribute("followingList", followingList);
-			
+
+			 
+			 
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/insta/instragram.jsp");
+			forward.setPath("/WEB-INF/insta/instragram_Id.jsp");
 			
 		} catch (Exception e) {	
 			e.printStackTrace();

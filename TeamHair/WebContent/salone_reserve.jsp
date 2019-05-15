@@ -4,7 +4,8 @@
 <html>
 <!-- Header Include Start -->
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
-   
+    
+
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css'>
 <!-- Header Include End -->
 <div class="container">
@@ -20,8 +21,8 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Hair</p>
-        <span class="caption">All That Hair Style </span>
+        <p class="title">Shaun Matthews</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
@@ -29,8 +30,8 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Fashion</p>
-        <span class="caption">Elegant Urban Life</span>
+        <p class="title">Alexis Berry</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
@@ -38,8 +39,8 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Free</p>
-        <span class="caption">Your Space</span>
+        <p class="title">Billie	Pierce</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
@@ -47,8 +48,8 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Talent</p>
-        <span class="caption">Show Me Your Style</span>
+        <p class="title">Trevor	Copeland</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
     <div class="swiper-slide">
@@ -56,8 +57,8 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Passion</p>
-        <span class="caption">Trend Evangelist</span>
+        <p class="title">Bernadette	Newman</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
   </div>
@@ -74,7 +75,7 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Woo</p>
+        <p class="title">Shaun Matthews</p>
       </div>
     </div>
     <div class="swiper-slide">
@@ -82,7 +83,7 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Kingdom</p>
+        <p class="title">Alexis Berry</p>
       </div>
     </div>
     <div class="swiper-slide">
@@ -90,7 +91,7 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">Mushishi</p>
+        <p class="title">Billie	Pierce</p>
       </div>
     </div>
     <div class="swiper-slide">
@@ -98,7 +99,7 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">J Hyuk</p>
+        <p class="title">Trevor	Copeland</p>
       </div>
     </div>
     <div class="swiper-slide">
@@ -106,7 +107,7 @@
         <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
       </figure>
       <div class="content">
-        <p class="title">IPOS</p>
+        <p class="title">Bernadette	Newman</p>
       </div>
     </div>
   </div>
@@ -117,16 +118,9 @@
 
 <!-- 내용시작1 -->
 <section class="sample-text-area">
-			<h2 class="text-heading">강남에서 새로운 시작을 해보세요.</h2>
-			<p class="sample-text">HairOffice는 헤어디자이너들이 함께 성장하는 글로벌 헤어공간 네트워크입니다. 편리한 입지에
-							위치한 이 지점에서 본인이 미처 깨닫지 못한 필요 사항까지 해결해 주는 헤어공간 및 휴식공간를 이용해
-							보세요. HairOffice 공간은 1명부터 15명까지 각기 다른 규모의 회사 및 팀의 생산성 증진을 위해 설계되었으며,
-							필요에 따라 월 단위 계약이 가능합니다. 또한, 요금제에는 모든 사항이 포함되어 편리합니다. HairOffice만의 특별한
-							라운지 공간에는 맞춤식 벽화가 특징입니다. 기존 공간에서 커피 포트를 사용했다면 HairOffice에서는 프리미엄 커피
-							바와 신선한 과일쥬스를 즐길 수 있습니다. 업무에만 집중하실 수 있도록 HairOffice는 세심한 부분까지 고려합니다.
-							데스크 및 편의시설, 서비스 이용을 넘어서, 진취적인 기업가 커뮤니티와 소통하고 다양한 이벤트에 참여해보세요. 이
-							지점에 대한 자세한 정보는 곧 제공될 예정입니다. 문의 사항이 있으시면 자유롭게 남겨주세요. 지금 바로 연락하여
-							방문을 예약하세요.</p>
+			<h2 class="text-heading">강남지점 무엇이 다른가?</h2>
+			<p class="sample-text">최신 트랜드를 따라가는 실력 디자이너들이 많이 포진되어 있으며, 최신 장비를 다수 가지고 있어
+								      고객이 원하는 스타일을 완성합니다.</p>
 	</section>
           <!-- 내용시작2 -->
 			
@@ -134,24 +128,23 @@
 				<h2 class="mb-30">업무공간 가격</h2>
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/branch/room1.jpg" alt="" class="img-fluid-sub">
+						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
-					<span>프라이빗 오피스</span>
-					<span>기본 요금 월 ₩600,000</span>
-						<p> 팀을 수용할 수 있는 잠금 시스템이 있는 프라이빗 오피스 공간.
+					<span>우세림 디자이너</span>
+						<p>청담동에서 3년간 연예인 헤어를 담당.
 					</div>
 				</div>
 			</div>
 			<div class="section-top">
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/branch/room2.jpg" alt="" class="img-fluid-sub">
+						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
 						<span>전용 데스크</span>
 					<span>기본 요금 월 ₩450,000</span>
-						<p>공용 공간 내에서 전용 헤어체어 이용.
+						<p>공용 오피스 내에서 전용 데스크 이용. 개인 모니터, 식물 등을 가져올 수 있는 자신만의 공간.
 					</div>
 				</div>
 				
@@ -159,12 +152,12 @@
 			<div class="section-top">
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/branch/room3.jpg" alt="" class="img-fluid-sub">
+						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
 						<span>핫 데스크</span>
 					<span>기본 요금 월 ₩400,000</span>
-						<p>라운지에 있는 개방형 헤어체어 이용.
+						<p>라운지에 있는 개방형 업무공간 이용. 노트북만 가져와 빈자리를 택해 업무 시작.
 					</div>
 				</div>
 				
@@ -178,13 +171,13 @@
 					<div class="col-md-4">
 						<div class="single-defination">
 							<h4 class="mb-20">상주 커뮤니티 팀 및 현장 직원</h4>
-							<p>HairOffice 팀은 프런트 데스크 서비스부터 맞춤식 지원까지 모든 서비스를 일주일 내내 제공합니다.</p>
+							<p>WeWork 팀은 프런트 데스크 서비스부터 맞춤식 지원까지 모든 서비스를 일주일 내내 제공합니다.</p>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="single-defination">
 							<h4 class="mb-20">데일리 청소 서비스</h4>
-							<p>라운지, 커피바 및 휴식공간 등 HairOffice 공간 곳곳을 24시간 쾌적한 환경으로 유지하고 청소합니다.</p>
+							<p>라운지, 컨퍼런스룸 및 프라이빗 오피스 등 WeWork 업무공간 곳곳을 24시간 쾌적한 환경으로 유지하고 청소합니다.</p>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -203,80 +196,90 @@
 		<div class="right-sub">
 			<div class="right-content">
 				<div class="form-content">
-				
 					<h1>강남</h1>
-					<form action="SearchSpace.brh" method="POST" class="register-form" id="register-form">
+					<div class="mt-10">
+						<input type="text" name="name" placeholder="이름"
+							onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'"
+							required class="single-input-secondary-sub-infor">
+					</div>
+					<div class="mt-10">
+						<input type="text" name="id" placeholder="아이디"
+							onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
+							required class="single-input-secondary-sub-infor">
+					</div>
+					<div class="mt-10">
+						<input type="text" name="phonenumber" placeholder="전화번호"
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '전화번호'" required
+							class="single-input-secondary-sub-infor">
+					</div>
 					
-						<div class="mt-10">
-							<input type="text" name="userid" value="${sessionScope.usersdto.userId}" readonly
-								onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
-								required class="single-input-secondary-sub-infor">
+					<div class="single-element-widget-sub-choice">
+						<span>디자이너 선택</span>
+						<div class="form-group">
+							<div class="single-element-widget">
+						<div class="default-select-sub" id="default-select-sub">
+							<select>
+								<option value="1">[VIP 전문]이교선 디자이너</option>
+								<option value="1">디자이너 선택</option>
+								<option value="1">우세림 디자이너</option>
+								<option value="1">신지혁 디자이너</option>
+								<option value="1">정일찬 디자이너</option>
+							</select>
 						</div>
-						<div class="mt-10">
-							<input type="text" name="email" value="${sessionScope.usersdto.email}" readonly
-								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'email'" required
-								class="single-input-secondary-sub-infor">
+					</div>
 						</div>
-						<div class="mt-10">
-							<input type="text" name="phone" value="${sessionScope.usersdto.phone}" readonly
-								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = '전화번호'" required
-								class="single-input-secondary-sub-infor">
+					</div>
+					
+					<div class="single-element-widget-sub-choice">
+						<span>시술 선택</span>
+						<div class="form-group">
+							<div class="single-element-widget">
+						<div class="default-select-sub" id="default-select-sub">
+							<select>
+								<option value="1">시술 선택</option>
+								<option value="1">[페스티벌st]시.선.강.탈(펌+클리닉)</option>
+								<option value="1">매직셋팅</option>
+								<option value="1">발레아쥬+염색</option>
+								<option value="1">훈남펌</option>
+							</select>
 						</div>
-						<div class="single-element-widget-sub-choice">
-							<span>인원수</span>
-							<div class="form-group">
-								<div class="input-group input-group-lg input-group-border-sub">
-									<input type="number" min="1" max="15" name="persons" class="form-control"
-										value="1" id="large-counter2" readonly>
-									<div class="input-group-btn">
-										<button class="btn btn-link btn-plus" type="button"
-											data-target="#large-counter2">
-											<i class="fa fa-plus"></i>
-										</button>
-									</div>
-									<div class="input-group-btn">
-										<button class="btn btn-link btn-minus" type="button"
-											data-target="#large-counter2">
-											<i class="fa fa-minus"></i>
-										</button>
-									</div>
-								</div>
-							</div>
+					</div>
 						</div>
-	
-						<div class="input-daterange input-group" id="flight-datepicker">
-							<div class="form-item">
-								<label>임대 시작일</label><span class="fontawesome-calendar"></span>
-								<input class="input-sm form-control" type="text" id="start-date"
-									name="start_date" placeholder="날짜 선택"
-									data-date-format="DD, MM d" /><span
-									class="date-text date-depart"></span>
-							</div>
-							<div class="form-item">
-								<label>임대 종료일</label><span class="fontawesome-calendar"></span>
-								<input class="input-sm form-control" type="text" id="end-date"
-									name="end_date" placeholder="날짜 선택"
-									data-date-format="DD, MM d" /><span
-									class="date-text date-return"></span>
-							</div>
-	
-							
+					</div>
+					
+					<div class="input-daterange input-group" id="flight-datepicker">
+						<div class="form-item">
+							<label>렌탈 시작</label><span class="fontawesome-calendar"></span>
+							<input class="input-sm form-control" type="text" id="start-date"
+								name="start" placeholder="날짜 선택"
+								data-date-format="DD, MM d" /><span
+								class="date-text date-depart"></span>
 						</div>
-						<br>
-						<!-- 
-						<div class="search-btn-infor">
-							<a href="SearchSpace.brh" class="genric-btn info circle arrow">렌탈하기<span
+						
+					</div>
+					
+					<div class="single-element-widget-sub-choice">
+						<span>시간 선택</span>
+						<div class="form-group">
+							<div class="single-element-widget">
+						<div class="default-select-sub" id="default-select-sub">
+							<select>
+								<option value="1">AM 10:00</option>
+								<option value="1">PM 12:00</option>
+								<option value="1">PM 02:00</option>
+								<option value="1">PM 04:00</option>
+								<option value="1">PM 06:00</option>
+								<option value="1">PM 08:00</option>
+							</select>
+						</div>
+					</div>
+						</div>
+					</div>
+					<div class="search-btn-infor">
+							<a href="#" class="genric-btn info circle arrow">예약하기<span
 								class="lnr lnr-arrow-right"></span></a>
 						</div>
-						 -->
-						 
-						<div class="form-group form-button">
-                                <input type="submit" name="searchspace" id="searchspace" class="btn btn-primary btn-lg" value="임대조건 검색"/>
-                        </div>
-                        
-					</form>
 				</div>
 			</div>
 		</div>
