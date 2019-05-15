@@ -14,6 +14,7 @@ import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.FollowingFollowerDao;
 import kr.or.bit.dto.FollowerDto;
+import kr.or.bit.dto.FollowingDto;
 
 public class InstaFollowerService implements Action{
 	
@@ -21,19 +22,21 @@ public class InstaFollowerService implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = null;
 		
-		String userid = request.getParameter("userid");
-		String followerid = request.getParameter("sessionid");
+		String followingid = request.getParameter("userid");
+		String userid = request.getParameter("sessionid");
 		
 		int result = 0;
 		
-		System.out.println("아이디 값 2개 들어옴 : " + userid + followerid);
+		System.out.println("아이디 값 2개 들어옴 : " + userid + followingid);
 		
 		try {
 			
 			FollowingFollowerDao ffdao = new FollowingFollowerDao();
-			FollowerDto fdto = new FollowerDto();
-			fdto.setFollowerId(userid);
-			fdto.setUserId(followerid);
+			
+			FollowingDto fdto = new FollowingDto();
+			
+			fdto.setFollowingId(followingid);
+			fdto.setUserId(userid);
 			
 			result = ffdao.addFollowingFollower(fdto);
 			

@@ -4,7 +4,7 @@ public class FollowingFollowerListDto {
 	private String followerId;
 	private String followingId;
 	private String photoName;
-	private String follower_Yn;
+	private String following_Yn;
 
 	public String getFollowerId() {
 		return followerId;
@@ -30,18 +30,18 @@ public class FollowingFollowerListDto {
 		this.photoName = photoName;
 	}
 
-	public String getFollower_Yn() {
-		return follower_Yn;
+	public String getFollowing_Yn() {
+		return following_Yn;
 	}
 
-	public void setFollower_Yn(String follower_Yn) {
-		this.follower_Yn = follower_Yn;
+	public void setFollowing_Yn(String following_Yn) {
+		this.following_Yn = following_Yn;
 	}
 
 	@Override
 	public String toString() {
 		return "FollowingFollowerListDto [followerId=" + followerId + ", followingId=" + followingId + ", photoName="
-				+ photoName + ", follower_Yn=" + follower_Yn + "]";
+				+ photoName + ", following_Yn=" + following_Yn + "]";
 	}
 
 }

@@ -30,8 +30,8 @@ public class ReservationDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = " INSERT INTO RESERVATION(RESERVEID, STARTDATETIME, ENDDATETIME, CANCELYN, CREATEDATE, UPDATEDATE, USERID, SPACEID, PHOTOID) \r\n" + 
-				     " VALUES(ID_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, SYSDATE, ?, ?, ?) \r\n" ; 
+		String sql = " INSERT INTO RESERVATION(RESERVEID, SERVICETYPE, STARTDATETIME, ENDDATETIME, CANCELYN, CREATEDATE, UPDATEDATE, USERID, SPACEID, PHOTOID) \r\n" + 
+				     " VALUES(ID_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, SYSDATE, ?, ?, ?) \r\n" ; 
 				
 				
 		
@@ -40,12 +40,13 @@ public class ReservationDao {
 			//
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setTimestamp(1, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDateTime()));
-			pstmt.setTimestamp(2, TeamConvert.dateFromUtitlToTimestamp(dto.getEndDateTime()));
-			pstmt.setString(3, dto.getCancelYn());
-			pstmt.setString(4, dto.getUserId());
-			pstmt.setInt(5, dto.getSpaceId());
-			pstmt.setInt(6, dto.getPhotoId());
+			pstmt.setString(1, dto.getServiceType());
+			pstmt.setTimestamp(2, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDateTime()));
+			pstmt.setTimestamp(3, TeamConvert.dateFromUtitlToTimestamp(dto.getEndDateTime()));
+			pstmt.setString(4, dto.getCancelYn());
+			pstmt.setString(5, dto.getUserId());
+			pstmt.setInt(6, dto.getSpaceId());
+			pstmt.setInt(7, dto.getPhotoId());
 			
 			row=pstmt.executeUpdate();
 			

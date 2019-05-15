@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.dao.CodeDao;
+import kr.or.bit.dao.ReservationDao;
 import kr.or.bit.dao.SpaceDao;
+import kr.or.bit.dto.CodeDto;
+import kr.or.bit.dto.ReservationDto;
 import kr.or.bit.dto.SearchSpaceDto;
 import kr.or.bit.utils.TeamDate;
 import kr.or.bit.utils.TeamFormat;
@@ -18,17 +22,17 @@ public class ReservationService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		
+
 		try {
 			System.out.println("ReservationService");
-			
+
 			String userName = request.getParameter("username");
 			String userId = request.getParameter("userid");
 			String phone = request.getParameter("phone");
 			String designer = request.getParameter("designer");
 			String servicetype = request.getParameter("servicetype");
 			String start_date = request.getParameter("start_date");
-			String time = request.getParameter("time");
+			int hour = Integer.parseInt(request.getParameter("time"));
 
 			System.out.println(userName);
 			System.out.println(userId);
@@ -36,22 +40,47 @@ public class ReservationService implements Action {
 			System.out.println(designer);
 			System.out.println(servicetype);
 			System.out.println(start_date);
-			System.out.println(time);
+			System.out.println(hour);
+
+			String[] array = start_date.split("-");
+			int year = Integer.parseInt(array[0]);
+			int month = Integer.parseInt(array[1]);
+			int day = Integer.parseInt(array[2]);
+
+			System.out.println(year);
+			System.out.println(month);
+			System.out.println(day);
+
+
+			ReservationDto dto = new ReservationDto();
+			ReservationDao dao = new ReservationDao();
+
+			dto.setServiceType(servicetype);
+			dto.setStartDateTime(TeamDate.datetime(year, month, day, hour, 00));
+			dto.setEndDateTime(TeamDate.datetime(year, month, day, hour + 1, 00));
+			dto.setCancelYn("N");
+			dto.setUserId(userId);
+			dto.setSpaceId(1);
+			dto.setPhotoId(1);
+
+			dao.insertReservation(dto);
 			
+			CodeDao codeDao = new CodeDao();
+			CodeDto codeDto = new CodeDto();
 			
-//			List<SearchSpaceDto> dtoList = new ArrayList<SearchSpaceDto>();
-//			SpaceDao dao = new SpaceDao();
+			codeDto = codeDao.getCodeListByCode(servicetype);
 			
-//			dtoList=dao.getSpaceAvailableList(Integer.parseInt(persons), TeamDate.date(start_date.replace("-", "")), TeamDate.date(end_date.replace("-", "")));
+			request.setAttribute("userName",userName);
+			request.setAttribute("designer", designer);
+			request.setAttribute("start_date", TeamFormat.dateFormatKorean(TeamDate.date(start_date.replace("-", ""))));
+			request.setAttribute("hour", hour);
+			request.setAttribute("codeDto", codeDto);
 			
-//			request.setAttribute("spaceList", dtoList);
-//			request.setAttribute("start_date", TeamFormat.dateFormatKorean(TeamDate.date(start_date.replace("-", ""))));
-//			request.setAttribute("end_date", TeamFormat.dateFormatKorean(TeamDate.date(end_date.replace("-", ""))));
 			
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/branch/reservation_result.jsp");
-			
-		} catch (Exception e) {	
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return forward;

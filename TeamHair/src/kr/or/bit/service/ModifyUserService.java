@@ -38,7 +38,7 @@ public class ModifyUserService implements Action {
 			
 			CodeDao codeDao = new CodeDao();
 			List<CodeDto> codeDtoList = new ArrayList<CodeDto>(); 
-			codeDtoList = codeDao.getCodeListById("U100");
+			codeDtoList = codeDao.getCodeListByClassCode("U100");
 			request.setAttribute("codedtolist", codeDtoList);
 			
 			

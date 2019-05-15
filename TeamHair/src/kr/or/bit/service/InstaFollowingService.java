@@ -18,21 +18,23 @@ public class InstaFollowingService implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = null;
 		
-		String userid = request.getParameter("userid");
-		String sessionid = request.getParameter("sessionid");
+		String followingid = request.getParameter("userid");
+		String userid = request.getParameter("sessionid");
 		
 		int result = 0;
 		
 		try {
 			FollowingFollowerDao ffdao = new FollowingFollowerDao();
 			
-			FollowerDto followerdto = new FollowerDto();
-			followerdto.setFollowerId(userid);
-			followerdto.setUserId(sessionid);
 			
-			System.out.println("dto 갑 ㅅ들어감 "+ userid + sessionid);
+			FollowingDto fdto = new FollowingDto();
 			
-			result = ffdao.deleteFollowingFollower(followerdto);
+			fdto.setFollowingId(followingid);
+			fdto.setUserId(userid);
+			
+			System.out.println("dto 갑 ㅅ들어감 "+ userid + followingid);
+			
+			result = ffdao.deleteFollowingFollower(fdto);
 			
 			
 			if (result > 0) {
@@ -44,7 +46,7 @@ public class InstaFollowingService implements Action{
 
 			forward = new ActionForward(); 
 			forward.setRedirect(false);
-			forward.setPath("Instauserid.insta?userid=" + sessionid);
+			forward.setPath("Instauserid.insta?userid=" + followingid);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

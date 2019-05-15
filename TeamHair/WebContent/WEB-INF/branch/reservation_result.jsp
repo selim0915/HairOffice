@@ -8,38 +8,29 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	#searchResult {
-		margin : 5% 10%;
+	#reservationResult {
+		margin : 5%;
 	}
-	#period {
-		margin : 10px;
+	
+	#tableReservation {
+		margin : 5%;
 	}
 </style>
 <title>Space Search Result</title>
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 </head>
 <body>
- 	<div id="searchResult">
+ 	<div id="reservationResult">
 
-		<c:set var="list" value="${requestScope.spaceList }"/>
-		<div id="period" style="float:right;">
-			<b>FROM</b>&nbsp;&nbsp;&nbsp;&nbsp; ${requestScope.start_date}&nbsp;&nbsp;&nbsp;&nbsp;<b>TO</b>&nbsp;&nbsp;&nbsp;&nbsp;${requestScope.end_date}
+
+		<div id="tableReservation">
+			<div>예약완료</div>
+		
+			<table border="1">
+				<tr><td><b>회원명</b></td><td><b>디자이너</b></td><td><b>예약일</b></td><td><b>시간</b></td><td><b>서비스유형</b></td></tr>
+				<tr><td>${requestScope.userName}</td><td>${requestScope.designer}</td><td>${requestScope.start_date}</td><td>${requestScope.hour} 시 </td><td>${requestScope.codeDto.codeName}</td></tr>
+			</table>
 		</div>		
-		<table border="1">
-			<tr><td><b>지점명</b></td><td><b>공간ID</b></td><td><b>공간명</b></td><td><b>공간유형</b></td><td><b>가격</b></td></tr>
-			<c:forEach var="space" items="${list}">
-				<tr><td>${space.branchName}</td><td>${space.spaceId }</td><td>${space.spaceName }</td><td>${space.codeName}</td>
-					<td>
-						<c:choose>
-							<c:when test="${space.code == '01'}">&#8361;400,000</c:when>
-							<c:when test="${space.code == '03'}">&#8361;900,000</c:when>
-							<c:when test="${space.code == '07'}">&#8361;2,500,000</c:when>
-							<c:when test="${space.code == '14'}">&#8361;3,000,000</c:when>
-							<c:when test="${space.code == '15'}">문의</c:when>
-						</c:choose>
-					</td></tr>
-			</c:forEach>
-		</table>
 	</div>
 
 	

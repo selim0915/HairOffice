@@ -15,10 +15,6 @@
 <c:set var="bloglikedto" value="${requestScope.bloglikedto}"></c:set>
 <c:set var="followinglist" value="${requestScope.followinglist}"></c:set>
 
-<c:set var="followerList" value="${requestScope.followerList}"></c:set>
-<c:set var="followingList" value="${requestScope.followingList}"></c:set>
-
-
 <script type="text/javascript">
 	
 		function btnpopup(photoid) {
@@ -292,9 +288,8 @@
 					<ul>
 						<li><span class="profile-stat-count">${blogList.size()}</span>
 							posts</li>
-							
-						<li><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</li>
-						<li><span class="profile-stat-count">${requestScope.followingNumber }</span> following</li>
+					<li><a href="#" onclick="followerclick();return false;"><span class="profile-stat-count">188</span> followers</a></li>
+					<li><a href="#" onclick="followingclick();return false;"><span class="profile-stat-count">188</span> following</a></li>
 					</ul>
 
 				</div>
@@ -367,46 +362,31 @@
 	<!-- INSTAGRAM FOLLOWER LIST START -->
 				<div class="obscure-sub-follower">			
 				<div class="popup-sub-follower animationClose-sub-follower">
-						<div class="container">
-							<div class="row">
-					
-								<h1>팔로워</h1>
-								<hr>
-									<table>
-										<tr><td>ID</td><td>PHOTO</td><td>following여부</td></tr>
-										<c:forEach var="follower" items="${followerList}">
-											<tr><td>${follower.followerId}</td><td><div class="profile-image"><img src="./upload/${follower.photoName }" alt=""></div></td><td>${follower.following_Yn }</td>
-										</c:forEach>
-									</table>
-								
-							</div>
-						</div>
-					</div>
+				<div class="container">
+	<div class="row">
+			
+					<h1>팔로워</h1>
+					<hr>
 				</div>
+		</div>
+		</div>
+</div>
 				
 				<!-- INSTAGRAM FOLLOWER LIST END -->
 				
 				
 				<!-- INSTAGRAM FOLLOWING LIST START -->
 				<div class="obscure-sub-following">			
-				  	<div class="popup-sub-following animationClose-sub-following">
-						<div class="container">
-							<div class="row">
+				<div class="popup-sub-following animationClose-sub-following">
+				<div class="container">
+	<div class="row">
 			
-								<h1>팔로잉</h1>
-								<hr>
-									<table>
-										<tr><td>ID</td><td>PHOTO</td><td>following여부</td></tr>
-										<c:forEach var="following" items="${followingList}">
-											<tr><td>${following.followingId}</td><td><div class="profile-image"><img src="./upload/${following.photoName }" alt=""></div></td><td>${following.following_Yn }</td>
-										</c:forEach>
-									</table>
-							
-							</div>
-
-						</div>
-					</div>
+					<h1>팔로윙</h1>
+					<hr>
 				</div>
+		</div>
+		</div>
+</div>
 				
 				<!-- INSTAGRAM FOLLOWING LIST END -->
 

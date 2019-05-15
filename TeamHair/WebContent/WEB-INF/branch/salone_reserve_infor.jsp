@@ -222,10 +222,10 @@
 								<div class="single-element-widget">
 							<div class="default-select-sub">
 								<select  id="designer" name="designer">
-									<option value="1" selected>[VIP 전문]이교선 디자이너</option>
-									<option value="2">우세림 디자이너</option>
-									<option value="3">신지혁 디자이너</option>
-									<option value="4">정일찬 디자이너</option>
+									<option value="[VIP 전문]이교선 디자이너" selected>[VIP 전문]이교선 디자이너</option>
+									<option value="우세림 디자이너">우세림 디자이너</option>
+									<option value="신지혁 디자이너">신지혁 디자이너</option>
+									<option value="정일찬 디자이너">정일찬 디자이너</option>
 								</select>
 							</div>
 						</div>
