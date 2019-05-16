@@ -15,6 +15,7 @@ public class QnAUpdateFormService implements Action{
 		ActionForward forward = null;
 		
 		int boardid = Integer.parseInt(request.getParameter("boardid"));
+		int cpage = Integer.parseInt(request.getParameter("cpage"));
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -25,10 +26,11 @@ public class QnAUpdateFormService implements Action{
 			qna = dao.searchQnA(boardid);
 			
 			request.setAttribute("qna", qna);
+			request.setAttribute("cpage", cpage);
 
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/QnA/QnAupdate.jsp"); //리스트   << 변경중,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+			forward.setPath("/WEB-INF/QnA/QnAupdate.jsp"); 
 
 		} catch (Exception e) {
 			e.printStackTrace();

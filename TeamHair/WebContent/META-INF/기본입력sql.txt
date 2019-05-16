@@ -1,117 +1,72 @@
 insert into code
 values('S100', '공간임대유형', '01', '1인공간', 1);
-
 insert into code
 values('S100', '공간임대유형', '03', '3인공간', 2);
-
 insert into code
 values('S100', '공간임대유형', '07', '7인공간', 3);
-
 insert into code
 values('S100', '공간임대유형', '14', '14인공간', 4);
-
 insert into code
 values('S100', '공간임대유형', '15', '15인이상', 5);
-
-
 insert into code
 values('S200', '결제방법', 'CASH', '현금결제', 1);
-
 insert into code
 values('S200', '결제방법', 'TRSF', '이체', 2);
-
 insert into code
 values('S200', '결제방법', 'CRDT', '신용카드', 3);
-
 insert into code
 values('G100', '성별', 'M', '남성', 1);
-
 insert into code
 values('G100', '성별', 'F', '여성', 2);
-
 insert into code
 values('U100', '사용자그룹', 'U', '일반사용자', 1);
-
 insert into code
 values('U100', '사용자그룹', 'H', '헤어디자이너', 2);
-
 insert into code
 values('U100', '사용자그룹', 'M', '관리자', 3);
-
-
  
 insert into code
-values('S100', '서비스유형', 'H01', '시선강탈(펌+클리닉)', 1);
-
+values('S200', '서비스유형', 'H01', '시선강탈(펌+클리닉)', 1);
 insert into code
-values('S100', '서비스유형', 'H02', '매직셋팅', 2);
-
+values('S200', '서비스유형', 'H02', '매직셋팅', 2);
 insert into code
-values('S100', '서비스유형', 'H03', '발레아쥬+염색', 3);
-
+values('S200', '서비스유형', 'H03', '발레아쥬+염색', 3);
 insert into code
-values('S100', '서비스유형', 'H04', '훈남펌', 4);
-
+values('S200', '서비스유형', 'H04', '훈남펌', 4);
 commit;
-
-
 --==================================================
-
 INSERT INTO USERS(USERID, PASSWORDS, USERNAME, EMAIL, PHONE, GENDER, USERTYPE, TERMSOFUSEYN, LOGINYN, RESERVEYN, USESNSYN, CREATEDATE, UPDATEDATE)
 VALUES('admin', '1234', '관리자', 'admin@naver.com', '0102223333', 'M', 'M', 'Y', 'N', 'N', 'N', SYSDATE, SYSDATE);
  
 --==================================================
-
 INSERT INTO BRANCH(BRANCHID, BRANCHNAME, ADDRESS1, ADDRESS2, POSTALCODE, PHONE, MAP_X, MAP_Y)
 VALUES(100, '강남1호점', '서울특별시 서초구 서초동', '1306-3', '06614','025532244', 37.500242, 127.026049);
-
-
 INSERT INTO BRANCH(BRANCHID, BRANCHNAME, ADDRESS1, ADDRESS2, POSTALCODE, PHONE, MAP_X, MAP_Y)
 VALUES(200, '역삼1호점', '서울특별시 강남구 역삼동', '680', '06143','025240088', 37.508402, 127.039248);
-
 INSERT INTO BRANCH(BRANCHID, BRANCHNAME, ADDRESS1, ADDRESS2, POSTALCODE, PHONE, MAP_X, MAP_Y)
 VALUES(300, '청담1호점', '서울특별시 강남구 청담동', '도산대로87길', '06012','025520088', 37.526087, 127.049962);
-
-
 COMMIT;
-
 --=================================================
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '핫데스크','01', 1, 1, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '전용데스크','03', 2, 3, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '프리미엄 오피스','07', 4, 7, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '얼티미트 오피스','14', 8, 14, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '울트라 오피스','15', 15, 30, 100);
-
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '핫데스크2','01', 1, 1, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '핫데스크3','01', 1, 1, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '핫데스크4','01', 1, 1, 100);
-
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '전용데스크2','03', 2, 3, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '전용데스크3','03', 2, 3, 100);
-
 INSERT INTO SPACE(SPACEID, SPACENAME, SPACETYPE, MINNUMBER, MAXNUMBER, BRANCHID)
 VALUES(ID_SEQ.NEXTVAL, '전용데스크4','03', 2, 3, 100);
-
-
 COMMIT;
-

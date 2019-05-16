@@ -22,34 +22,31 @@ public class ModifyUserService implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
 		try {
-			
 
 			HttpSession session = request.getSession();
-			
-			UsersDto useridDto = (UsersDto)session.getAttribute("usersdto");
+
+			UsersDto useridDto = (UsersDto) session.getAttribute("usersdto");
 			// update후 갱신 필요
 			UsersDao usersDao = new UsersDao();
 			UsersDto usersDto = usersDao.getUserbyId(useridDto.getUserId());
 			request.setAttribute("usersdto", usersDto);
-			
+
 			ProfileDao profileDao = new ProfileDao();
 			ProfileDto profileDto = profileDao.getProfilebyId(useridDto.getUserId());
 			request.setAttribute("profiledto", profileDto);
-			
+
 			CodeDao codeDao = new CodeDao();
-			List<CodeDto> codeDtoList = new ArrayList<CodeDto>(); 
+			List<CodeDto> codeDtoList = new ArrayList<CodeDto>();
 			codeDtoList = codeDao.getCodeListByClassCode("U100");
 			request.setAttribute("codedtolist", codeDtoList);
-			
-			
+
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/login/modify_user_info.jsp");
-			
-		} catch (Exception e) {	
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return forward;
 	}
-
 
 }

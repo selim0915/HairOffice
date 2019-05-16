@@ -1,4 +1,4 @@
-package kr.or.bit.dao;
+ package kr.or.bit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import kr.or.bit.dto.CodeDto;
 import kr.or.bit.dto.LikeListDto;
+import kr.or.bit.dto.LikePhotoListDto;
 import kr.or.bit.dto.LikesDto;
 import kr.or.bit.dto.ProfileDto;
 
@@ -51,7 +52,7 @@ public class LikesDao {
 				dto.setWasUser(rs.getString("wasuser"));
 				
 				dtoList.add(dto);
-				System.out.println("select 들어옴");
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,15 +79,13 @@ public class LikesDao {
 			//
 			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println("여기 들어옴?");
-			
 			pstmt.setInt(1, dto.getPhotoId());
 			pstmt.setString(2, dto.getUserId());
 			pstmt.setString(3, dto.getLikeYn().toUpperCase());
 			pstmt.setString(4, dto.getWasUser());
 
 			row = pstmt.executeUpdate();
-			System.out.println("여기여기");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -128,7 +127,7 @@ public class LikesDao {
 	            } while (rs.next());
 			}
 
-				System.out.println("select 들어옴");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -169,7 +168,7 @@ public class LikesDao {
 					dto.setWasUser(rs.getString("wasuser"));
 					
 					dtoList.add(dto);
-					System.out.println("select 들어옴");
+
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -239,7 +238,7 @@ public class LikesDao {
 					
 			try {
 				conn = ds.getConnection();
-				//
+	
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, userId);
@@ -252,6 +251,52 @@ public class LikesDao {
 		            	
 		            	dto.setLikeCount(rs.getInt("likecount"));
 		            	dto.setPhotoId(rs.getInt("photoid"));
+		            	
+		            	dtoList.add(dto);
+		            } while (rs.next());
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {rs.close();} catch (Exception e){};
+				try {pstmt.close();} catch (Exception e){};
+				try {conn.close();} catch (Exception e){};
+			}
+			
+			return dtoList;
+		}
+		
+		public List<LikePhotoListDto> getLikePhotoList() {
+			List<LikePhotoListDto> dtoList = new ArrayList<LikePhotoListDto>();
+
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = " SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID,  P.FILENAME, P.USERID  \r\n" + 
+					     " FROM PHOTO P JOIN LIKES L    \r\n" + 
+					     " ON P.PHOTOID = L.PHOTOID     \r\n" + 
+					     " GROUP BY P.PHOTOID, P.FILENAME, P.USERID 			\r\n" +	
+						 " ORDER BY LIKECOUNT DESC	    \r\n";
+					
+					
+			try {
+				conn = ds.getConnection();
+				//
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+		            do {
+		            	LikePhotoListDto dto = new LikePhotoListDto();
+		            	
+		            	dto.setLikecount(rs.getInt("likecount"));
+		            	dto.setPhotoid(rs.getInt("photoid"));
+		            	dto.setFilename(rs.getString("filename"));
+		            	dto.setUserid(rs.getString("userid"));
 		            	
 		            	dtoList.add(dto);
 		            } while (rs.next());

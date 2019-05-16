@@ -24,7 +24,6 @@ public class ReservationService implements Action {
 		ActionForward forward = new ActionForward();
 
 		try {
-			System.out.println("ReservationService");
 
 			String userName = request.getParameter("username");
 			String userId = request.getParameter("userid");
@@ -34,23 +33,10 @@ public class ReservationService implements Action {
 			String start_date = request.getParameter("start_date");
 			int hour = Integer.parseInt(request.getParameter("time"));
 
-			System.out.println(userName);
-			System.out.println(userId);
-			System.out.println(phone);
-			System.out.println(designer);
-			System.out.println(servicetype);
-			System.out.println(start_date);
-			System.out.println(hour);
-
 			String[] array = start_date.split("-");
 			int year = Integer.parseInt(array[0]);
 			int month = Integer.parseInt(array[1]);
 			int day = Integer.parseInt(array[2]);
-
-			System.out.println(year);
-			System.out.println(month);
-			System.out.println(day);
-
 
 			ReservationDto dto = new ReservationDto();
 			ReservationDao dao = new ReservationDao();
@@ -75,7 +61,6 @@ public class ReservationService implements Action {
 			request.setAttribute("start_date", TeamFormat.dateFormatKorean(TeamDate.date(start_date.replace("-", ""))));
 			request.setAttribute("hour", hour);
 			request.setAttribute("codeDto", codeDto);
-			
 			
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/branch/reservation_result.jsp");

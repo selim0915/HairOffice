@@ -20,7 +20,7 @@ public class FollowingFollowerDao {
 
 	public FollowingFollowerDao() throws Exception {
 		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 	
 	//Branch 데이터 삽입 : Follower기준으로 삽입
@@ -37,8 +37,6 @@ public class FollowingFollowerDao {
 
 		String sql2 = " INSERT INTO FOLLOWER(FOLLOWERID, USERID) \r\n" + 
 			          " VALUES(?, ?) \r\n" ;
-		
-		
 		
 		try {
 			conn = ds.getConnection();
@@ -119,7 +117,7 @@ public List<FollowingDto> getFollowingByUserId (String userId) {
 		
 		List<FollowingDto> followingdto = new ArrayList<FollowingDto>();
 		
-		String sql = " SELECT FOLLOWINGID, USERID FROM FOLLOWING WHERE FOLLOWINGID = ? ";
+		String sql = " SELECT FOLLOWINGID, USERID FROM FOLLOWING WHERE USERID = ? ";
 		try {
 			conn = ds.getConnection();
 			//
@@ -136,7 +134,6 @@ public List<FollowingDto> getFollowingByUserId (String userId) {
 				followingdto.add(dto);
 			}
 			
-			System.out.println("완료 SELECT");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -210,13 +207,13 @@ public List<FollowingDto> getFollowingByUserId (String userId) {
 						
 			row =  pstmt.executeUpdate();
 			row += pstmt2.executeUpdate();
-			System.out.println("row 값" + row);
+
 			if(row==2) { 
 				conn.commit();
-				System.out.println("Commit");
+
 			} else {
 				conn.rollback();
-				System.out.println("Rollback");
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -322,5 +319,38 @@ public List<FollowingDto> getFollowingByUserId (String userId) {
 		
 		return dtoList;
 	}
+	
+	public int isFollowing (String followingId, String userId) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int followingNumber = 0;
+		
+		String sql = " SELECT * FROM FOLLOWING WHERE FOLLOWINGID = ? AND USERID = ? ";
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, followingId);
+			pstmt.setString(2, userId);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				 followingNumber +=1; 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return followingNumber;
+	}
 
 }
+

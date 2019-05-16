@@ -17,47 +17,43 @@ import kr.or.bit.dto.PhotoDto;
 import kr.or.bit.dto.ProfileDto;
 import kr.or.bit.dto.UsersDto;
 
-public class InstaPopupAllSeslectService implements Action{
-	
+public class InstaPopupAllSeslectService implements Action {
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		
+
 		int photoid = Integer.parseInt(request.getParameter("photoid"));
 		String userid = request.getParameter("userid");
 		try {
-			System.out.println("InstaPopupAllSelectService 진입");
-			
+
 			UsersDao usersdao = new UsersDao();
 			UsersDto usersdto = usersdao.getUserbyId(userid);
 			request.setAttribute("userid", usersdto);
-			
+
 			ProfileDao profiledao = new ProfileDao();
 			ProfileDto profiledto = profiledao.getProfilebyId(userid);
 			request.setAttribute("profilelist", profiledto);
-			
+
 			CommentsDao commentsDao = new CommentsDao();
 			List<CommentsDto> commentslist = commentsDao.selectCommentsAllList(photoid);
 			request.setAttribute("commentslist", commentslist);
-			System.out.println("commentslist: "+commentslist);
-			
+
 			PhotoDao photoDao = new PhotoDao();
 			PhotoDto photolist = photoDao.selectPhotoById(photoid);
 			request.setAttribute("photolist", photolist);
-			
-			System.out.println("photolist : " + photolist);
-			
+
 			LikesDao likesdao = new LikesDao();
 			int likecount = likesdao.getLikeNumberByPhotoId(photoid);
 			request.setAttribute("likecount", likecount);
-			System.out.println(likecount);
+
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/insta/instapopup_Id.jsp");
-			
-		} catch (Exception e) {	
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return forward;
 	}
-	
+
 }

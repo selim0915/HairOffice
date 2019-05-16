@@ -27,8 +27,6 @@ public class InstaFollowerService implements Action{
 		
 		int result = 0;
 		
-		System.out.println("아이디 값 2개 들어옴 : " + userid + followingid);
-		
 		try {
 			
 			FollowingFollowerDao ffdao = new FollowingFollowerDao();
@@ -50,7 +48,7 @@ public class InstaFollowerService implements Action{
 
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("Instauserid.insta?userid=" + userid); //리스트
+			forward.setPath("Instauserid.insta?userid=" + followingid); //리스트
 			
 			} catch (Exception e) {
 			e.printStackTrace();

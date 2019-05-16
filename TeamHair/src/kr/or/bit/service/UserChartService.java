@@ -19,34 +19,34 @@ public class UserChartService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = null;
-        JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = new JSONObject();
 
-        JSONArray userlist = new JSONArray();
+		JSONArray userlist = new JSONArray();
 		try {
-  		  	ChartDao dao = new ChartDao();
-  		  	List<ChartUserDto> list = dao.userlist();
-  		  	
-  		  	for(int i = 0; i < list.size(); i++) {
-  		  		ChartUserDto dto = list.get(i);
-  		        //deptno의 한명 정보가 들어갈 JSONObject 선언
-  		        JSONObject userinfo = new JSONObject();
-  		        userinfo.put("userid", dto.getUserid());
-  		        userinfo.put("likecount", dto.getLikecount());
-  		        
-  		        userlist.add(userinfo);
-  			}
-  			jsonObject.put("userlist", userlist);
+			ChartDao dao = new ChartDao();
+			List<ChartUserDto> list = dao.userlist();
 
-    		  	
-    		request.setAttribute("userlist", jsonObject);
-		  		  
-  		  	forward = new ActionForward();
-  			forward.setRedirect(false); //forward 방식
-  			forward.setPath("/WEB-INF/chart/likeuser_list.jsp");
+			for (int i = 0; i < list.size(); i++) {
+				ChartUserDto dto = list.get(i);
 
-		  	}catch(Exception e){
-		  		System.out.println(e.getMessage());
-		  	}
+				JSONObject userinfo = new JSONObject();
+
+				userinfo.put("userid", dto.getUserid());
+				userinfo.put("likecount", dto.getLikecount());
+
+				userlist.add(userinfo);
+			}
+			jsonObject.put("userlist", userlist);
+
+			request.setAttribute("userlist", jsonObject);
+
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/chart/likeuser_list.jsp");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		return forward;
 	}
 

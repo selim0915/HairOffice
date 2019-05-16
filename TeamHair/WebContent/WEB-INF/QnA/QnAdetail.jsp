@@ -128,11 +128,16 @@
 			
 			<hr>
 			<div id="btngroup">	
-				<input type="button"  class="btn btn-primary btn-lg" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}'">
-				<input type="button"  class="btn btn-primary btn-lg" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
-				<input type="button"  class="btn btn-primary btn-lg" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
+				<c:choose>
+					<c:when test="${sessionScope.usersdto.userId==detail.userID}">
+						<input type="button"  class="btn btn-primary btn-lg" value="글 수정" onClick="location.href='QnAupdateform.do?boardid=${detail.boardID}&cpage=${cpage}'">
+						<input type="button"  class="btn btn-primary btn-lg" value="글 삭제" onClick="location.href='QnAdelete.do?boardid=${detail.boardID}'">
+					</c:when>
+					<c:when test="${sessionScope.usersdto.userId!=null}">
+						<input type="button"  class="btn btn-primary btn-lg" value="답글" onClick="location.href='QnArewrite.do?boardid=${detail.boardID}'">
+					</c:when>
+				</c:choose>
 				<input type="button"  class="btn btn-primary btn-lg" value="목록보기" onClick="location.href='QnA.do?cpage=${cpage}'">
-							
 			</div>
 	
 
@@ -141,7 +146,14 @@
 	<div id="reply">
 		<c:set var="comments" value="${requestScope.comment}"></c:set>
 		<c:forEach var="i" items="${comments }">
-				<p><b>${i.userID }</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>${i.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='delete' value='${i.commentID }'>삭제</button></p>
+				<p><b>${i.userID }</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   <i>${i.createDate }</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   <c:choose>
+					   	<c:when test="${sessionScope.usersdto.userId==i.userID}">
+							<button id='delete' value='${i.commentID }'>삭제</button>
+						</c:when>
+					</c:choose>
+				</p>
 				<p>내용 : ${i.comments }</p>
 				
 				

@@ -48,9 +48,9 @@ public class InstaUseridService implements Action{
 			
 			FollowingFollowerDao ffdao = new FollowingFollowerDao();
 
-			List<FollowingDto> dto = ffdao.getFollowingByUserId(sessionid);
-			request.setAttribute("followinglist", dto);
-			System.out.println("followinglist: "+ dto);
+			int result = ffdao.isFollowing(userid, sessionid);
+			request.setAttribute("isfollowing", result);
+			System.out.println("result 값 : "+ result);
 			
 			 ProfileDao profileDao = new ProfileDao(); 
 			 ProfileDto profileDto = profileDao.getProfilebyId(userid);

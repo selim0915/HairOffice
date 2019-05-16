@@ -18,8 +18,8 @@ public class PhotoDao {
 	DataSource ds = null;
 
 	public PhotoDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle");
 	}
 
 	//게시글 전체 조회
@@ -37,7 +37,7 @@ public class PhotoDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userid);
 			rs = pstmt.executeQuery();
-			System.out.println("아이디" + userid);
+			
 			
 			while(rs.next()) {
 				PhotoDto dto = new PhotoDto();

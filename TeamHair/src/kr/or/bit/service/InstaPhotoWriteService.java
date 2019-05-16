@@ -25,7 +25,6 @@ public class InstaPhotoWriteService implements Action {
 		
 		
 		String uploadpath = request.getSession().getServletContext().getRealPath("upload");
-		System.out.println("uploadpath  " + uploadpath);
 		
 		int size = 1024*1024*10;	//10M 네이버 계산기
 		int result;
@@ -35,9 +34,6 @@ public class InstaPhotoWriteService implements Action {
 			PhotoDao dao = new PhotoDao();
 			multi = new MultipartRequest(request,uploadpath, size, "UTF-8", new DefaultFileRenamePolicy());
 			Enumeration filenames = multi.getFileNames();
-			
-			System.out.println("multi 확인 : ");
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
 			
 			HttpSession session = request.getSession();
 			UsersDto usersDto = (UsersDto) session.getAttribute("usersdto");
@@ -51,11 +47,8 @@ public class InstaPhotoWriteService implements Action {
 			photodto.setUserId(userid);
 			
 			
-			System.out.println(photodto.toString());
-			
 			String file = (String)filenames.nextElement();
 			String filename1 = multi.getFilesystemName(file);
-			System.out.println("iiiiiiiiiiiiiiiiiiiiiiii 파일이름 : " + filename1);
 			photodto.setFileName(filename1);
 						
 			result = dao.insertPhoto(photodto);

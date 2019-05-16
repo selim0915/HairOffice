@@ -162,6 +162,7 @@ hr{
 }
 
 .btnclose {
+	font-size: 22px;
 	    color: black;
     display: inline;
     float: right;

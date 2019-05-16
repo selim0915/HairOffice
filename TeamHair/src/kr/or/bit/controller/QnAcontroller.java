@@ -30,6 +30,7 @@ public class QnAcontroller extends HttpServlet {
 	public QnAcontroller() {
 		super();
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);
@@ -42,7 +43,6 @@ public class QnAcontroller extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doProcess 실행");
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url_Command = requestURI.substring(contextPath.length());
@@ -65,60 +65,60 @@ public class QnAcontroller extends HttpServlet {
 			try {
 				action = new QnAInsertService();
 				forward = action.execute(request, response);
-				System.out.println("QnAinsert.do ... try문 완료");
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (url_Command.equals("/QnAdetail.do")) { // QnA 글 상세보기
 			try {
-				
+
 				action = new QnADetailService();
 				forward = action.execute(request, response);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (url_Command.equals("/QnAdelete.do")) { // QnA 데이터 삭제
-			
+
 			try {
 				action = new QnADeleteService();
 				forward = action.execute(request, response);
-			
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (url_Command.equals("/QnAupdateform.do")) { // QnA 데이터 수정 페이지 이동
-			
+
 			action = new QnAUpdateFormService();
 			forward = action.execute(request, response);
 		} else if (url_Command.equals("/QnAupdate.do")) { // QnA 데이터 수정
-			
+
 			try {
 				action = new QnAUpdateService();
 				forward = action.execute(request, response);
-			
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (url_Command.equals("/QnAcommentsinsert.do")) { // QnA 댓글 추가하기
-			
+
 			try {
 				action = new QnACommentsInsertService();
 				forward = action.execute(request, response);
-			
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(url_Command.equals("/QnAcommentslistAsync.do")) { //비동기 댓글보기
-			
+		} else if (url_Command.equals("/QnAcommentslistAsync.do")) { // 비동기 댓글보기
+
 			action = new QnACommentsListAsyncService();
 			forward = action.execute(request, response);
-    	} else if (url_Command.equals("/QnAcommentsdelete.do")) { // QnA 댓글 삭제하기
-			
+		} else if (url_Command.equals("/QnAcommentsdelete.do")) { // QnA 댓글 삭제하기
+
 			try {
 				action = new QnACommentsDeleteService();
 				forward = action.execute(request, response);
-			
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -135,7 +135,6 @@ public class QnAcontroller extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 
 		if (forward != null) {
 			if (forward.isRedirect()) { // true

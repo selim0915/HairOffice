@@ -37,12 +37,8 @@ public class InstaLikeService implements Action{
 			LikesDao LikesDao = new LikesDao();
 			LikesDao.insertlikes(LikesDto);
 			
-
-			
-			System.out.println("들어옴");
-			
 			LikesDto likeslist = LikesDao.getLikesListByPhotoidUserid(photoid, userid);
-			HttpSession session = request.getSession(); // servlet마다
+			HttpSession session = request.getSession(); 
 			session.setAttribute("likesdto", likeslist);
 				
   		        //deptno의 한명 정보가 들어갈 JSONObject 선언
@@ -52,8 +48,6 @@ public class InstaLikeService implements Action{
 			jsonObject.put("likeyn", likeslist.getLikeYn());
 			jsonObject.put("wasuser", likeslist.getWasUser());
   		        
-			System.out.println("전체 : " + jsonObject);
-		  	
    		 	request.setAttribute("likeslist", jsonObject);
 		  		  
  		  	 forward = new ActionForward();

@@ -12,7 +12,7 @@
 
 
 
- <Resource maxWait="-1" 
+<!--  <Resource maxWait="-1" 
             maxIdle="20" 
             maxActive="100" 
             password="1004" 
@@ -21,9 +21,9 @@
             driverClassName="oracle.jdbc.OracleDriver" 
             type="javax.sql.DataSource"
             auth="Container" 
-            name="jdbc/oracle" />
+            name="jdbc/oracle" /> -->
 
- <!-- 
+
   <Resource maxWait="-1" 
             maxIdle="20" 
             maxActive="100" 
@@ -35,7 +35,7 @@
             auth="Container" 
             name="jdbc/oracle" />
  
-  -->
+  
 
 <!-- 
   <Resource maxWait="-1" 

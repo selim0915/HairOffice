@@ -257,8 +257,8 @@
 				<ul>
 					<li><span class="profile-stat-count">${blogList.size()}</span> posts</li>
 					
-					<li><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</li>
-					<li><span class="profile-stat-count">${requestScope.followingNumber }</span> following</li>
+					<li><a class="btn-instaff" href="#" onclick="followerclick();return false;"><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</a></li>
+					<li><a class="btn-instaff" href="#" onclick="followingclick();return false;"><span class="profile-stat-count">${requestScope.followingNumber }</span> following</a></li>
 				</ul>
 
 			</div>
@@ -347,18 +347,25 @@
 					<div class="popup-sub-following animationClose-sub-following">
 						<div class="container">
 							<div class="row">
-			
-							<h1>팔로윙</h1>
-							<hr>
-									<table>
-										<tr><td>ID</td><td>PHOTO</td><td>following여부</td></tr>
+							<div class="header-popup">
+								<h1>팔로잉</h1>
+								
+								</div>
+								<div class="">
+					<a class="btnclose" href="#" onclick="btnclosesub()"><i
+						class="fas fa-times"></i></a>
+				</div>
 										<c:forEach var="following" items="${followingList}">
-											<tr><td>${following.followingId}</td><td><div class="profile-image"><img src="./upload/${following.photoName }" alt=""></div></td><td>${following.following_Yn }</td>
+										<div class="followlist">
+										<div class="row">
+											<div class="col-md-1"><img class="popup-photo" src="./upload/${following.photoName }" alt=""></div>
+											<div class="col-md-1"><span>${following.followingId}</span></div>
+											<div class="col-md-8"></div>
+											<div class="col-md-2">${following.following_Yn }</div>
+										</div>
+										</div>
 										</c:forEach>
-									</table>
-							
-							</div>
-
+										</div>
 						</div>
 					</div>
 				</div>

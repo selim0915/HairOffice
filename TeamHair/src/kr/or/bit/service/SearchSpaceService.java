@@ -29,7 +29,6 @@ public class SearchSpaceService implements Action{
 		ActionForward forward = new ActionForward();
 		
 		try {
-			System.out.println("SearchSpaceService");
 			
 			String userId = request.getParameter("userid");
 			String persons = request.getParameter("persons");

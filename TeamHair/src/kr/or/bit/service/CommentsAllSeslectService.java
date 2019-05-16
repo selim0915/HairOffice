@@ -23,23 +23,21 @@ public class CommentsAllSeslectService implements Action{
 		int photoid = Integer.parseInt(request.getParameter("photoid"));
 		
 		try {
-			System.out.println("CommentsAllSeslectService 진입");
+
 			
 			CommentsDao commentsDao = new CommentsDao();
 			List<CommentsDto> commentslist = commentsDao.selectCommentsAllList(photoid);
 			request.setAttribute("commentslist", commentslist);
-			System.out.println("commentslist: "+commentslist);
 			
 			PhotoDao photoDao = new PhotoDao();
 			PhotoDto photolist = photoDao.selectPhotoById(photoid);
 			request.setAttribute("photolist", photolist);
 			
-			System.out.println("photolist : " + photolist);
 			
 			LikesDao likesdao = new LikesDao();
 			int likecount = likesdao.getLikeNumberByPhotoId(photoid);
 			request.setAttribute("likecount", likecount);
-			System.out.println(likecount);
+
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/insta/instapopup.jsp");
 			

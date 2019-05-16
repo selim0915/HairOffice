@@ -32,12 +32,7 @@ public class ChartDao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = " SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.USERID \r\n" + 
-					     " FROM PHOTO P JOIN LIKES L \r\n" + 
-					     " ON P.PHOTOID = L.PHOTOID  \r\n" + 
-					     " WHERE ROWNUM <= 10        \r\n" + 
-					     " GROUP BY P.USERID         \r\n" + 
-					     " ORDER BY LIKECOUNT DESC   \r\n" ; 
+			String sql = "select * from (SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.USERID FROM PHOTO P JOIN LIKES L ON P.PHOTOID = L.PHOTOID GROUP BY P.USERID ORDER BY LIKECOUNT DESC) where rownum<=10"; 
 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -71,12 +66,12 @@ public class ChartDao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = " SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID \r\n" + 
-					     " FROM PHOTO P JOIN LIKES L    \r\n" + 
-					     " ON P.PHOTOID = L.PHOTOID     \r\n" + 
-					     " WHERE ROWNUM <= 10           \r\n" + 
-					     " GROUP BY P.PHOTOID           \r\n" + 
-					     " ORDER BY LIKECOUNT DESC      \r\n";
+			String sql = " select * from " +
+                    " (SELECT SUM(DECODE(L.LIKEYN,'Y',1,'N',0)) AS LIKECOUNT, P.PHOTOID " +
+                    " FROM PHOTO P JOIN LIKES L ON P.PHOTOID = L.PHOTOID " +
+                    " GROUP BY P.PHOTOID " +
+                    " ORDER BY LIKECOUNT DESC) " +
+                    " where rownum<=10";
 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

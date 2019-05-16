@@ -13,7 +13,7 @@
 <c:set var="blogList" value="${requestScope.bloglist}"></c:set>
 <c:set var="profileDto" value="${requestScope.profiledto}"></c:set>
 <c:set var="bloglikedto" value="${requestScope.bloglikedto}"></c:set>
-<c:set var="followinglist" value="${requestScope.followinglist}"></c:set>
+<c:set var="isfollowing" value="${requestScope.isfollowing}"></c:set>
 
 <c:set var="followerList" value="${requestScope.followerList}"></c:set>
 <c:set var="followingList" value="${requestScope.followingList}"></c:set>
@@ -24,6 +24,7 @@
 		function btnpopup(photoid) {
 			
 			var userid = "${param.userid}"; //var sessionid = ''
+			console.log(userid);
 						$.ajax({					url : "Instapopupid.insta?",
 							data : {
 								userid: userid,
@@ -219,7 +220,7 @@
 				location.href = "Instafollower.insta?userid=" + "${param.userid}" + "&sessionid=" + "${sessionScope.usersdto.userId}";
 			} else if($('#follower').hasClass('profile-edit-btn-followingid') == true){
 				console.log("true wing");
-				location.href = "Instafollowing.insta?sessionid=" + "${param.userid}" + "&userid=" + "${sessionScope.usersdto.userId}";
+				location.href = "Instafollowing.insta?userid=" + "${param.userid}" + "&sessionid=" + "${sessionScope.usersdto.userId}";
 
 			}
 			
@@ -261,28 +262,24 @@
 				<div class="profile-user-settings">
 
 					<h1 class="profile-user-name">${param.userid}</h1>
-
-					<c:set var="loop_flag" value="false" />
-					<c:forEach var="i" begin="0" end="${followinglist.size()}">
-					<c:if test="${not loop_flag }">
-						<c:if test="${followinglist[i].userId == null}">
-							<button id="follower" class="btn profile-edit-btn-followerid"
-								onclick="follower()">팔로우</button>
-						</c:if>
-					
-						<c:if test="${followinglist[i].userId == param.userid}">
+					<c:choose>
+						<c:when test="${sessionScope.usersdto.userId == param.userid}">
+						</c:when>
+						<c:when test="${requestScope.isfollowing ==1}">
 							<button id="follower" class="btn profile-edit-btn-followingid"
-								onclick="follower()">팔로우</button>
-								<c:set var="loop_flag" value="true" />
-						</c:if>
-						<c:if test="${followinglist[i].userId == sessionScope.usersdto.userId}">
-							<button id="follower" class="btn profile-edit-btn-followerid"
 								onclick="follower()">팔로윙</button>
-						</c:if>
-						</c:if>
-					</c:forEach>
-						
-				<!-- 
+						</c:when>
+						<c:otherwise>
+							<c:if test="${requestScope.isfollowing == 0}">
+								<button id="follower" class="btn profile-edit-btn-followerid"
+									onclick="follower()">팔로우</button>
+							</c:if>
+
+						</c:otherwise>
+					</c:choose>
+
+
+					<!-- 
 					<button class="btn profile-edit-btn" onclick="photoinsert()">Photo</button>
 					-->
 				</div>
@@ -293,8 +290,9 @@
 						<li><span class="profile-stat-count">${blogList.size()}</span>
 							posts</li>
 							
-						<li><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</li>
-						<li><span class="profile-stat-count">${requestScope.followingNumber }</span> following</li>
+					<li><a class="btn-instaff" href="#" onclick="followerclick();return false;"><span class="profile-stat-count">${requestScope.followerNumber }</span> followers</a></li>
+					<li><a class="btn-instaff" href="#" onclick="followingclick();return false;"><span class="profile-stat-count">${requestScope.followingNumber }</span> following</a></li>
+							
 					</ul>
 
 				</div>
@@ -373,9 +371,8 @@
 								<h1>팔로워</h1>
 								<hr>
 									<table>
-										<tr><td>ID</td><td>PHOTO</td><td>following여부</td></tr>
 										<c:forEach var="follower" items="${followerList}">
-											<tr><td>${follower.followerId}</td><td><div class="profile-image"><img src="./upload/${follower.photoName }" alt=""></div></td><td>${follower.following_Yn }</td>
+											<tr><td>${follower.followerId}</td><td><div class="profile-image-sub"><img src="./upload/${follower.photoName }" alt=""></div></td><td>${follower.following_Yn }</td>
 										</c:forEach>
 									</table>
 								
@@ -409,6 +406,7 @@
 				</div>
 				
 				<!-- INSTAGRAM FOLLOWING LIST END -->
+
 
 
 	<div class="container">

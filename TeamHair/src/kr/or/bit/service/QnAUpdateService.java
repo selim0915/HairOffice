@@ -19,7 +19,6 @@ public class QnAUpdateService implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = null;
 		
-		
 		String uploadpath = request.getSession().getServletContext().getRealPath("upload");
 		
 		
@@ -40,8 +39,7 @@ public class QnAUpdateService implements Action{
 			String boardSubject = multi.getParameter("boardsubject"); 
 			String boardContent = multi.getParameter("boardcontent");
 			String fileName = multi.getParameter("filename");
-			
-			
+			int cpage = Integer.parseInt(multi.getParameter("cpage"));
 			
 			QnADto qna = new QnADto();
 			
@@ -58,13 +56,6 @@ public class QnAUpdateService implements Action{
 			qna.setFileName(filename);
 						
 			result = dao.updateQnA(qna);
-
-			if (result > 0) {
-				System.out.println("등록성공");
-			} else { // -1 (제약, 컬럼길이 문제)
-				System.out.println("등록실패");
-			}
-			
 
 			forward = new ActionForward();
 			forward.setRedirect(false);

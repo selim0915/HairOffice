@@ -1,16 +1,4 @@
 
-DROP SEQUENCE ID_SEQ;
-
-
-
-DROP SEQUENCE BOARD_ID_SEQ;
-
-
-
-DROP SEQUENCE COMMENT_SEQ;
-
-
-
 DROP TABLE Likes CASCADE CONSTRAINTS PURGE;
 
 
@@ -80,11 +68,11 @@ CREATE TABLE Branch
 	BranchID              NUMBER  NOT NULL ,
 	BranchName            VARCHAR2(100)  NULL ,
 	Address1              VARCHAR2(200)  NULL ,
-  Address2              VARCHAR2(200)  NULL ,
 	PostalCode            VARCHAR2(5)  NULL ,
 	Phone                 VARCHAR2(20)  NULL ,
 	Map_X                 NUMBER  NULL ,
-	Map_Y                 NUMBER  NULL 
+	Map_Y                 NUMBER  NULL ,
+	Address2              VARCHAR2(200)  NULL 
 );
 
 
@@ -94,8 +82,8 @@ CREATE UNIQUE INDEX XPKBranch ON Branch
 
 
 
-ALTER TABLE Branch
-	ADD CONSTRAINT  XPKBranch PRIMARY KEY (BranchID);
+--ALTER TABLE Branch
+--	ADD  PRIMARY KEY (BranchID);
 
 
 
@@ -104,8 +92,7 @@ CREATE TABLE Code
 	ClassCode             VARCHAR2(10)  NULL ,
 	ClassName             VARCHAR2(50)  NULL ,
 	Code                  VARCHAR2(10)  NULL ,
-	CodeName              VARCHAR2(50)  NULL ,
-	Orders                NUMBER  NULL 
+	CodeName              VARCHAR2(50)  NULL 
 );
 
 
@@ -114,11 +101,10 @@ CREATE TABLE Comments
 (
 	CommentID             INTEGER  NOT NULL ,
 	Comments              VARCHAR2(300)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
-	wasUser               VARCHAR2(1)  NULL ,
-  PhotoID               NUMBER  NOT NULL ,
-	UserID                VARCHAR2(50)  NOT NULL 
+	PhotoID               NUMBER  NOT NULL ,
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
+	wasUser               VARCHAR2(1)  NULL 
 );
 
 
@@ -128,8 +114,8 @@ CREATE UNIQUE INDEX XPKComments ON Comments
 
 
 
-ALTER TABLE Comments
-	ADD CONSTRAINT  XPKComments PRIMARY KEY (CommentID);
+--ALTER TABLE Comments
+--	ADD  PRIMARY KEY (CommentID);
 
 
 
@@ -146,8 +132,8 @@ CREATE UNIQUE INDEX XPKFollower ON Follower
 
 
 
-ALTER TABLE Follower
-	ADD CONSTRAINT  XPKFollower PRIMARY KEY (FollowerID,UserID);
+--ALTER TABLE Follower
+--	ADD  PRIMARY KEY (FollowerID,UserID);
 
 
 
@@ -164,8 +150,8 @@ CREATE UNIQUE INDEX XPKFollowing ON Following
 
 
 
-ALTER TABLE Following
-	ADD CONSTRAINT  XPKFollowing PRIMARY KEY (FollowingID,UserID);
+--ALTER TABLE Following
+--	ADD  PRIMARY KEY (FollowingID,UserID);
 
 
 
@@ -184,8 +170,8 @@ CREATE UNIQUE INDEX XPKLikes ON Likes
 
 
 
-ALTER TABLE Likes
-	ADD CONSTRAINT  XPKLikes PRIMARY KEY (PhotoID,UserID);
+--ALTER TABLE Likes
+--	ADD  PRIMARY KEY (PhotoID,UserID);
 
 
 
@@ -194,9 +180,9 @@ CREATE TABLE Photo
 	PhotoID               NUMBER  NOT NULL ,
 	FileName              VARCHAR2(50)  NOT NULL ,
 	Description           VARCHAR2(300)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
-  UserID                VARCHAR2(50)  NOT NULL
+  CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
+	UserID                VARCHAR2(50)  NOT NULL
 );
 
 
@@ -206,8 +192,8 @@ CREATE UNIQUE INDEX XPKPhoto ON Photo
 
 
 
-ALTER TABLE Photo
-	ADD CONSTRAINT  XPKPhoto PRIMARY KEY (PhotoID);
+--ALTER TABLE Photo
+--	ADD  PRIMARY KEY (PhotoID);
 
 
 
@@ -226,8 +212,8 @@ CREATE UNIQUE INDEX XPKProfile ON Profile
 
 
 
-ALTER TABLE Profile
-	ADD CONSTRAINT  XPKProfile PRIMARY KEY (UserID);
+--ALTER TABLE Profile
+--	ADD  PRIMARY KEY (UserID);
 
 
 
@@ -238,13 +224,13 @@ CREATE TABLE QnA
 	BoardSubject          VARCHAR2(50)  NULL ,
 	BoardContent          VARCHAR2(2000)  NULL ,
 	FileName              VARCHAR2(50)  NULL ,
-	ReplyRef              NUMBER  NULL ,
-	ReplyDepth            NUMBER  NULL ,
-	ReplySeq              NUMBER  NULL ,
-  ReadCount             NUMBER  NULL ,
+	ReplyRef              NUMBER  DEFAULT 0 ,
+	ReplyDepth            NUMBER  DEFAULT 0 ,
+	ReplySeq              NUMBER  DEFAULT 0 ,
+  ReadCount             NUMBER  DEFAULT 0 ,
 	Notice                VARCHAR2(10)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
 	UserID                VARCHAR2(50)  NOT NULL 
 );
 
@@ -255,8 +241,8 @@ CREATE UNIQUE INDEX XPKQnA ON QnA
 
 
 
-ALTER TABLE QnA
-	ADD CONSTRAINT  XPKQnA PRIMARY KEY (BoardID);
+--ALTER TABLE QnA
+--	ADD  PRIMARY KEY (BoardID);
 
 
 
@@ -264,8 +250,8 @@ CREATE TABLE QnAComments
 (
 	CommentID             NUMBER  NOT NULL ,
 	Comments              VARCHAR2(300)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
 	BoardID               NUMBER  NOT NULL ,
 	UserID                VARCHAR2(50)  NOT NULL 
 );
@@ -277,8 +263,8 @@ CREATE UNIQUE INDEX XPKQnAComments ON QnAComments
 
 
 
-ALTER TABLE QnAComments
-	ADD CONSTRAINT  XPKQnAComments PRIMARY KEY (CommentID);
+--ALTER TABLE QnAComments
+--	ADD  PRIMARY KEY (CommentID);
 
 
 
@@ -300,8 +286,8 @@ CREATE UNIQUE INDEX XPKRentalHistory ON RentalHistory
 
 
 
-ALTER TABLE RentalHistory
-	ADD CONSTRAINT  XPKRentalHistory PRIMARY KEY (UserID,SpaceID,RentID,BaseDate);
+--ALTER TABLE RentalHistory
+--	ADD  PRIMARY KEY (UserID,SpaceID,RentID,BaseDate);
 
 
 
@@ -309,14 +295,14 @@ CREATE TABLE RentContract
 (
 	UserID                VARCHAR2(50)  NOT NULL ,
 	SpaceID               NUMBER  NOT NULL ,
-  RentID                NUMBER  NOT NULL ,
 	StartDate             DATE  NULL ,
 	EndDate               DATE  NULL ,
-  Deposit               NUMBER  NULL ,
+	RentID                NUMBER  NOT NULL ,
 	MonthlyRental         NUMBER  NULL ,
 	DiscountAmount        NUMBER  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
+	Deposit               NUMBER  NULL ,
 	PayMethod             VARCHAR2(4)  NULL 
 );
 
@@ -327,23 +313,22 @@ CREATE UNIQUE INDEX XPKRentContract ON RentContract
 
 
 
-ALTER TABLE RentContract
-	ADD CONSTRAINT  XPKRentContract PRIMARY KEY (UserID,SpaceID,RentID);
+--ALTER TABLE RentContract
+--	ADD  PRIMARY KEY (UserID,SpaceID,RentID);
 
 
 
 CREATE TABLE Reservation
 (
+	PhotoID               NUMBER  NOT NULL ,
 	ReserveID             NUMBER  NOT NULL ,
-	ServiceType           VARCHAR2(3) NULL ,
 	StartDateTime         TIMESTAMP  NULL ,
   EndDateTime           TIMESTAMP  NULL ,
-  CancelYN              VARCHAR2(1)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
+  SpaceID               NUMBER  NOT NULL ,
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
 	UserID                VARCHAR2(50)  NOT NULL ,
-	SpaceID               NUMBER  NOT NULL ,	 
-  PhotoID               NUMBER  NOT NULL 
+	CancelYN              VARCHAR2(1)  NULL 
 );
 
 
@@ -353,19 +338,19 @@ CREATE UNIQUE INDEX XPKReservation ON Reservation
 
 
 
-ALTER TABLE Reservation
-	ADD CONSTRAINT  XPKReservation PRIMARY KEY (ReserveID);
+--ALTER TABLE Reservation
+--	ADD  PRIMARY KEY (ReserveID);
 
 
 
 CREATE TABLE Space
 (
 	SpaceID               NUMBER  NOT NULL ,
-  SpaceName             VARCHAR2(100)  NULL ,
 	SpaceType             VARCHAR2(2)  NULL ,
+	BranchID              NUMBER  NOT NULL ,
+	SpaceName             VARCHAR2(100)  NULL ,
 	MinNumber             INTEGER  NULL ,
-	MaxNumber             INTEGER  NULL ,
-  BranchID              NUMBER  NOT NULL 
+	MaxNumber             INTEGER  NULL 
 );
 
 
@@ -375,8 +360,8 @@ CREATE UNIQUE INDEX XPKSpace ON Space
 
 
 
-ALTER TABLE Space
-	ADD CONSTRAINT  XPKSpace PRIMARY KEY (SpaceID);
+--ALTER TABLE Space
+--	ADD  PRIMARY KEY (SpaceID);
 
 
 
@@ -393,8 +378,8 @@ CREATE UNIQUE INDEX XPKTags ON Tags
 
 
 
-ALTER TABLE Tags
-	ADD CONSTRAINT  XPKTags PRIMARY KEY (TagID);
+--ALTER TABLE Tags
+--	ADD  PRIMARY KEY (TagID);
 
 
 
@@ -402,18 +387,17 @@ CREATE TABLE Users
 (
 	UserID                VARCHAR2(50)  NOT NULL ,
 	Passwords             VARCHAR2(50)  NOT NULL ,
-  Username              VARCHAR2(50)  NULL ,
 	Email                 VARCHAR2(50)  NULL ,
 	Phone                 VARCHAR2(50)  NULL ,
 	Gender                VARCHAR2(1)  NOT NULL ,
-  UserType              VARCHAR2(1)  NOT NULL ,
-	TermsOfUseYN          VARCHAR2(1)  NULL ,
+	UserType              VARCHAR2(1)  NOT NULL ,
+  TermsOfUseYN          VARCHAR2(1)  NULL ,
 	LoginYN               VARCHAR2(1)  NULL ,
 	ReserveYN             VARCHAR2(1)  NULL ,
 	UseSnsYN              VARCHAR2(1)  NULL ,
-	CreateDate            DATE  NULL ,
-	UpdateDate            DATE  NULL ,
-  isActive              VARCHAR2(1)  NULL 
+	CreateDate            DATE  DEFAULT SYSDATE ,
+	UpdateDate            DATE  DEFAULT SYSDATE ,
+	isActive              VARCHAR2(1)  NULL
 );
 
 
@@ -421,121 +405,94 @@ CREATE TABLE Users
 CREATE UNIQUE INDEX XPKUsers ON Users
 (UserID  ASC);
 
-
+/*
 
 ALTER TABLE Users
-	ADD CONSTRAINT  XPKUsers PRIMARY KEY (UserID);
+	ADD  PRIMARY KEY (UserID);
 
 
 
 ALTER TABLE Comments
-	ADD (CONSTRAINT  R_4 FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID) ON DELETE CASCADE);
-
-
-
-ALTER TABLE Comments
-	ADD (CONSTRAINT  R_22 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID));
 
 
 
 ALTER TABLE Follower
-	ADD (CONSTRAINT  R_5 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE Following
-	ADD (CONSTRAINT  R_6 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE Likes
-	ADD (CONSTRAINT  R_3 FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID) ON DELETE CASCADE);
-
-
-
-ALTER TABLE Likes
-	ADD (CONSTRAINT  R_23 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID));
 
 
 
 ALTER TABLE Photo
-	ADD (CONSTRAINT  R_2 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE Profile
-	ADD (CONSTRAINT  R_7 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE QnA
-	ADD (CONSTRAINT  R_17 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE QnA
-	ADD (CONSTRAINT  R_20 FOREIGN KEY (BoardID) REFERENCES QnA(BoardID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (BoardID) REFERENCES QnA(BoardID) ON DELETE SET NULL);
 
 
 
 ALTER TABLE QnAComments
-	ADD (CONSTRAINT  R_18 FOREIGN KEY (BoardID) REFERENCES QnA(BoardID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (BoardID) REFERENCES QnA(BoardID));
 
 
 
 ALTER TABLE QnAComments
-	ADD (CONSTRAINT  R_19 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE RentalHistory
-	ADD (CONSTRAINT  R_16 FOREIGN KEY (UserID,SpaceID,RentID) REFERENCES RentContract(UserID,SpaceID,RentID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID,SpaceID,RentID) REFERENCES RentContract(UserID,SpaceID,RentID));
 
 
 
 ALTER TABLE RentContract
-	ADD (CONSTRAINT  R_11 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
 
 
 
 ALTER TABLE RentContract
-	ADD (CONSTRAINT  R_12 FOREIGN KEY (SpaceID) REFERENCES Space(SpaceID) ON DELETE CASCADE);
-
-
-/*
-ALTER TABLE Reservation
-	ADD (CONSTRAINT  R_8 FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (SpaceID) REFERENCES Space(SpaceID));
 
 
 
 ALTER TABLE Reservation
-	ADD (CONSTRAINT  R_15 FOREIGN KEY (SpaceID) REFERENCES Space(SpaceID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID));
 
 
 
 ALTER TABLE Reservation
-	ADD (CONSTRAINT  R_21 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE);
-*/
+	ADD ( FOREIGN KEY (SpaceID) REFERENCES Space(SpaceID));
+
+
+
+ALTER TABLE Reservation
+	ADD ( FOREIGN KEY (UserID) REFERENCES Users(UserID));
+
 
 
 ALTER TABLE Space
-	ADD (CONSTRAINT  R_10 FOREIGN KEY (BranchID) REFERENCES Branch(BranchID) ON DELETE CASCADE);
+	ADD ( FOREIGN KEY (BranchID) REFERENCES Branch(BranchID));
 
-
-
-CREATE SEQUENCE ID_SEQ
-  START WITH 1
-  INCREMENT BY 1
-;
-
-CREATE SEQUENCE BOARD_ID_SEQ
-  START WITH 1
-  INCREMENT BY 1
-;
-
-CREATE SEQUENCE COMMENT_SEQ
-  START WITH 1
-  INCREMENT BY 1
-;
-
-
+*/

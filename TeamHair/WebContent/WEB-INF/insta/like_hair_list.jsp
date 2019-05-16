@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -8,6 +9,8 @@
       <link rel="stylesheet" href="css/style.css">
 	<!-- Header Include End -->
 
+
+<c:set var="likephotolistdto" value="${requestScope.likephotolistdto }"></c:set>
 <section class="home-banner-area relative banner-area">
 	<div class="container-fluid">
 		<div class="row  d-flex align-items-center justify-content-center">
@@ -49,16 +52,25 @@
 		<div class="row  d-flex align-items-center justify-content-center">
 			<div class="col-lg-11 col-md-6 ">
 			<div id='content'>
+			<c:forEach var="i" begin="0" end="${likephotolistdto.size()-1 }">
+			<a href="Instauserid.insta?userid=${likephotolistdto[i].userid }" class="post">
+			<div class="image" style="background-image:url('./upload/${likephotolistdto[i].filename}');"></div>
+			<ul>
+			<li><i class="fa fa-camera"></i> Normal</li>
+			<li><i class="fa fa-heart"></i> ${likephotolistdto[i].likecount }</li>
+			<li><i class="fa fa-comment"></i></li>
 			
+			</ul>
+			
+			</a>
+			
+			</c:forEach>
 			</div>
 				
 			</div>
 		</div>
 	</div>
 </section>
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 <!-- End Condition Area -->
 	
-	<script  src="js/index.js"></script>
-
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>

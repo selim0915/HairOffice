@@ -41,7 +41,7 @@ public class PhotoChartService implements Action {
     		request.setAttribute("photolist", jsonObject);
 		  		  
   		  	forward = new ActionForward();
-  			forward.setRedirect(false); //forward 방식
+  			forward.setRedirect(false);
   			forward.setPath("/WEB-INF/chart/likephoto_list.jsp");
 
 		  	}catch(Exception e){

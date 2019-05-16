@@ -28,9 +28,6 @@
 						src="./upload/${profilelist.photoName}"> <a class="instagram-card-user-name"
 						href="http://localhost:8090/TeamHair/Instauserid.insta?userid=${userlist.userId }" target="_blank">${userlist.userId }</a>
 					<div class="btn-follow">
-						<a class="btnfollow" href="GangnamBranchInfo.brh"><span>ㆍ팔로우</span></a>
-					</div>
-					<div class="btn-follow">
 						<a class="reservepopup1" href="GangnamBranchInfo.brh"><span>ㆍ예약하기</span></a>
 					</div>
 					

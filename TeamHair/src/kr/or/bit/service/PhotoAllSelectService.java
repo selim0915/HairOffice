@@ -19,55 +19,51 @@ import kr.or.bit.dto.PhotoDto;
 import kr.or.bit.dto.ProfileDto;
 import kr.or.bit.dto.UsersDto;
 
-public class PhotoAllSelectService implements Action{
+public class PhotoAllSelectService implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		
+
 		try {
-			System.out.println("PhotoAllSelectService 진입");
-			
+
 			HttpSession session = request.getSession();
 			UsersDto userDto = (UsersDto) session.getAttribute("usersdto");
 			String userid = userDto.getUserId();
-			System.out.println("userDto: "+userDto);
-			
+
 			PhotoDao photoDao = new PhotoDao();
 			List<PhotoDto> bloglist = photoDao.selectPhotoAllList(userDto.getUserId());
 			request.setAttribute("bloglist", bloglist);
-			System.out.println("bloglist: "+bloglist);
-			
+
 			LikesDao photolikeDao = new LikesDao();
 			List<LikeListDto> bloglikedto = photolikeDao.getLikeNumberListByUserId(userid);
 			request.setAttribute("bloglikedto", bloglikedto);
-			System.out.println("bloglikedto: "+bloglikedto);
-			
-			ProfileDao profileDao = new ProfileDao(); 
+
+			ProfileDao profileDao = new ProfileDao();
 			ProfileDto profileDto = profileDao.getProfilebyId(userDto.getUserId());
 			request.setAttribute("profiledto", profileDto);
-			
+
 			int followerNumber = 0;
 			int followingNumber = 0;
 			List<FollowingFollowerListDto> followerList = new ArrayList<FollowingFollowerListDto>();
 			List<FollowingFollowerListDto> followingList = new ArrayList<FollowingFollowerListDto>();
-			
+
 			FollowingFollowerDao followingfollowerDao = new FollowingFollowerDao();
 			followerNumber = followingfollowerDao.getFollowerNumberByUserId(userDto.getUserId());
 			followingNumber = followingfollowerDao.getFollowingNumberByUserId(userDto.getUserId());
-			
+
 			followerList = followingfollowerDao.getFollowerUserList(userDto.getUserId());
 			followingList = followingfollowerDao.getFollowingUserList(userDto.getUserId());
-			
+
 			request.setAttribute("followerNumber", followerNumber);
 			request.setAttribute("followingNumber", followingNumber);
 			request.setAttribute("followerList", followerList);
 			request.setAttribute("followingList", followingList);
-			
+
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/insta/instragram.jsp");
-			
-		} catch (Exception e) {	
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return forward;
