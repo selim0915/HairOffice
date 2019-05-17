@@ -13,11 +13,9 @@ public class LogOutService implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
 		try {
-			HttpSession session = request.getSession(); // servlet마다
+			HttpSession session = request.getSession();
 			session.invalidate();
-			
-			System.out.println("LogOutService");
-			
+
 			forward.setRedirect(true);
 			forward.setPath("index.jsp");
 		} catch (Exception e) {

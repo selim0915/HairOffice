@@ -36,7 +36,6 @@ public class CommentsDao{
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, photoid);
 				rs = pstmt.executeQuery();
-				System.out.println("아이디" + photoid);
 				
 				while(rs.next()) {
 					CommentsDto dto = new CommentsDto();
@@ -49,7 +48,7 @@ public class CommentsDao{
 					dto.setUserId(rs.getString("userid"));
 					dtoList.add(dto);
 				}
-				System.out.println("완료 DB");
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -71,14 +70,11 @@ public class CommentsDao{
 			//
 			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println("comments insert 시작");
-			
 			pstmt.setString(1, dto.getComments());
 			pstmt.setInt(2, dto.getPhotoId());
 			pstmt.setString(3, dto.getUserId());
 
 			row = pstmt.executeUpdate();
-			System.out.println("comments insert 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -94,8 +90,9 @@ public class CommentsDao{
 			
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			
 			String sql = "DELETE FROM COMMENTS WHERE PHOTOID=?";	
-			System.out.println("sql: "+sql);
+	
 			
 			try {
 				conn = ds.getConnection();

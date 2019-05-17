@@ -19,11 +19,11 @@ public class QnADao {
 	DataSource ds = null;
 	
 	public QnADao() throws NamingException{
-		Context context = new InitialContext(); //이름기반 검색
-		 ds = (DataSource)context.lookup("java:comp/env/jdbc/oracle"); ///jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		 ds = (DataSource)context.lookup("java:comp/env/jdbc/oracle");
 	}
 	
-	//글추가
+	
 	public int insertQnA(QnADto qna) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -33,20 +33,16 @@ public class QnADao {
 			conn = ds.getConnection();
 			String sql = "insert into qna(boardid, boardsubject, boardcontent, filename, replyref, replydepth, replyseq, createdate, updatedate, readcount, notice, userid)"
 								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,0,0,1,SYSDATE,SYSDATE,0,null,?)";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, qna.getBoardSubject());
 			pstmt.setString(2, qna.getBoardContent());
 			pstmt.setString(3, qna.getFileName());
 			pstmt.setString(4, qna.getUserID());
+			
 			row = pstmt.executeUpdate();
 
-			System.out.println("DAO 안에서의 값 확인");
-			System.out.println("subject : "+qna.getBoardSubject());
-			System.out.println("content : "+qna.getBoardContent());
-			System.out.println("userid : "+qna.getUserID());
-			System.out.println("filename : " + qna.getFileName());
-			System.out.println("DAO try문 종료");
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -76,9 +72,6 @@ public class QnADao {
 			int start = cpage * pagesize -(pagesize-1);
 			int end = cpage*pagesize;
 
-//			String sql = "select boardID, boardSubject, createDate, readCount, userID, replydepth from qna start with replyref = 0"
-//					+"connect by prior boardid = replyref order siblings by boardid DESC";
-			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, start);
@@ -87,11 +80,9 @@ public class QnADao {
 			rs = pstmt.executeQuery();
 			
 
-			System.out.println("sql rs 끝");
-			
 			while (rs.next()) {
-				System.out.println("while문 들어옴");
 				QnADto dto = new QnADto();
+				
 				dto.setBoardID(rs.getInt("BoardID"));
 				dto.setUserID(rs.getString("UserID"));
 				dto.setBoardSubject(rs.getString("BoardSubject"));
@@ -160,7 +151,6 @@ public class QnADao {
 	            do {
 	            	qna.setBoardID(rs.getInt("BoardID"));
 	            	qna.setReadCount(rs.getInt("ReadCount"));
-	            	System.out.println("DAO READCOUNT값 확인 : " + qna.getReadCount());
 	            	qna.setBoardSubject(rs.getString("boardSubject"));
 	            	qna.setBoardContent(rs.getString("boardContent"));
 	            	qna.setUserID(rs.getString("userID"));
@@ -194,13 +184,15 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
+
 			String sql = "DELETE FROM qna WHERE boardid=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, boardid);
+			
 			row = pstmt.executeUpdate();
 
-			System.out.println("delete 종료");
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -220,7 +212,9 @@ public class QnADao {
 		try {
 			conn = ds.getConnection();
 			String sql = "update qna set boardsubject=?, boardcontent=?, filename=?, readcount=? where boardID=?";
+
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, qna.getBoardSubject());
 			pstmt.setString(2, qna.getBoardContent());
 			pstmt.setString(3, qna.getFileName());
@@ -229,12 +223,6 @@ public class QnADao {
 			
 			row = pstmt.executeUpdate();
 
-			System.out.println("DAO 안에서의 값 확인");
-			System.out.println("subject : "+qna.getBoardSubject());
-			System.out.println("content : "+qna.getBoardContent());
-			System.out.println("filename : " + qna.getFileName());
-			System.out.println("boardid : "+qna.getBoardID());
-			System.out.println("DAO try문 종료");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -258,18 +246,24 @@ public class QnADao {
 		
 		try {
 				conn = ds.getConnection();
+				
 				String sql = "select CommentID, Comments, CreateDate, updateDate, BoardID, userID from QnAComments where BoardID=? order by commentid";
+				
 				pstmt = conn.prepareStatement(sql);
+				
 				pstmt.setInt(1, boardid);
+				
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
 					QnACommentsDto q = new QnACommentsDto();
+					
 					q.setCommentID(rs.getInt("CommentID"));
 					q.setComments(rs.getString("Comments"));
 					q.setCreateDate(rs.getDate("CreateDate"));
 					q.setUpdateDate(rs.getDate("UpdateDate"));
 					q.setUserID(rs.getString("userID"));
+					
 					qnacommentslist.add(q);
 				}
 		} catch (Exception e) {
@@ -292,18 +286,17 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
+			
 			String sql = "insert into qnacomments(CommentID, Comments, CreateDate, UpdateDate, BoardID, UserID) values(COMMENT_SEQ.NEXTVAL,?,SYSDATE,SYSDATE,?,?)";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, com.getComments());
 			pstmt.setInt(2, com.getBoardID());
 			pstmt.setString(3, com.getUserID());
+			
 			row = pstmt.executeUpdate();
 
-			System.out.println("DAO 안에서의 값 확인");
-			System.out.println("comments : " + com.getComments());
-			System.out.println("boardid : " + com.getBoardID());
-			System.out.println("userid : " + com.getUserID());
-			System.out.println("DAO try문 종료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -323,11 +316,15 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
+			
 			String sql = "delete from qnacomments where commentid=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, commentid);
+			
 			row = pstmt.executeUpdate();
-			System.out.println("comments delete문 완료");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -349,9 +346,12 @@ public class QnADao {
 		
 		try {
 			conn = ds.getConnection();
+			
 			String sql = "insert into qna(boardid, boardsubject, boardcontent, filename, replyref, replydepth, replyseq, createdate, updatedate, readcount, notice, userid)"
 								+ "values(BOARD_ID_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,SYSDATE,0,null,?)";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, qna.getBoardSubject());
 			pstmt.setString(2, qna.getBoardContent());
 			pstmt.setString(3, qna.getFileName());
@@ -359,15 +359,9 @@ public class QnADao {
 			pstmt.setInt(5, depth+1);
 			pstmt.setInt(6, seq+1);
 			pstmt.setString(7, qna.getUserID());
+			
 			row = pstmt.executeUpdate();
 
-			System.out.println("DAO 안에서의 값 확인");
-			System.out.println("subject : "+qna.getBoardSubject());
-			System.out.println("content : "+qna.getBoardContent());
-			System.out.println("userid : "+qna.getUserID());
-			System.out.println("filename : " + qna.getFileName());
-			System.out.println("DAO try문 종료");
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

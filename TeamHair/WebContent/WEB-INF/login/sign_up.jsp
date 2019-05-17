@@ -57,7 +57,7 @@
 								<div class="form-group">
 									<div class="single-element-widget">
 										<div class="default-select-sub" id="default-select-sub">
-											<select>
+											<select id="gender" name="gender">
 							      			<option value="M">MALE</option>
 							      			<option value="F" selected>FEMALE</option>
 											</select>
@@ -68,7 +68,7 @@
 								<div class="form-group">
 									<div class="single-element-widget">
 										<div class="default-select-sub" id="default-select-sub">
-											<select>
+											<select id="usertype" name="usertype">
 										      <option value="U" selected>User</option>
 										      <option value="H">Hair Designer</option>
 										      <option value="M">Administrator</option>

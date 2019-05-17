@@ -45,7 +45,9 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 }
 
 .profile-image img {
+	max-width: 250px;
     border-radius: 50%;
+    max-height: 250px;
 }
 
 .profile-user-settings,
@@ -63,6 +65,34 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     display: inline-block;
     font-size: 3.2rem;
     font-weight: 300;
+}
+
+.profile-edit-btn-followerid {
+    font-size: 2.1rem;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-left: 2rem;
+    font-weight: bold;
+    background: #3897f0;
+    border-color: #3897f0;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-edit-btn-followingid {
+    font-size: 2.1rem;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-left: 2rem;
+    font-weight: bold;
+    background: #f8f8f8;
+    border-color: #dbdbdb;
+    color: #262626;
+    margin-bottom: 10px;
 }
 
 .profile-edit-btn {

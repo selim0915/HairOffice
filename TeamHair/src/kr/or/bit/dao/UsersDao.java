@@ -33,7 +33,7 @@ public class UsersDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getUserId());
@@ -71,7 +71,7 @@ public class UsersDao {
 				     " FROM USERS WHERE USERID= ? ";
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userid);
@@ -106,8 +106,8 @@ public class UsersDao {
 	}
 
 	public List<UsersDto> getUserList () {
-		List<UsersDto> dtoList = new ArrayList<UsersDto>();
 		
+		List<UsersDto> dtoList = new ArrayList<UsersDto>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -118,9 +118,8 @@ public class UsersDao {
 
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
-			
 			
 			rs = pstmt.executeQuery();
 			
@@ -156,6 +155,7 @@ public class UsersDao {
 	}
 
 	public int updateUsers(UsersDto dto) {
+		
 		int row = 0;
 		
 		Connection conn = null;
@@ -176,7 +176,7 @@ public class UsersDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getUserName());
@@ -198,11 +198,11 @@ public class UsersDao {
 			try {pstmt.close();} catch (Exception e){};
 			try {conn.close();} catch (Exception e){};
 		}
-		
 		return row;
 	}
 
 	public int changePassword(String userid, String password) {
+		
 		int row = 0;
 		
 		Connection conn = null;
@@ -214,7 +214,7 @@ public class UsersDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, password);
@@ -242,7 +242,7 @@ public class UsersDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userid);

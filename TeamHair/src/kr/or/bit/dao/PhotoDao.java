@@ -18,8 +18,8 @@ public class PhotoDao {
 	DataSource ds = null;
 
 	public PhotoDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle");
 	}
 
 	//게시글 전체 조회
@@ -37,7 +37,7 @@ public class PhotoDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userid);
 			rs = pstmt.executeQuery();
-			System.out.println("아이디" + userid);
+			
 			
 			while(rs.next()) {
 				PhotoDto dto = new PhotoDto();
@@ -49,7 +49,6 @@ public class PhotoDao {
 				dto.setUserId(rs.getString("userId"));
 				dtoList.add(dto);
 			}
-			System.out.println("완료 DB");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -120,17 +119,13 @@ public class PhotoDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "DELETE FROM PHOTO WHERE USERID=? AND PHOTOID=?";	
-		System.out.println("sql: "+sql);
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userid);
 			pstmt.setInt(2, photoid);
-			System.out.println("photoid");
 			row = pstmt.executeUpdate();
-			System.out.println("aa");
-			System.out.println("row: "+row);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
-
+	<input type="hidden" id="login" value="${sessionScope.usersdto.userId}">
 	<style>
 		#qnalist {
 			margin: 5%;
@@ -18,7 +18,18 @@
 			margin: 1%;
 		}
 	</style>
-		
+	
+	<script type="text/javascript">
+	function writeqna(){
+		if($('#login').val()==""){
+			alert('비로그인은 글작성불가');
+			return false;
+		}else{
+			location.href="QnAwrite.do";
+		}
+	}
+	</script>
+	
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
 <hr>
@@ -85,7 +96,7 @@
 		</div>
 <hr>
 <div class="qna-sub">
-<input type="button" class="dropdown" value="글쓰기" onclick="location='QnAwrite.do'">
+<input type="button" class="dropdown" value="글쓰기" onclick="writeqna()">
 </div>
 	<jsp:include page="/WEB-INF/common/footer.jsp"></jsp:include>
 

@@ -17,8 +17,8 @@
 			<div class="swiper-container main-slider loading">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(https://www.instagram.com/p/BZIbWk7gePR/media?size=l)">
+        <img src="https://www.instagram.com/p/BZIbWk7gePR/media?size=l" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Shaun Matthews</p>
@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(http://evanstyle.co.kr/web/upload/NNEditor/20180829/1_shop1_001916.jpg)">
+        <img src="http://evanstyle.co.kr/web/upload/NNEditor/20180829/1_shop1_001916.jpg" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Alexis Berry</p>
@@ -35,8 +35,8 @@
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(http://evanstyle.co.kr/web/upload/NNEditor/20190308/4_shop1_102154.jpg)">
+        <img src="http://evanstyle.co.kr/web/upload/NNEditor/20190308/4_shop1_102154.jpg" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Billie	Pierce</p>
@@ -44,20 +44,11 @@
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(https://post-phinf.pstatic.net/MjAxODAxMjJfMTgy/MDAxNTE2NTk2MDI3MTM1.LbDYTZltsmI2Sj0WgzP-Kib7Di9BbjaWDEWb-aNj8fkg.VoYcnkoiJrOm0Gsu29qqMN4PjfEGMu31LFytb3OnGhMg.JPEG/image_8905087921516595875437.jpg?type=w1200)">
+        <img src="https://post-phinf.pstatic.net/MjAxODAxMjJfMTgy/MDAxNTE2NTk2MDI3MTM1.LbDYTZltsmI2Sj0WgzP-Kib7Di9BbjaWDEWb-aNj8fkg.VoYcnkoiJrOm0Gsu29qqMN4PjfEGMu31LFytb3OnGhMg.JPEG/image_8905087921516595875437.jpg?type=w1200" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Trevor	Copeland</p>
-        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
-      </figure>
-      <div class="content">
-        <p class="title">Bernadette	Newman</p>
         <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
       </div>
     </div>
@@ -71,43 +62,35 @@
 <div class="swiper-container nav-slider loading">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(https://www.instagram.com/p/BZIbWk7gePR/media?size=l)">
+        <img src="https://www.instagram.com/p/BZIbWk7gePR/media?size=l" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Shaun Matthews</p>
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(http://evanstyle.co.kr/web/upload/NNEditor/20180829/1_shop1_001916.jpg)">
+        <img src="http://evanstyle.co.kr/web/upload/NNEditor/20180829/1_shop1_001916.jpg" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Alexis Berry</p>
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(http://evanstyle.co.kr/web/upload/NNEditor/20190308/4_shop1_102154.jpg)">
+        <img src="http://evanstyle.co.kr/web/upload/NNEditor/20190308/4_shop1_102154.jpg" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Billie	Pierce</p>
       </div>
     </div>
     <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
+      <figure class="slide-bgimg" style="background-image:url(https://post-phinf.pstatic.net/MjAxODAxMjJfMTgy/MDAxNTE2NTk2MDI3MTM1.LbDYTZltsmI2Sj0WgzP-Kib7Di9BbjaWDEWb-aNj8fkg.VoYcnkoiJrOm0Gsu29qqMN4PjfEGMu31LFytb3OnGhMg.JPEG/image_8905087921516595875437.jpg?type=w1200)">
+        <img src="https://post-phinf.pstatic.net/MjAxODAxMjJfMTgy/MDAxNTE2NTk2MDI3MTM1.LbDYTZltsmI2Sj0WgzP-Kib7Di9BbjaWDEWb-aNj8fkg.VoYcnkoiJrOm0Gsu29qqMN4PjfEGMu31LFytb3OnGhMg.JPEG/image_8905087921516595875437.jpg?type=w1200" class="entity-img" />
       </figure>
       <div class="content">
         <p class="title">Trevor	Copeland</p>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
-        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
-      </figure>
-      <div class="content">
-        <p class="title">Bernadette	Newman</p>
       </div>
     </div>
   </div>
@@ -125,10 +108,10 @@
           <!-- 내용시작2 -->
 			
 			<div class="section-top">
-				<h2 class="mb-30">업무공간 가격</h2>
+				<h2 class="mb-30">디자이너</h2>
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
+						<img src="https://i.pinimg.com/564x/0d/ab/d9/0dabd976affb0792019369f6dd5280a7.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
 					<span>우세림 디자이너</span>
@@ -139,12 +122,11 @@
 			<div class="section-top">
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
+						<img src="https://i.pinimg.com/564x/59/9f/35/599f3580fd498a8f2de4afabac89b555.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
-						<span>전용 데스크</span>
-					<span>기본 요금 월 ₩450,000</span>
-						<p>공용 오피스 내에서 전용 데스크 이용. 개인 모니터, 식물 등을 가져올 수 있는 자신만의 공간.
+						<span>우세림 디자이너</span>
+						<p>청담동에서 3년간 연예인 헤어를 담당.
 					</div>
 				</div>
 				
@@ -152,12 +134,11 @@
 			<div class="section-top">
 				<div class="row">
 					<div class="col-md-5">
-						<img src="img/elements/d.jpg" alt="" class="img-fluid-sub">
+						<img src="https://i.pinimg.com/564x/d1/df/87/d1df87668423b3137765387ff3a606d5.jpg" alt="" class="img-fluid-sub">
 					</div>
 					<div class="col-md-7 mt-sm-20">
-						<span>핫 데스크</span>
-					<span>기본 요금 월 ₩400,000</span>
-						<p>라운지에 있는 개방형 업무공간 이용. 노트북만 가져와 빈자리를 택해 업무 시작.
+						<span>우세림 디자이너</span>
+						<p>청담동에서 3년간 연예인 헤어를 담당.
 					</div>
 				</div>
 				
@@ -197,89 +178,95 @@
 			<div class="right-content">
 				<div class="form-content">
 					<h1>강남</h1>
-					<div class="mt-10">
-						<input type="text" name="name" placeholder="이름"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'"
-							required class="single-input-secondary-sub-infor">
-					</div>
-					<div class="mt-10">
-						<input type="text" name="id" placeholder="아이디"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
-							required class="single-input-secondary-sub-infor">
-					</div>
-					<div class="mt-10">
-						<input type="text" name="phonenumber" placeholder="전화번호"
-							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '전화번호'" required
-							class="single-input-secondary-sub-infor">
-					</div>
+					<form action="Reservation.brh" method="POST" class="register-form" id="register-form">
 					
-					<div class="single-element-widget-sub-choice">
-						<span>디자이너 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">[VIP 전문]이교선 디자이너</option>
-								<option value="1">디자이너 선택</option>
-								<option value="1">우세림 디자이너</option>
-								<option value="1">신지혁 디자이너</option>
-								<option value="1">정일찬 디자이너</option>
-							</select>
+						<div class="mt-10">
+							<input type="text" name="username" value="${sessionScope.usersdto.userName}" readonly
+								onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'"
+								required class="single-input-secondary-sub-infor">
 						</div>
-					</div>
+						<div class="mt-10">
+							<input type="text" name="userid" value="${sessionScope.usersdto.userId}" readonly
+								onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'"
+								required class="single-input-secondary-sub-infor">
 						</div>
-					</div>
-					
-					<div class="single-element-widget-sub-choice">
-						<span>시술 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">시술 선택</option>
-								<option value="1">[페스티벌st]시.선.강.탈(펌+클리닉)</option>
-								<option value="1">매직셋팅</option>
-								<option value="1">발레아쥬+염색</option>
-								<option value="1">훈남펌</option>
-							</select>
-						</div>
-					</div>
-						</div>
-					</div>
-					
-					<div class="input-daterange input-group" id="flight-datepicker">
-						<div class="form-item">
-							<label>렌탈 시작</label><span class="fontawesome-calendar"></span>
-							<input class="input-sm form-control" type="text" id="start-date"
-								name="start" placeholder="날짜 선택"
-								data-date-format="DD, MM d" /><span
-								class="date-text date-depart"></span>
+						<div class="mt-10">
+							<input type="text" name="phone" value="${sessionScope.usersdto.phone}" readonly
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = '전화번호'" required
+								class="single-input-secondary-sub-infor">
 						</div>
 						
-					</div>
-					
-					<div class="single-element-widget-sub-choice">
-						<span>시간 선택</span>
-						<div class="form-group">
-							<div class="single-element-widget">
-						<div class="default-select-sub" id="default-select-sub">
-							<select>
-								<option value="1">AM 10:00</option>
-								<option value="1">PM 12:00</option>
-								<option value="1">PM 02:00</option>
-								<option value="1">PM 04:00</option>
-								<option value="1">PM 06:00</option>
-								<option value="1">PM 08:00</option>
-							</select>
+						<div class="single-element-widget-sub-choice">
+							<span>디자이너 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub">
+								<select  id="designer" name="designer">
+									<option value="[VIP 전문]이교선 디자이너" selected>[VIP 전문]이교선 디자이너</option>
+									<option value="우세림 디자이너">우세림 디자이너</option>
+									<option value="신지혁 디자이너">신지혁 디자이너</option>
+									<option value="정일찬 디자이너">정일찬 디자이너</option>
+								</select>
+							</div>
 						</div>
-					</div>
+							</div>
 						</div>
-					</div>
-					<div class="search-btn-infor">
-							<a href="#" class="genric-btn info circle arrow">예약하기<span
-								class="lnr lnr-arrow-right"></span></a>
+						
+						<div class="single-element-widget-sub-choice">
+							<span>시술 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub">
+								<select  id="servicetype" name="servicetype">
+									<option value="H01" selected>[페스티벌st]시.선.강.탈(펌+클리닉)</option>
+									<option value="H02">매직셋팅</option>
+									<option value="H03">발레아쥬+염색</option>
+									<option value="H04">훈남펌</option>
+								</select>
+							</div>
 						</div>
+							</div>
+						</div>
+						
+						<div class="input-daterange input-group" id="flight-datepicker">
+							<div class="form-item">
+								<label>예약일</label><span class="fontawesome-calendar"></span>
+								<input class="input-sm form-control" type="text" id="start_date"
+									name="start_date" placeholder="날짜 선택"
+									data-date-format="DD, MM d" /><span
+									class="date-text date-depart"></span>
+							</div>
+							
+						</div>
+						
+						<div class="single-element-widget-sub-choice">
+							<span>시간 선택</span>
+							<div class="form-group">
+								<div class="single-element-widget">
+							<div class="default-select-sub" id="default-select-sub">
+								<select id="time" name="time">
+									<option value="10">AM 10:00</option>
+									<option value="12">PM 12:00</option>
+									<option value="14">PM 02:00</option>
+									<option value="16">PM 04:00</option>
+									<option value="18">PM 06:00</option>
+									<option value="20">PM 08:00</option>
+								</select>
+							</div>
+						</div>
+							</div>
+						</div>
+					<!-- 
+						<div class="search-btn-infor">
+								<a href="#" class="genric-btn info circle arrow">예약하기<span
+									class="lnr lnr-arrow-right"></span></a>
+						</div>
+					 -->	
+						<div class="form-group form-button">
+	                        <input type="submit" name="searchspace" id="searchspace" class="btn btn-primary btn-lg" value="예약하기"/>
+	                    </div>
+					</form>					
 				</div>
 			</div>
 		</div>

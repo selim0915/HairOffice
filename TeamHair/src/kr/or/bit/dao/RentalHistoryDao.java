@@ -19,8 +19,8 @@ public class RentalHistoryDao {
 	DataSource ds = null;
 
 	public RentalHistoryDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 
 	//RentContract 데이터 삽입
@@ -36,7 +36,7 @@ public class RentalHistoryDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, dto.getRentId());
@@ -47,7 +47,7 @@ public class RentalHistoryDao {
 			pstmt.setDouble(6, dto.getDiscount());
 			pstmt.setString(7, dto.getPayMethod());
 			
-			row=pstmt.executeUpdate();
+			row = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class RentalHistoryDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, rentId);
@@ -104,8 +104,8 @@ public class RentalHistoryDao {
 	}
 
 	public List<RentalHistoryDto> getRentalHistoryList () {
-		List<RentalHistoryDto> dtoList = new ArrayList<RentalHistoryDto>();
 		
+		List<RentalHistoryDto> dtoList = new ArrayList<RentalHistoryDto>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -116,9 +116,8 @@ public class RentalHistoryDao {
 
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
-			
 			
 			rs = pstmt.executeQuery();
 			
@@ -146,8 +145,6 @@ public class RentalHistoryDao {
 		return dtoList;
 	}
 	
-	//===============================================================================
-	
 	public int updateRentalHistory(RentalHistoryDto dto, int rentId, String userId, int spaceId, String basedate ) {
 		int row = 0;
 		
@@ -163,11 +160,9 @@ public class RentalHistoryDao {
 				     "     PAYMETHOD = ? \r\n" + 
 				     " WHERE RENTID = ? AND USERID = ? AND SPACEID = ? AND BASEDATE = ?  \r\n" ; 
 				 
-				 
-		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 	
 			pstmt.setString(1, dto.getUserId());
@@ -206,7 +201,7 @@ public class RentalHistoryDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, rentid);

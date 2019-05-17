@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%
+	int cpage = (int)request.getAttribute("cpage");
+%>
 <jsp:include page="/WEB-INF/common/header.jsp"></jsp:include>
 <head>
 	<meta charset="UTF-8">
@@ -15,7 +18,8 @@
 <body>
 <hr>
 <c:set var="qna" value="${requestScope.qna}"></c:set>
-<form action="QnAupdate.do" method="post" id="frm" enctype="Multipart/form-data">
+<form action="QnAupdate.do?cpage=${cpage }" method="post" id="frm" enctype="Multipart/form-data">
+<input type="hidden" value="${cpage }" id="cpage">
 		<table>
 			<tr>
 				<td style="width:10%;">작성자</td>

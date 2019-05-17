@@ -6,8 +6,9 @@
 <c:set var="photolist" value="${requestScope.photolist}" />
 <c:set var="commentslist" value="${requestScope.commentslist}" />
 <c:set var="likecount" value="${requestScope.likecount }" />
+<c:set var="profilelist" value="${requestScope.profilelist }" />
 
-<fmt:formatDate var="photodate" value="${photolist.updateDate}" pattern="yyyy년MM월dd일"/>
+<fmt:formatDate var="photodate" value="${photolist.updateDate}" pattern="yyyy년MM월dd일 HH:mm"/>
 
 <div class="popup animationClose">
 	<div class="col-lg-8 col-md-7 col-xs-7 col-sm-7 imgsession">
@@ -18,13 +19,14 @@
 		<div class="insta-right">
 			<div class="instagram-card">
 				<div class="">
-					<a class="btnclose" href="#" onclick="btnclose()"><i
+					<a class="btnclose" href="#" onclick="btnclose();return false;"><i
 						class="fas fa-times"></i></a>
 				</div>
+
 				<div class="instagram-card-header">
 					<img class="instagram-card-user-image rounded-circle"
-						src="img/signup.jpg"> <a class="instagram-card-user-name"
-						href="https://www.instagram.com/pictoline/" target="_blank">${sessionScope.usersdto.userId }</a>
+						src="./upload/${profilelist.photoName}"> <a class="instagram-card-user-name"
+						href="Insta.insta" target="_blank">${sessionScope.usersdto.userId }</a>
 					<div class="instagram-card-content">
 						<a class="reservepopup" href="GangnamBranchInfo.brh"><span>ㆍ예약하기</span></a>
 					</div>
@@ -38,13 +40,13 @@
 
 					<p>
 						<a class="user-comments"
-							href="https://www.instagram.com/p/BeTEpqiFku8/?taken-by=pictoline">${sessionScope.usersdto.userId }
+							href="Insta.insta">${sessionScope.usersdto.userId }
 						</a>${photolist.description}
 					</p>
 					<p class="comments">${photodate }</p>
 					<div class="comment-append" id="comment-append">
 						<c:forEach var="i" begin="0" end="${commentslist.size()}">
-						<fmt:formatDate var="commentsdate" value="${commentslist[i].updateDate}" pattern="yyyy년MM월dd일"/>
+						<fmt:formatDate var="commentsdate" value="${commentslist[i].updateDate}" pattern="yyyy년MM월dd일 HH:mm"/>
 							<p>
 								<a class="user-comments" href="#">${commentslist[i].userId}</a>
 								${commentslist[i].comments}
@@ -70,7 +72,7 @@
 					<input class="instagram-card-input" type="text"
 						placeholder="댓글 달기..."> <a class="instagram-card-icon"
 						href="#" onclick="comments(${photolist.photoId});return false;"><i
-						class="fas fa-pencil-alt"></i></a>
+						class="fas fa-feather"></i></a>
 				</div>
 			</div>
 		</div>

@@ -41,9 +41,7 @@ public class CommentsInsertService implements Action{
 			CommentsDao commentsDao = new CommentsDao();
 			List<CommentsDto> commentslist = commentsDao.selectCommentsAllList(photoid);
 			request.setAttribute("commentslist", commentslist);
-			System.out.println("commentslist: "+commentslist);
 			
-			System.out.println(commentslist);
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/json/commentsList.jsp");
 

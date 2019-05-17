@@ -19,8 +19,8 @@ public class ReservationDao {
 	DataSource ds = null;
 
 	public ReservationDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 
 	//RentContract 데이터 삽입
@@ -30,24 +30,25 @@ public class ReservationDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = " INSERT INTO RESERVATION(RESERVEID, STARTDATETIME, ENDDATETIME, CANCELYN, CREATEDATE, UPDATEDATE, USERID, SPACEID, PHOTOID) \r\n" + 
-				     " VALUES(ID_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, SYSDATE, ?, ?, ?) \r\n" ; 
+		String sql = " INSERT INTO RESERVATION(RESERVEID, SERVICETYPE, STARTDATETIME, ENDDATETIME, CANCELYN, CREATEDATE, UPDATEDATE, USERID, SPACEID, PHOTOID) \r\n" + 
+				     " VALUES(ID_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, SYSDATE, ?, ?, ?) \r\n" ; 
 				
 				
 		
 		try {
 			conn = ds.getConnection();
-			//
+			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setTimestamp(1, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDateTime()));
-			pstmt.setTimestamp(2, TeamConvert.dateFromUtitlToTimestamp(dto.getEndDateTime()));
-			pstmt.setString(3, dto.getCancelYn());
-			pstmt.setString(4, dto.getUserId());
-			pstmt.setInt(5, dto.getSpaceId());
-			pstmt.setInt(6, dto.getPhotoId());
+			pstmt.setString(1, dto.getServiceType());
+			pstmt.setTimestamp(2, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDateTime()));
+			pstmt.setTimestamp(3, TeamConvert.dateFromUtitlToTimestamp(dto.getEndDateTime()));
+			pstmt.setString(4, dto.getCancelYn());
+			pstmt.setString(5, dto.getUserId());
+			pstmt.setInt(6, dto.getSpaceId());
+			pstmt.setInt(7, dto.getPhotoId());
 			
-			row=pstmt.executeUpdate();
+			row = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +61,7 @@ public class ReservationDao {
 	}
 
 	public ReservationDto getReservationbyReserveId (int reserveId) {
+		
 		ReservationDto dto = new ReservationDto();
 		
 		Connection conn = null;
@@ -71,7 +73,7 @@ public class ReservationDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, reserveId);
@@ -104,7 +106,6 @@ public class ReservationDao {
 		
 		List<ReservationDto> dtoList = new ArrayList<ReservationDto>();
 		
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -115,9 +116,8 @@ public class ReservationDao {
 
 		try {
 			conn = ds.getConnection();
-			//
-			pstmt = conn.prepareStatement(sql);
-			
+		
+			pstmt = conn.prepareStatement(sql);	
 			
 			rs = pstmt.executeQuery();
 			
@@ -152,7 +152,6 @@ public class ReservationDao {
 		
 		List<ReservationDto> dtoList = new ArrayList<ReservationDto>();
 		
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -162,9 +161,8 @@ public class ReservationDao {
 
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
-			
 			
 			rs = pstmt.executeQuery();
 			
@@ -210,7 +208,7 @@ public class ReservationDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setTimestamp(1, TeamConvert.dateFromUtitlToTimestamp(dto.getStartDateTime()));
@@ -231,7 +229,6 @@ public class ReservationDao {
 	}
 
 
-	
 	public int deleteReservation(int reserveId) {
 		int row = 0;
 		
@@ -242,7 +239,7 @@ public class ReservationDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, reserveId);

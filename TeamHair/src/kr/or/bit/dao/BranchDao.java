@@ -112,7 +112,6 @@ public class BranchDao {
 			
 			while(rs.next()) {
 				BranchDto dto = new BranchDto();
-				System.out.println(rs.getInt("BranchID"));
 				dto.setBranchID(rs.getInt("BranchID"));
 				dto.setBranchName(rs.getString("BranchName"));
 				dto.setAddress1(rs.getString("Address1"));
@@ -121,7 +120,6 @@ public class BranchDao {
 				dto.setPhone(rs.getString("Phone"));
 				dto.setMap_X(rs.getInt("Map_X"));
 				dto.setMap_Y(rs.getInt("Map_Y"));
-				System.out.println(dto.toString());
 				dtoList.add(dto);
 			}
 		} catch (Exception e) {

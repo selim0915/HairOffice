@@ -6,6 +6,6 @@
     
 	<c:set var="likecount" value="${requestScope.likecount}" />
 	
-	<a class="user-comments" href="#">${likecount } 좋아요</a>
+	<a class="user-comments" href="#">좋아요 ${likecount }개</a>
 	
 	

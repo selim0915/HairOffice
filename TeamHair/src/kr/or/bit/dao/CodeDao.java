@@ -22,7 +22,7 @@ public class CodeDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
 	}
 
-	public List<CodeDto> getCodeListById (String userid) {
+	public List<CodeDto> getCodeListByClassCode(String classCode) {
 		
 		
 		List<CodeDto> dtoList = new ArrayList<CodeDto>();
@@ -38,7 +38,7 @@ public class CodeDao {
 			//
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, userid);
+			pstmt.setString(1, classCode);
 			
 			rs = pstmt.executeQuery();
 			
@@ -63,5 +63,43 @@ public class CodeDao {
 		return dtoList;
 	}
 
-	
+
+	public CodeDto getCodeListByCode(String code) {
+		
+		
+		CodeDto dto = new CodeDto();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT CLASSCODE, CLASSNAME, CODE, CODENAME FROM CODE WHERE CODE = ? \r\n"; 
+				
+		try {
+			conn = ds.getConnection();
+			//
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, code);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setClassCode(rs.getString("classcode"));
+				dto.setClassName(rs.getString("classname"));
+				dto.setCode(rs.getString("code"));
+				dto.setCodeName(rs.getString("codename"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dto;
+	}
+
 }

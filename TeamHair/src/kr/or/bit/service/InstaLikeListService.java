@@ -15,6 +15,7 @@ public class InstaLikeListService implements Action{
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		ActionForward forward = new ActionForward();
         JSONObject jsonObject = new JSONObject();
 		
@@ -22,14 +23,10 @@ public class InstaLikeListService implements Action{
 			int photoid = Integer.parseInt(request.getParameter("photoid"));
 			String userid = request.getParameter("userid");
 
-			System.out.println("들어옴");
-			
 			LikesDao likesdao = new LikesDao();
 			
 			LikesDto likeslist = likesdao.getLikesListByPhotoidUserid(photoid, userid);
 			
-			System.out.println("널값??" + likeslist);
-				
   		        //deptno의 한명 정보가 들어갈 JSONObject 선언
 			jsonObject = new JSONObject();
 			jsonObject.put("photoid", likeslist.getPhotoId());
@@ -37,12 +34,11 @@ public class InstaLikeListService implements Action{
 			jsonObject.put("likeyn", likeslist.getLikeYn());
 			jsonObject.put("wasuser", likeslist.getWasUser());
   		        
-			System.out.println("전체 : " + jsonObject);
-		  	
    		 	request.setAttribute("likeslist", jsonObject);
 		  		  
  		  	 forward = new ActionForward();
- 			 forward.setRedirect(false); //forward 방식
+ 		  	 
+ 			 forward.setRedirect(false); 
  			 forward.setPath("/WEB-INF/json/LikesList.jsp");
 
 		} catch (Exception e) {	

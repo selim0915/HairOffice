@@ -28,23 +28,21 @@ public class LoginOkService implements Action {
 			dto = dao.getUserbyId(id);
 			
 			
-			if(dto.getUserId() != null) { // 회원인 경우
-				if(pwd.equalsIgnoreCase(dto.getPasswords())) { // 비밀번호가 맞는 경우
+			if(dto.getUserId() != null) { 
+				if(pwd.equalsIgnoreCase(dto.getPasswords())) { 
 					
-					HttpSession session = request.getSession(); // servlet마다
+					HttpSession session = request.getSession(); 
 					session.setAttribute("usersdto", dto);
 					forward.setRedirect(true);
 					forward.setPath("index.jsp");
 					
 				} else { // 비밀번호가 틀린 경우
-					System.out.println("비밀번호가 틀린 경우");
 					
 					forward.setRedirect(false);
 					forward.setPath("/WEB-INF/login/log_in.jsp");	
 					
 				}
 			} else { // 회원이 아닌 경우
-				System.out.println("회원이 아닌 경우");
 				
 				forward.setRedirect(false);
 				forward.setPath("/WEB-INF/login/sign_up.jsp");

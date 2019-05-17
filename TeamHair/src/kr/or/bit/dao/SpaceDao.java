@@ -4,20 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import kr.or.bit.dto.SearchSpaceDto;
 import kr.or.bit.dto.SpaceDto;
+import kr.or.bit.utils.TeamConvert;
 
 public class SpaceDao {
 	DataSource ds = null;
 
 	public SpaceDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 
 	//Users 데이터 삽입
@@ -32,7 +35,7 @@ public class SpaceDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, dto.getSpaceId());
@@ -54,6 +57,7 @@ public class SpaceDao {
 	}
 	
 	public SpaceDto getSpaceById (int spaceID) {
+		
 		SpaceDto dto = new SpaceDto();
 		
 		Connection conn = null;
@@ -63,7 +67,7 @@ public class SpaceDao {
 		String sql = "SELECT SpaceID, SpaceType, BranchID, SpaceName FROM Space WHERE SpaceID=?";
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, spaceID);
@@ -75,7 +79,7 @@ public class SpaceDao {
 				dto.setSpaceType(rs.getString("SpaceType"));
 				dto.setBranchId(rs.getInt("BranchID"));
 				dto.setSpaceName(rs.getString("SpaceName"));
-							
+	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,8 +93,8 @@ public class SpaceDao {
 	}
 
 	public List<SpaceDto> getSpaceList () {
-		List<SpaceDto> dtoList = new ArrayList<SpaceDto>();
 		
+		List<SpaceDto> dtoList = new ArrayList<SpaceDto>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -124,6 +128,106 @@ public class SpaceDao {
 		
 		return dtoList;
 	}
+	
+	public List<SearchSpaceDto> getSpaceAvailableList (int numberOfPersons, Date startPeriod, Date endPeriod ) {
+		
+		List<SearchSpaceDto> dtoList = new ArrayList<SearchSpaceDto>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT B.BRANCHNAME, S.SPACEID, S.SPACENAME, C.CODE, C.CODENAME \r\n" + 
+					" FROM SPACE S JOIN CODE C ON S.SPACETYPE = C.CODE         \r\n" + 
+					"              JOIN BRANCH B ON S.BRANCHID = B.BRANCHID    \r\n" + 
+					" WHERE S.MINNUMBER >= ?   \r\n" + 
+					" AND S.SPACEID NOT IN (   \r\n" + 
+					"   SELECT SPACEID         \r\n" + 
+					"   FROM RENTCONTRACT      \r\n" + 
+					"   WHERE STARTDATE BETWEEN ? AND ? \r\n" + 
+					"   OR ENDDATE BETWEEN ? AND ?      \r\n" + 
+					") ORDER BY S.MINNUMBER  \r\n" ; 
+						
+		try {
+			conn = ds.getConnection();
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, numberOfPersons);
+			pstmt.setDate(2, TeamConvert.dateFromUtilToSql(startPeriod));
+			pstmt.setDate(3, TeamConvert.dateFromUtilToSql(endPeriod));
+			pstmt.setDate(4, TeamConvert.dateFromUtilToSql(startPeriod));
+			pstmt.setDate(5, TeamConvert.dateFromUtilToSql(endPeriod));
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				SearchSpaceDto dto = new SearchSpaceDto();
+				
+				dto.setBranchName(rs.getString("branchname"));
+				dto.setSpaceId(rs.getInt("spaceid"));
+				dto.setSpaceName(rs.getString("spacename"));
+				dto.setCode(rs.getString("code"));
+				dto.setCodeName(rs.getString("codename"));
+				
+				dtoList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dtoList;
+	}
+
+
+	public List<SearchSpaceDto> getSpaceAvailableListBySpaceType (String spaceType) {
+		
+		List<SearchSpaceDto> dtoList = new ArrayList<SearchSpaceDto>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT B.BRANCHNAME, S.SPACEID, S.SPACENAME, C.CODE, C.CODENAME    \r\n" + 
+				     " FROM SPACE S JOIN CODE C ON S.SPACETYPE = C.CODE      \r\n" + 
+				     "             JOIN BRANCH B ON S.BRANCHID = B.BRANCHID  \r\n" + 
+				     " WHERE S.SPACETYPE = ?                                 \r\n" + 
+				     " ORDER BY S.MINNUMBER  "; 
+						
+		try {
+			conn = ds.getConnection();
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, spaceType);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				SearchSpaceDto dto = new SearchSpaceDto();
+				
+				dto.setBranchName(rs.getString("branchname"));
+				dto.setSpaceId(rs.getInt("spaceid"));
+				dto.setSpaceName(rs.getString("spacename"));
+				dto.setCode(rs.getString("code"));
+				dto.setCodeName(rs.getString("codename"));
+				
+				dtoList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch (Exception e){};
+			try {pstmt.close();} catch (Exception e){};
+			try {conn.close();} catch (Exception e){};
+		}
+		
+		return dtoList;
+	}
 
 	public int updateSpace(SpaceDto dto) {
 		int row = 0;
@@ -140,7 +244,7 @@ public class SpaceDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, dto.getSpaceId());
@@ -170,7 +274,7 @@ public class SpaceDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+	
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, spaceid);
