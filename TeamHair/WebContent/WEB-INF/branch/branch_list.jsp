@@ -220,7 +220,7 @@
       </div>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div>
-      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='seoulgangnam.jsp'">지점 둘러보기</button>
+      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='GangnamBranchInfo.brh'">지점 둘러보기</button>
       </div>
 
     </div>
@@ -273,7 +273,7 @@
       </div>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div>
-      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='seoulgangnam.jsp'">지점 둘러보기</button>
+      <button type="button" class="genric-btn primary_sub radius" onclick="location.href='GangnamBranchInfo.brh'">지점 둘러보기</button>
       </div>
 
     </div>

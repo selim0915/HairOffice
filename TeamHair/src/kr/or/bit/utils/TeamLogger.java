@@ -7,21 +7,20 @@ import java.io.IOException;
 import java.util.Date;
 
 public class TeamLogger {
-	static String path="C:\\Temp\\log\\";
-	
+	static String path = "C:\\Temp\\log\\";
+
 	public static void getLogger(String path) {
 		File files = new File(path);
-		if(!files.exists()) {
+		if (!files.exists()) {
 			try {
 				files.mkdir();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
 		}
-		
+
 	}
-	
+
 	public static void info(String contents) {
 		String fileName = path + "log." + TeamFormat.dateFormat(new Date());
 		FileWriter fw = null;
@@ -41,6 +40,5 @@ public class TeamLogger {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 }

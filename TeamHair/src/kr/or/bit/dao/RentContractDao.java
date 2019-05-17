@@ -19,8 +19,8 @@ public class RentContractDao {
 	DataSource ds = null;
 
 	public RentContractDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 
 	//RentContract 데이터 삽입
@@ -41,7 +41,7 @@ public class RentContractDao {
 			
 			pstmt.setString(1, dto.getUserId());
 			pstmt.setInt(2, dto.getSpaceId());
-			pstmt.setDate(3, TeamConvert.dateFromUtilToSql(dto.getStartDate())); // convert java.util.Date to java.sql.Date
+			pstmt.setDate(3, TeamConvert.dateFromUtilToSql(dto.getStartDate())); 
 			pstmt.setDate(4, TeamConvert.dateFromUtilToSql(dto.getEndDate()));
 			pstmt.setDouble(5, dto.getDeposit());
 			pstmt.setDouble(6, dto.getMonthlyrental());
@@ -61,6 +61,7 @@ public class RentContractDao {
 	}
 	
 	public RentContractDto getRentContractbyRentId (int rentId) {
+		
 		RentContractDto dto = new RentContractDto();
 		
 		Connection conn = null;
@@ -72,7 +73,7 @@ public class RentContractDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, rentId);
@@ -104,6 +105,7 @@ public class RentContractDao {
 	}
 
 	public RentContractDto getRentContractbyCondition (int rentId, String userId, int spaceId) {
+		
 		RentContractDto dto = new RentContractDto();
 		
 		Connection conn = null;
@@ -115,7 +117,7 @@ public class RentContractDao {
 		
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, rentId);
@@ -150,6 +152,7 @@ public class RentContractDao {
 
 
 	public List<RentContractDto> getRentContractList () {
+		
 		List<RentContractDto> dtoList = new ArrayList<RentContractDto>();
 		
 		
@@ -162,9 +165,8 @@ public class RentContractDao {
 
 		try {
 			conn = ds.getConnection();
-			//
+		
 			pstmt = conn.prepareStatement(sql);
-			
 			
 			rs = pstmt.executeQuery();
 			
@@ -198,6 +200,7 @@ public class RentContractDao {
 
 	
 	public int updateRentContract(RentContractDto dto) {
+		
 		int row = 0;
 		
 		Connection conn = null;

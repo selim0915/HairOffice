@@ -22,7 +22,6 @@ public class InstaPhotoDeleteService implements Action{
 		int result = 0;
 		
 		try {
-			System.out.println("서비스 들어옴");
 			PhotoDao dao = new PhotoDao();
 			
 			LikesDao likesdao = new LikesDao();
@@ -33,9 +32,6 @@ public class InstaPhotoDeleteService implements Action{
 			
 			result = dao.deletePhoto(photoid);
 			
-			
-			System.out.println("DB완료");
-			
 			if (result > 0) {
 				System.out.println("글 삭제 성공");
 			} else { // -1 (제약, 컬럼길이 문제)
@@ -45,7 +41,7 @@ public class InstaPhotoDeleteService implements Action{
 
 			forward = new ActionForward(); 
 			forward.setRedirect(false);
-			forward.setPath("Insta.insta"); //리스트
+			forward.setPath("Insta.insta"); 
 			
 		} catch (Exception e) {
 			e.printStackTrace();

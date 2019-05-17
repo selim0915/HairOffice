@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ReservationDto {
 	private int reserveId;
+	private String serviceType;
 	private Date startDateTime;
 	private Date endDateTime;
 	private String cancelYn;
@@ -19,6 +20,14 @@ public class ReservationDto {
 
 	public void setReserveId(int reserveId) {
 		this.reserveId = reserveId;
+	}
+
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
 	}
 
 	public Date getStartDateTime() {
@@ -87,9 +96,10 @@ public class ReservationDto {
 
 	@Override
 	public String toString() {
-		return "ReservationDto [reserveId=" + reserveId + ", startDateTime=" + startDateTime + ", endDateTime="
-				+ endDateTime + ", cancelYn=" + cancelYn + ", createDate=" + createDate + ", updateDate=" + updateDate
-				+ ", userId=" + userId + ", spaceId=" + spaceId + ", photoId=" + photoId + "]";
+		return "ReservationDto [reserveId=" + reserveId + ", serviceType=" + serviceType + ", startDateTime="
+				+ startDateTime + ", endDateTime=" + endDateTime + ", cancelYn=" + cancelYn + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + ", userId=" + userId + ", spaceId=" + spaceId
+				+ ", photoId=" + photoId + "]";
 	}
 
 }

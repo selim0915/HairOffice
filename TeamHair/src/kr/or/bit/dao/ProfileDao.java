@@ -18,11 +18,11 @@ public class ProfileDao {
 	DataSource ds = null;
 
 	public ProfileDao() throws Exception {
-		Context context = new InitialContext(); // 이름기반 검색
-		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); /// jdbc/oracle pool 검색
+		Context context = new InitialContext(); 
+		ds = (DataSource) context.lookup("java:comp/env/jdbc/oracle"); 
 	}
 
-	//Users 데이터 삽입
+	
 	public int insertProfile(ProfileDto dto) {
 		int row = 0;
 		

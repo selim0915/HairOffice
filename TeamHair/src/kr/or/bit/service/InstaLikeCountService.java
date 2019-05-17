@@ -17,18 +17,21 @@ public class InstaLikeCountService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		
+
 		int photoid = Integer.parseInt(request.getParameter("photoid"));
-		
+
 		try {
-			
+
 			LikesDao likesdao = new LikesDao();
+
 			int likecount = likesdao.getLikeNumberByPhotoId(photoid);
+
 			request.setAttribute("likecount", likecount);
+
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/json/instalikecount.jsp");
-			
-		} catch (Exception e) {	
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return forward;
