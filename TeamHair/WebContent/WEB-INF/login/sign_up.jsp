@@ -53,24 +53,30 @@
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="website" id="website" placeholder="홈페이지"/>
                             </div>
-                            
-                            
-                            <div class="form-group">
-                                <label for="gender"><i class="zmdi zmdi-account material-icons-name"></i></label>
-							    <select class="form-control form-control-lg" id="gender" name="gender">
-							      <option value="M">MALE</option>
-							      <option value="F" selected>FEMALE</option>
-							    </select>
-							</div>
 
-                            <div class="form-group">
-                                <label for="usertype"><i class="zmdi zmdi-account material-icons-name"></i></label>
-							    <select class="form-control form-control-lg" id="usertype" name="usertype">
-							      <option value="U" selected>User</option>
-							      <option value="H">Hair Designer</option>
-							      <option value="M">Administrator</option>
-							    </select>
-							</div>
+								<div class="form-group">
+									<div class="single-element-widget">
+										<div class="default-select-sub" id="default-select-sub">
+											<select>
+							      			<option value="M">MALE</option>
+							      			<option value="F" selected>FEMALE</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="single-element-widget">
+										<div class="default-select-sub" id="default-select-sub">
+											<select>
+										      <option value="U" selected>User</option>
+										      <option value="H">Hair Designer</option>
+										      <option value="M">Administrator</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
                                         
                             <div class="form-group">
                                 <div class="checkbox-sub">

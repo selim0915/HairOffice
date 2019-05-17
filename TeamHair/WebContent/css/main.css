@@ -17,6 +17,10 @@
   background-color: #61c524;
   color: #fff; }
 
+::-webkit-scrollbar {
+	display:none;
+}
+
 ::selection {
   background-color: #61c524;
   color: #fff; }
@@ -4445,16 +4449,6 @@ group + group {
   justify-content: center;
 }
 
-select {
-  position: absolute;
-  z-index: -1;
-  visibility: hidden;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
 .selectWrapper {
   position: relative;
   -webkit-user-select: none;
@@ -4737,6 +4731,17 @@ select {
     border-bottom: solid 2px rgb(248, 248, 248);
 }
 
+.obscure-sub {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  content: '';
+  background: rgba(9, 9, 9, 0.67);
+  z-index: 1;
+}
 
 .obscure {
   width: 100%;
@@ -4748,6 +4753,21 @@ select {
   content: '';
   background: rgba(9, 9, 9, 0.67);
   z-index: 1;
+}
+
+.popup-sub {
+    display: flex;
+    width: 50%;
+    /* padding: 10px 75px; */
+    transform: translate(-50%, -50%) scale(0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    background: #fff;
+    /* text-align: center; */
+    z-index: 3;
 }
 
 .popup {
@@ -4775,6 +4795,25 @@ text-decoration: none;
 color: #333;
 line-height: 10px;
 }
+
+.animationOpen-sub, .animationClose-sub {
+  display: flex;
+  -webkit-transition: all ease .2s;
+  transition: all ease .2s;
+}
+
+.animationOpen-sub {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.animationClose-sub {
+	opacity: 0;
+  -webkit-transform: translate(-50%, -50%) scale(.5);
+  transform: translate(-50%, -50%) scale(.5);
+}
+
 
 .animationOpen, .animationClose {
   display: flex;
@@ -4838,3 +4877,66 @@ line-height: 10px;
    .default-select-sub .nice-select:active, .nice-select.open, .nice-select:focus {
    border-color: #e8e8e8;
    }
+   
+.instagram-card-content{
+	max-height: 375px;
+    overflow: auto;
+} 
+
+margin-right: 0px;
+}
+
+.mainContentTitle2 h2{
+    width: 400px;
+    text-align: right;
+    margin-left: 30px;
+}
+
+.mainContentTitle2 ul{
+    margin-left: 140px;
+}
+
+.maincontainer{
+    margin-bottom: 50px;
+}
+
+.img-mid2{
+    margin-left: 40px;
+   width: 400px;
+   height: 500px;
+}
+
+.session3title{
+ padding-bottom: 40px;
+}
+
+.filebox label {
+    font-weight: bold;
+    display: inline-block;
+    /* padding: .5em .75em; */
+    color: #007bff;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    /* background-color: #5cb85c; */
+    cursor: pointer;
+    /* border: 1px solid #4cae4c; */
+    /* border-radius: .25em; */
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+
+.filebox label:active {
+  background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

@@ -40,14 +40,14 @@ public class LoginOkService implements Action {
 					System.out.println("비밀번호가 틀린 경우");
 					
 					forward.setRedirect(false);
-					forward.setPath("/WEB-INF/login/log-in.jsp");	
+					forward.setPath("/WEB-INF/login/log_in.jsp");	
 					
 				}
 			} else { // 회원이 아닌 경우
 				System.out.println("회원이 아닌 경우");
 				
 				forward.setRedirect(false);
-				forward.setPath("/WEB-INF/login/sign-up.jsp");
+				forward.setPath("/WEB-INF/login/sign_up.jsp");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();

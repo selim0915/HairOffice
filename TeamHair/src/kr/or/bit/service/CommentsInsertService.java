@@ -43,7 +43,7 @@ public class CommentsInsertService implements Action{
 			request.setAttribute("commentslist", commentslist);
 			System.out.println("commentslist: "+commentslist);
 			
-			
+			System.out.println(commentslist);
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/json/commentsList.jsp");
 
